@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Case study — Diptiranjan Rout</title>
+<meta name="description" content="A case study from the portfolio of Diptiranjan Rout, Apple application developer." />
+<meta name="theme-color" content="#e9e0cd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141a2b" media="(prefers-color-scheme: dark)">
+
+<script>
+  (function(){
+    var d = document.documentElement;
+    d.classList.add('js');
+    try{
+      var saved = localStorage.getItem('gurukul-theme');
+      if (saved) d.setAttribute('data-theme', saved);
+    }catch(e){}
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<div id="progress"></div>
+
+<header id="top-bar">
+  <div class="shell nav">
+    <a class="mark" href="index.html">
+      <b>Diptiranjan Rout</b>
+      <small>Apple Application Developer</small>
+    </a>
+
+    <nav class="nav-links" id="menu">
+      <ul>
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="index.html#craft">Craft</a></li>
+        <li><a href="index.html#path">Path</a></li>
+        <li><a href="index.html#talk">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-act">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch theme">
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/></svg>
+      </button>
+      <a class="btn solid" href="index.html#talk">Let's talk</a>
+      <button class="icon-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span class="bars"></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <article class="case">
+    <div class="shell" id="case"><!-- rendered from projects.js --></div>
+  </article>
+</main>
+
+<div class="shell">
+  <footer>
+    <span>© <span id="yr"></span> Diptiranjan Rout</span>
+    <span>Practice, made visible.</span>
+    <span>Odisha, India</span>
+  </footer>
+</div>
+
+<script src="projects.js"></script>
+<script>
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---- theme (same contract as index.html) ---- */
+(function theme(){
+  const root = document.documentElement;
+  const sysDark = matchMedia('(prefers-color-scheme: dark)');
+  const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : sysDark.matches;
+  const sync = () => $('#themeBtn').setAttribute('aria-label', isDark() ? 'Switch to day theme' : 'Switch to night theme');
+  $('#themeBtn').addEventListener('click', () => {
+    root.dataset.theme = isDark() ? 'light' : 'dark';
+    try{ localStorage.setItem('gurukul-theme', root.dataset.theme); }catch(e){}
+    sync();
+  });
+  sysDark.addEventListener('change', sync);
+  sync();
+})();
+
+/* ---- scroll progress + tucked nav ---- */
+const bar = $('#progress'), barTop = $('#top-bar');
+const onScroll = () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = (max > 0 ? Math.min(1, scrollY / max) * 100 : 0) + '%';
+  barTop.classList.toggle('tuck', scrollY > 40);
+};
+addEventListener('scroll', onScroll, { passive:true });
+onScroll();
+
+/* ---- mobile menu ---- */
+(function menu(){
+  const btn = $('#menuBtn'), panel = $('#menu');
+  const set = open => {
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    panel.classList.toggle('open', open);
+  };
+  btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+  addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+})();
+
+/* ============================================================
+   RENDER — the study comes from the same PROJECTS array the
+   index cards are built from, so a project can never have one
+   name on the card and another here.
+   ============================================================ */
+/* ============================================================
+   FIGURES
+
+   Drawn, not screenshotted. Each one earns its place by explaining
+   something a paragraph explains badly — a misalignment in time, or
+   the shape of a request path. All strokes use currentColor or the
+   theme tokens, so they follow day/night with no second asset.
+   ============================================================ */
+const FIGURES = {
+
+  /* The whole premise of the app in one picture: the month resets,
+     the money doesn't. */
+  cycle: () => `
+    <figure class="fig">
+      <svg viewBox="0 0 720 250" role="img" aria-label="A calendar month resets on the 1st, but a salary paid on the 25th means six days where the budget has reset and the money has not arrived.">
+        <g class="fig-mute" font-size="12" font-family="var(--f-mono)" letter-spacing="1.6">
+          <text x="0" y="34">CALENDAR MONTH</text>
+          <text x="0" y="150">YOUR PAY CYCLE</text>
+        </g>
+
+        <rect x="0" y="50" width="720" height="34" rx="3" class="fig-band"/>
+        <line x1="0" y1="50" x2="0" y2="84" class="fig-edge"/>
+        <line x1="480" y1="44" x2="480" y2="90" class="fig-edge"/>
+        <line x1="720" y1="50" x2="720" y2="84" class="fig-edge"/>
+        <text x="8" y="72" class="fig-label" font-size="12">1st — budget resets</text>
+        <text x="712" y="72" class="fig-label" font-size="12" text-anchor="end">30th</text>
+
+        <rect x="480" y="166" width="240" height="34" rx="3" class="fig-band"/>
+        <rect x="0"   y="166" width="480" height="34" rx="3" class="fig-band"/>
+        <line x1="480" y1="160" x2="480" y2="206" class="fig-accent-line"/>
+        <text x="488" y="188" class="fig-accent" font-size="12">25th — salary lands</text>
+
+        <rect x="480" y="44" width="240" height="162" class="fig-gap"/>
+        <text x="600" y="232" text-anchor="middle" class="fig-accent" font-size="12" font-family="var(--f-mono)" letter-spacing="1.4">SIX DAYS THE BUDGET LIES TO YOU</text>
+      </svg>
+      <figcaption>A month-based budget resets on the 1st. If you are paid on the 25th, it spends six days every cycle telling you about money you do not have yet.</figcaption>
+    </figure>`,
+
+  /* Where the keys live, and what happens when a provider fails. */
+  stack: () => `
+    <figure class="fig">
+      <svg viewBox="0 0 720 260" role="img" aria-label="The app talks only to a Cloudflare Worker, which holds the vendor keys and routing config and calls Claude first, falling back to Groq.">
+        <g class="fig-box"><rect x="0" y="86" width="150" height="70" rx="4"/></g>
+        <text x="75" y="116" text-anchor="middle" class="fig-strong" font-size="14">MoMudra</text>
+        <text x="75" y="134" text-anchor="middle" class="fig-mute" font-size="11">iOS app</text>
+
+        <g class="fig-box"><rect x="255" y="70" width="180" height="102" rx="4"/></g>
+        <text x="345" y="102" text-anchor="middle" class="fig-strong" font-size="14">Cloudflare Worker</text>
+        <text x="345" y="122" text-anchor="middle" class="fig-mute" font-size="11">vendor keys · routing</text>
+        <text x="345" y="140" text-anchor="middle" class="fig-mute" font-size="11">config in KV</text>
+
+        <g class="fig-box"><rect x="545" y="34" width="150" height="58" rx="4"/></g>
+        <text x="620" y="60" text-anchor="middle" class="fig-strong" font-size="13">Claude</text>
+        <text x="620" y="78" text-anchor="middle" class="fig-mute" font-size="11">primary</text>
+
+        <g class="fig-box"><rect x="545" y="150" width="150" height="58" rx="4"/></g>
+        <text x="620" y="176" text-anchor="middle" class="fig-strong" font-size="13">Groq</text>
+        <text x="620" y="194" text-anchor="middle" class="fig-mute" font-size="11">fallback</text>
+
+        <path d="M150 121 H255" class="fig-arrow"/>
+        <path d="M435 110 H500 V63 H545" class="fig-arrow"/>
+        <path d="M435 132 H500 V179 H545" class="fig-arrow fig-dash"/>
+
+        <path d="M620 208 V236 H345 V172" class="fig-arrow fig-dash"/>
+        <text x="482" y="252" text-anchor="middle" class="fig-accent" font-size="11" font-family="var(--f-mono)" letter-spacing="1.4">ONE SELF-HEAL RETRY BEFORE ADMITTING FAILURE</text>
+      </svg>
+      <figcaption>No vendor key ever ships to a device. The app authenticates to the Worker; the Worker authenticates to the vendor — and routing order is config, not a release.</figcaption>
+    </figure>`
+};
+
+(function render(){
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const fig = key => (key && FIGURES[key]) ? FIGURES[key]() : '';
+  const slug = new URLSearchParams(location.search).get('p');
+  const p = (window.PROJECTS || []).find(x => x.slug === slug);
+  const root = $('#case');
+
+  if (!p){
+    document.title = 'Case study not found — Diptiranjan Rout';
+    root.innerHTML = `
+      <a class="case-back" href="index.html#work">← All work</a>
+      <div class="case-head"><h1>Not found</h1></div>
+      <p class="case-soon">There's no project by that name. <a class="mailto" href="index.html#work" style="font-size:inherit">Back to the work</a>.</p>`;
+    return;
+  }
+
+  document.title = `${p.name} — case study — Diptiranjan Rout`;
+  const s = p.study;
+  const paras = a => (a || []).map(t => `<p>${esc(t)}</p>`).join('');
+
+  const head = `
+    <a class="case-back" href="index.html#work">← All work</a>
+    <div class="case-head"><h1>${esc(p.name)}</h1></div>
+    <div class="case-meta">
+      <span>${esc(p.role)}</span><span>${esc(p.years)}</span><span>${p.tags.map(esc).join(' · ')}</span>
+    </div>`;
+
+  if (!s){
+    root.innerHTML = head + `
+      <p class="case-soon">${esc(p.blurb)}</p>
+      <p class="case-soon">The full study for this one isn't written yet.</p>
+      ${p.link ? `<div class="case-out"><a class="btn" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkLabel)} →</a></div>` : ''}`;
+    return;
+  }
+
+  const glance = (s.glance || []).length ? `
+    <dl class="glance">
+      ${s.glance.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}
+    </dl>` : '';
+  const f = s.figures || {};
+
+  root.innerHTML = head + `
+    <p class="case-stand">${esc(s.standfirst)}</p>
+    ${glance}
+    <div class="case-body">
+      <h2>The problem</h2>${paras(s.problem)}${fig(f.problem)}
+      <h2>The approach</h2>${paras(s.approach)}${fig(f.approach)}
+      <h2>The decisions</h2>
+      <ol class="dec">
+        ${s.decisions.map(d => `<li><h3>${esc(d.title)}</h3><p>${esc(d.body)}</p></li>`).join('')}
+      </ol>
+      <h2>The outcome</h2>${paras(s.outcome)}
+      <h2>What it taught me</h2>
+      <ul class="takeaways">${s.lessons.map(l => `<li>${esc(l)}</li>`).join('')}</ul>
+      <div class="case-out">
+        ${p.link ? `<a class="btn" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkLabel)} →</a>` : ''}
+        <a class="btn" href="index.html#work">All work →</a>
+      </div>
+    </div>`;
+})();
+</script>
+</body>
+</html>

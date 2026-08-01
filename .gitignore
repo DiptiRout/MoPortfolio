@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+.vite/
+next-env.d.ts
+*.tsbuildinfo
+.DS_Store
+.env*.local
+
+# Pre-rewrite snapshot of index.html — superseded, not part of the deployed site
+index.backup.html

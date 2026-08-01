@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Diptiranjan Rout — Apple Application Developer</title>
+<meta name="description" content="Portfolio of Diptiranjan Rout, Apple application developer with 10 years across iOS and tvOS — Swift, SwiftUI and Clean Architecture, from fintech to streaming at scale." />
+<meta name="theme-color" content="#e9e0cd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141a2b" media="(prefers-color-scheme: dark)">
+
+<script>
+  /* Set the theme before first paint so there is no flash of the wrong ground.
+     `js` also gates every entrance animation — without it the page renders
+     fully visible, so a script failure degrades to a readable document. */
+  (function(){
+    var d = document.documentElement;
+    d.classList.add('js');
+    try{
+      var saved = localStorage.getItem('gurukul-theme');
+      if (saved) d.setAttribute('data-theme', saved);
+    }catch(e){}
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<div id="progress"></div>
+
+<!-- ══════════════ NAV ══════════════ -->
+<header id="top-bar">
+  <div class="shell nav">
+    <a class="mark" href="#top">
+      <b>Diptiranjan Rout</b>
+      <small>Apple Application Developer</small>
+    </a>
+
+    <nav class="nav-links" id="menu">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#shipped">Shipped</a></li>
+        <li><a href="#craft">Craft</a></li>
+        <li><a href="#path">Path</a></li>
+        <li><a href="#talk">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-act">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch theme">
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/></svg>
+      </button>
+      <a class="btn solid" href="#talk">Let's talk</a>
+      <button class="icon-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span class="bars"></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero" id="top">
+  <div class="shell">
+    <div class="hero-grid">
+
+      <div class="hero-copy">
+        <div class="eyebrow" data-rv>Gurukul — an old discipline</div>
+
+        <h1 id="headline" data-rv="mask">
+          <span class="m"><span>Ten years</span></span>
+          <span class="m" data-d="1"><span>of <em>craft</em></span></span>
+          <span class="m" data-d="2"><span>in iOS<i class="tick"></i></span></span>
+        </h1>
+
+        <p class="lede" data-rv data-d="2">I build for the Apple ecosystem — iOS, iPadOS, tvOS and visionOS. A decade of Swift, from live transit tracking to streaming at scale, and most recently a finance app I shipped alone, backend included.</p>
+
+        <ul class="stats" data-rv data-d="3">
+          <li><b data-count>10+</b><span>Years shipping</span></li>
+          <li><b data-count>18</b><span>Apps from one codebase</span></li>
+          <li><b data-count>90%+</b><span>Test coverage</span></li>
+        </ul>
+      </div>
+
+      <div class="hero-figure" data-rv="scale" data-d="1">
+        <div class="platform-fig" id="platformWrap">
+          <canvas id="platformFig" role="img" aria-label="A diagram: one shared core at the centre, joined by spokes to the five Apple platforms around it — iPhone, iPad, Apple Watch, Apple TV and Vision Pro. A pulse travels outward from the core along each spoke in turn, showing shared code reaching every device."></canvas>
+        </div>
+        <div class="fig-cap">
+          <span id="figCap">One core · every Apple platform</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="hero-foot">
+      <div class="scrollcue"><i></i> scroll to explore</div>
+      <p class="side-note" data-rv>In the old schools, a craft was earned through repetition — the same stroke, thrown again, until the hand stopped shaking. Ten rings, one per year. The wheel keeps a slow turn on its own; effort only ever adds to it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ WORK ══════════════ -->
+<section class="sec work" id="work">
+  <div class="shell">
+    <div class="sec-head">
+      <div data-rv="mask">
+        <span class="sec-num" aria-hidden="true">01</span>
+        <h2><span class="m"><span>Selected work</span></span></h2>
+      </div>
+      <p class="note" data-rv data-d="1">Only what shipped to the App Store, or what a lot of shipped apps were built on.</p>
+    </div>
+
+    <div class="cards" id="cards"><!-- rendered from projects.js --></div>
+  </div>
+</section>
+
+<!-- ══════════════ SHIPPED ══════════════ -->
+<section class="sec shipped" id="shipped">
+  <div class="shell">
+    <div class="sec-head">
+      <div data-rv="mask">
+        <span class="sec-num" aria-hidden="true">02</span>
+        <h2><span class="m"><span>Also shipped</span></span></h2>
+      </div>
+      <p class="note" data-rv data-d="1">Ten years across six domains. The early ones taught me Objective-C; the later ones are why I write Swift the way I do.</p>
+    </div>
+    <div class="ledger" id="ledger"><!-- rendered from projects.js --></div>
+  </div>
+</section>
+
+<!-- ══════════════ CRAFT ══════════════ -->
+<section class="sec craft" id="craft">
+  <div class="shell">
+    <div class="sec-head">
+      <div data-rv="mask">
+        <span class="sec-num" aria-hidden="true">03</span>
+        <h2><span class="m"><span>The craft</span></span></h2>
+      </div>
+      <p class="note" data-rv data-d="1">Five things I believe, and the work that had to pay for each one.</p>
+    </div>
+  </div>
+  <div class="shell">
+    <div class="leaves">
+      <div class="leaf" data-rv>
+        <span class="n">Sthapatya — the building of it</span>
+        <h3>One owner per idea</h3>
+        <p>Any number computed twice will disagree eventually. When a bug needs four fixes at four call sites, that isn't a hard bug — it's a value with no owner. I'd rather ship three similar lines than one abstraction invented before it was needed.</p>
+        <div class="leaf-sig">Paid for on <b>Fuse</b></div>
+      </div>
+      <div class="leaf" data-rv data-d="1">
+        <span class="n">Laya — tempo and flow</span>
+        <h3>Tests are what make speed safe</h3>
+        <p>Coverage past 90% was never the goal in itself. It was the price of being able to change shared code on a Friday and still sleep that night.</p>
+        <div class="leaf-sig">Learned the hard way on <b>Fuse</b> and <b>First Bus</b></div>
+      </div>
+      <div class="leaf" data-rv data-d="2">
+        <span class="n">Drishti — the way it is seen</span>
+        <h3>Accessibility is structural</h3>
+        <p>A focus engine retrofitted late is a rewrite, not a feature. Building VoiceOver and tvOS Focus support from scratch cost less than bolting either one on afterwards would have — and it decided how the view layer was shaped.</p>
+        <div class="leaf-sig">Built into <b>Fuse</b> from the first commit</div>
+      </div>
+      <div class="leaf" data-rv data-d="3">
+        <span class="n">Satya — what it says when it fails</span>
+        <h3>Say the true thing when it breaks</h3>
+        <p>Software fails. What it says while failing is a design decision, and usually an afterthought. When MoMudra's AI genuinely can't answer, it says so plainly — no red alarm, no invented result, and the question stays retryable.</p>
+        <div class="leaf-sig">Proven on <b>MoMudra</b> — read the study</div>
+      </div>
+      <div class="leaf" data-rv data-d="4">
+        <span class="n">Abhyāsa — practice, repeated</span>
+        <h3>Retooling is the job now</h3>
+        <p>I work with agents daily — Claude Code, Cursor, Codex, Xcode's own coding intelligence. The discipline is simple and non-negotiable: an agent may draft, but I review every line and I never ship what I can't explain. Ten years in, the willingness to learn the tools again is worth more than any framework I already know.</p>
+        <div class="leaf-sig">Practised on <b>MoMudra</b> — drafted with agents, reviewed line by line</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PATH ══════════════ -->
+<section class="sec" id="path">
+  <div class="shell">
+    <div class="sec-head">
+      <div data-rv="mask">
+        <span class="sec-num" aria-hidden="true">04</span>
+        <h2><span class="m"><span>The path</span></span></h2>
+      </div>
+      <p class="note" data-rv data-d="1">Not a list of jobs — the four times the question I was being asked changed. The tools beside each one are the honest record of what a decade actually looks like.</p>
+    </div>
+    <ul class="line">
+      <li data-rv><span class="lamp"></span>
+        <div class="era">
+          <div class="era-body">
+            <div class="yr">2021 — Present · Robosoft · Bengaluru, remote</div>
+            <h3>Scale changed the question</h3>
+            <p>One shared source, many shipping brands — so every choice I made was a choice made on behalf of teams I will never meet. The question stopped being “does this work” and became “what does this cost whoever inherits it.”</p>
+            <p>The codebase taught me more than any course could. Feature flags, design tokens, XcodeGen, interactors and templates, dependency injection, an AppObserver pattern that keeps AppDelegate almost empty — reading code that good is its own apprenticeship.</p>
+          </div>
+          <p class="era-stack">Swift 6 · SwiftUI · tvOS · visionOS · XcodeGen · Sonar Cloud</p>
+        </div>
+      </li>
+      <li data-rv><span class="lamp"></span>
+        <div class="era">
+          <div class="era-body">
+            <div class="yr">2019 — 2020 · Bajaj Markets · Pune</div>
+            <h3>Money on the other side</h3>
+            <p>The first place a mistake would cost someone money rather than a session. Convenience stopped being a neutral word to me here — a shortcut through an auth boundary is a promise you are making on the user's behalf, whether or not you meant to.</p>
+          </div>
+          <p class="era-stack">Deep Linking · CMS-driven layout · WebView auth · Jira</p>
+        </div>
+      </li>
+      <li data-rv><span class="lamp"></span>
+        <div class="era">
+          <div class="era-body">
+            <div class="yr">2018 — 2019 · Muvi · Bhubaneswar</div>
+            <h3>Building for builders</h3>
+            <p>Muvi's customers stood up their own streaming services on what we shipped. Writing for other developers instead of end users is the first time an awkward API stops being your opinion and becomes someone else's whole afternoon.</p>
+          </div>
+          <p class="era-stack">Swift · Alamofire · MVVM · Crashlytics · Unit Tests</p>
+        </div>
+      </li>
+      <li data-rv><span class="lamp"></span>
+        <div class="era">
+          <div class="era-body">
+            <div class="yr">2016 — 2018 · Mobiona · Bhubaneswar</div>
+            <h3>Where it started</h3>
+            <p>A services shop, so a lot of work came across the desk — Objective-C giving way to Swift, one project at a time. This is where I hit the things nobody teaches you: project-file conflicts, why code needs a repository at all, animation timing, and SOAP and XML that did not want to be parsed.</p>
+            <p>I stayed because of what I could see underneath it. The tools for building here, and the standard the platform holds you to, were better than anything else I had touched — and every piece of knowledge made the next piece easier. It compounds. That is the whole reason I am still at it.</p>
+          </div>
+          <p class="era-stack">Objective-C · UIKit · Core Data · Realm · Storyboards · SOAP / XML</p>
+        </div>
+      </li>
+    </ul>
+
+    <!-- The tools column above changes every two years. This is the part
+         that hasn't. -->
+    <div class="constants" data-rv>
+      <h3>What hasn't changed</h3>
+      <ul>
+        <li><b>Maintainable over clever</b><span>Code the next person can change without asking me first.</span></li>
+        <li><b>Owned end to end</b><span>Requirement, architecture, delivery, release — not just the ticket.</span></li>
+        <li><b>Tested before shipped</b><span>From a first unit test to coverage past 90% on a shared codebase.</span></li>
+        <li><b>Relearning the tools</b><span>Objective-C to Swift to SwiftUI to working alongside agents.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ NIGHT BAND ══════════════ -->
+<section class="night inverse">
+  <div class="shell">
+    <div class="diya" aria-hidden="true"></div>
+    <p class="verse" data-rv>“Lift yourself by your own self. Do not let yourself sink.”</p>
+    <p class="verse-src" data-rv data-d="1">Bhagavad Gītā 6.5 · uddhared ātmanātmānam</p>
+  </div>
+</section>
+
+<!-- ══════════════ TALK ══════════════ -->
+<section class="sec talk" id="talk">
+  <div class="shell">
+    <div class="eyebrow" data-rv>Get in touch</div>
+    <h2 data-rv="mask" style="margin-top:18px">
+      <span class="m"><span>Have something</span></span>
+      <span class="m" data-d="1"><span>worth building?</span></span>
+    </h2>
+    <a class="mailto" href="mailto:diptiranjan.rout.ios@gmail.com">diptiranjan.rout.ios@gmail.com</a>
+    <ul class="socials" data-rv data-d="2">
+      <li><a class="btn" href="https://github.com/DiptiRout" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a class="btn" href="https://www.linkedin.com/in/diptiranjan-rout-ios-dev" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a class="btn" href="https://apps.apple.com/in/app/momudra-ai-money-tracker/id6785097723" target="_blank" rel="noopener">App Store</a></li>
+      <li><a class="btn" href="Diptiranjan-Rout-iOS.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<div class="shell">
+  <footer>
+    <span>© <span id="yr"></span> Diptiranjan Rout</span>
+    <span>Practice, made visible.</span>
+    <span>Odisha, India</span>
+  </footer>
+</div>
+
+<script src="projects.js"></script>
+<script>
+/* ============================================================
+   1. UTILITIES
+   ============================================================ */
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---- theme ---- */
+(function theme(){
+  const root = document.documentElement;
+  const sysDark = matchMedia('(prefers-color-scheme: dark)');
+  const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : sysDark.matches;
+  const sync = () => {
+    $('#themeBtn').setAttribute('aria-label', isDark() ? 'Switch to day theme' : 'Switch to night theme');
+  };
+  $('#themeBtn').addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try{ localStorage.setItem('gurukul-theme', next); }catch(e){}
+    sync(); repaintFigure();
+  });
+  sysDark.addEventListener('change', () => { sync(); repaintFigure(); });
+  sync();
+})();
+
+/* ---- scroll progress + tucked nav ---- */
+const bar = $('#progress'), barTop = $('#top-bar');
+const onScroll = () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = (max > 0 ? Math.min(1, scrollY / max) * 100 : 0) + '%';
+  barTop.classList.toggle('tuck', scrollY > 40);
+};
+addEventListener('scroll', onScroll, { passive:true });
+onScroll();
+
+/* ---- mobile menu ---- */
+(function menu(){
+  const btn = $('#menuBtn'), panel = $('#menu');
+  const isOpen = () => btn.getAttribute('aria-expanded') === 'true';
+  const set = open => {
+    if (open === isOpen()) return;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    panel.classList.toggle('open', open);
+    /* Opening a panel and leaving focus behind it strands a keyboard user
+       outside the thing they just opened; closing without handing focus
+       back drops them at the top of the document. Deferred because a
+       focus() call made while the click is still being delivered is
+       discarded. */
+    if (open){
+      const first = panel.querySelector('a');
+      if (first) setTimeout(() => first.focus(), 0);
+    } else if (document.activeElement && panel.contains(document.activeElement)) {
+      btn.focus();
+    }
+  };
+  btn.addEventListener('click', () => set(!isOpen()));
+  panel.addEventListener('click', e => { if (e.target.closest('a')) set(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen()) set(false); });
+})();
+
+/* Reveals are CSS now — `animation-timeline: view()` in site.css. The
+   IntersectionObserver that used to toggle an `.in` class is gone, along
+   with the re-observe calls the rendered sections needed. */
+
+/* ---- stat counters ---- */
+(function counters(){
+  if (RM) return;
+  const run = el => {
+    const m = el.textContent.match(/^(\D*)(\d+(?:\.\d+)?)(.*)$/);
+    if (!m) return;                                  // placeholders like [XX] stay as-is
+    const [, pre, numStr, post] = m;
+    const end = parseFloat(numStr), dp = (numStr.split('.')[1] || '').length;
+    const settle = () => { el.textContent = pre + end.toFixed(dp) + post; };
+    /* A hidden tab gets no animation frames, so a count-up started there
+       freezes partway and the page ends up claiming "0+ years shipping".
+       Nothing about this number is worth animating badly — snap it. */
+    if (document.hidden){ settle(); return; }
+    const t0 = performance.now(), dur = 900;
+    const tick = t => {
+      const p = Math.min(1, (t - t0) / dur);
+      const e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + (end * e).toFixed(dp) + post;
+      if (p < 1) requestAnimationFrame(tick); else settle();
+    };
+    requestAnimationFrame(tick);
+  };
+  const co = new IntersectionObserver(es => {
+    for (const e of es) if (e.isIntersecting){ run(e.target); co.unobserve(e.target); }
+  }, { threshold:.6 });
+  $$('[data-count]').forEach(el => co.observe(el));
+})();
+
+/* ---- work cards, rendered from projects.js ----
+   The markup lives here exactly once; adding a project means adding
+   an object to PROJECTS and nothing else. */
+(function work(){
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  /* An unanswered detail set in the same voice as the rest of the paragraph
+     reads as broken copy. Marked up, it reads as a note. */
+  const gaps = s => esc(s).replace(/\[Placeholder:\s*([^\]]*)\]/g,
+    (_, body) => `<span class="gap">still to confirm — ${body.trim()}</span>`);
+  /* Owned work leads. Anyone judging whether this person can carry a
+     product end to end should meet the one he built alone first, not after
+     three things he contributed to. */
+  const ordered = [...window.PROJECTS].sort((a, b) => (b.mine ? 1 : 0) - (a.mine ? 1 : 0));
+  const html = ordered.map((p, i) => {
+    const n = String(i + 1).padStart(2, '0');
+    const href = p.study ? `case.html?p=${encodeURIComponent(p.slug)}` : p.link;
+    const ext  = !p.study && p.link;
+    const cta  = p.study ? 'Case study →' : (p.linkLabel ? p.linkLabel + ' →' : '');
+    const attrs = href
+      ? `href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ''}`
+      : '';
+    const tag  = href ? 'a' : 'div';
+    return `
+      <${tag} class="card" data-rv ${attrs}>
+        <span class="idx">${n}</span>
+        <div class="card-id">
+          ${p.ownership ? `<span class="owner${p.mine ? ' owner-mine' : ''}">${esc(p.ownership)}</span>` : ''}
+          <h3>${esc(p.name)}</h3>
+          <span class="role">${esc(p.role)} · ${esc(p.years)}</span>
+          <p class="blurb">${esc(p.blurb)}</p>
+          ${p.stack ? `<ul class="tags">${p.stack.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
+        </div>
+        <div class="decision">
+          <div class="lbl">How it's built</div>
+          <p class="arch">${gaps(p.architecture)}</p>
+          ${cta ? `<span class="go">${esc(cta)}</span>` : ''}
+        </div>
+      </${tag}>`;
+  }).join('');
+  $('#cards').innerHTML = html;
+})();
+
+/* ---- the shipped ledger ----
+   Breadth, grouped by domain. An app whose listing has gone renders as
+   plain text rather than a link that 404s — five of the early ones are
+   already dead, and a portfolio that pretends otherwise gets caught. */
+(function ledger(){
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  $('#ledger').innerHTML = (window.SHIPPED || []).map((g, i) => `
+    <div class="led-group" data-rv data-d="${Math.min(i, 4)}">
+      <h3 class="led-domain">${esc(g.domain)}</h3>
+      <ul class="led-apps">
+        ${g.apps.map(a => {
+          const label = `<span class="led-name">${esc(a.name)}</span>` +
+                        (a.note ? `<span class="led-note">${esc(a.note)}</span>` : '');
+          return `<li>${a.url
+            ? `<a href="${esc(a.url)}" target="_blank" rel="noopener" class="led-live">${label}</a>`
+            : label}</li>`;
+        }).join('')}
+      </ul>
+    </div>`).join('');
+})();
+
+/* Twelve links open in a new tab. Moving someone to a new context without
+   telling them is disorienting for anyone not watching the tab bar, so each
+   one gets a note only assistive tech reads. Applied here rather than in
+   markup so the JS-rendered cards and ledger are covered too. */
+(function newTabNotice(){
+  $$('a[target="_blank"]').forEach(a => {
+    if (a.querySelector('.sr-only')) return;
+    const n = document.createElement('span');
+    n.className = 'sr-only';
+    n.textContent = ' (opens in a new tab)';
+    a.appendChild(n);
+  });
+})();
+
+
+/* ============================================================
+   2. ONE CORE, FIVE PLATFORMS
+
+   The hero figure. A single core node with the five Apple platforms
+   around it, joined by spokes, with a pulse travelling outward along
+   each in turn — shared code reaching every device. It is the claim
+   the rest of the page spends its time backing up.
+
+   It replaced a yantra, which was beautiful and said nothing. This
+   is a diagram: no drag, no momentum score, nothing to fight the
+   page for a touch gesture. Hovering a platform names it, and that
+   is the whole interaction.
+
+   All colour is read from the CSS custom properties, so the piece
+   follows the theme without a second palette living in JS.
+   ============================================================ */
+let repaintFigure = () => {};
+
+(function platforms(){
+  const canvas = $('#platformFig'), wrap = $('#platformWrap');
+  const ctx = canvas.getContext('2d');
+  const capEl = $('#figCap');
+  const CAP_DEFAULT = 'One core · every Apple platform';
+
+  const PULSE   = 3200;                          // ms for a pulse to reach the rim
+  const STAGGER = 520;                           // ms between platforms
+
+  let W = 0, H = 0, cx = 0, cy = 0, R = 0, dpr = 1;
+  let t0 = 0, hoverPlat = -1;
+  let mx = -9e9, my = -9e9;
+
+  /* Scroll progress across the hero, 0 → 1. `exitSpan` is cached because
+     reading offsetHeight inside the draw loop forces a layout on every
+     single frame — the classic way to make a smooth animation expensive. */
+  const heroEl = document.querySelector('.hero');
+  let exit = 0, exitSpan = 1;
+  const smooth = (a, b, x) => {
+    const t = Math.max(0, Math.min(1, (x - a) / (b - a)));
+    return t * t * (3 - 2 * t);
+  };
+
+  let INK = [30,26,20], SIN = [154,58,30], HAL = [184,134,15];
+
+  const hex = h => {
+    h = h.trim().replace('#','');
+    if (h.length === 3) h = h.split('').map(c => c + c).join('');
+    return [0,2,4].map(i => parseInt(h.slice(i, i+2), 16));
+  };
+  const rgba = (c,a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+  const mix  = (a,b,t) => a.map((v,i) => Math.round(v + (b[i]-v)*t));
+  const P    = (r,a) => [cx + Math.cos(a)*r, cy + Math.sin(a)*r];
+
+  function readTheme(){
+    const cs = getComputedStyle(document.documentElement);
+    try{
+      INK = hex(cs.getPropertyValue('--ink'));
+      SIN = hex(cs.getPropertyValue('--sindoor'));
+      HAL = hex(cs.getPropertyValue('--haldi'));
+    }catch(e){ /* keep the last good palette */ }
+  }
+  repaintFigure = readTheme;
+
+  const rr = (x, y, w, h, r) => {
+    if (ctx.roundRect){ ctx.roundRect(x, y, w, h, r); return; }
+    ctx.moveTo(x+r, y);
+    ctx.arcTo(x+w, y,   x+w, y+h, r);
+    ctx.arcTo(x+w, y+h, x,   y+h, r);
+    ctx.arcTo(x,   y+h, x,   y,   r);
+    ctx.arcTo(x,   y,   x+w, y,   r);
+    ctx.closePath();
+  };
+
+  /* Hairline device outlines, drawn at the same weight as the spokes so
+     they read as part of one figure rather than five logos pasted on.
+
+     `hw`/`hh` are half-extents in units of the base size, and `k` scales
+     each glyph so all five carry roughly the same optical area. Drawing
+     them at one literal size made the Apple TV twice the mass of the
+     iPhone and the Watch look like an afterthought. */
+  const PLATFORMS = [
+    { name:'iPhone', os:'iOS', hw:0.30, hh:0.54, k:1.11,
+      glyph:s => { rr(-s*0.30, -s*0.54, s*0.60, s*1.08, s*0.15);
+                   ctx.moveTo(-s*0.10, -s*0.54); ctx.lineTo(s*0.10, -s*0.54); } },
+
+    { name:'iPad', os:'iPadOS', hw:0.47, hh:0.58, k:0.86,
+      glyph:s => { rr(-s*0.47, -s*0.58, s*0.94, s*1.16, s*0.08);
+                   ctx.moveTo(0, -s*0.46); ctx.lineTo(0, -s*0.46); } },
+
+    { name:'Apple Watch', os:'watchOS', hw:0.30, hh:0.60, k:1.02,
+      glyph:s => {
+        rr(-s*0.30, -s*0.38, s*0.60, s*0.76, s*0.23);
+        ctx.moveTo(-s*0.16, -s*0.38); ctx.lineTo(-s*0.16, -s*0.60);
+        ctx.lineTo( s*0.16, -s*0.60); ctx.lineTo( s*0.16, -s*0.38);
+        ctx.moveTo(-s*0.16,  s*0.38); ctx.lineTo(-s*0.16,  s*0.60);
+        ctx.lineTo( s*0.16,  s*0.60); ctx.lineTo( s*0.16,  s*0.38);
+        ctx.moveTo(s*0.30, -s*0.10); ctx.lineTo(s*0.36, -s*0.10);
+      } },
+
+    { name:'Apple TV', os:'tvOS', hw:0.60, hh:0.46, k:0.76,
+      glyph:s => {
+        rr(-s*0.60, -s*0.40, s*1.20, s*0.72, s*0.06);
+        ctx.moveTo(-s*0.22, s*0.46); ctx.lineTo(s*0.22, s*0.46);
+        ctx.moveTo(0, s*0.32); ctx.lineTo(0, s*0.46);
+      } },
+
+    { name:'Vision Pro', os:'visionOS', hw:0.64, hh:0.34, k:0.97,
+      glyph:s => {
+        rr(-s*0.64, -s*0.30, s*1.28, s*0.60, s*0.28);
+        ctx.moveTo(-s*0.64, -s*0.04); ctx.quadraticCurveTo(0, s*0.18, s*0.64, -s*0.04);
+      } }
+  ];
+
+  const angleOf = i => -Math.PI/2 + i * (Math.PI*2/PLATFORMS.length);
+
+  function measure(){
+    const rect = wrap.getBoundingClientRect();
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = Math.round(rect.width); H = Math.round(rect.height);
+    if (!W || !H) return;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cx = W/2; cy = H/2; R = Math.min(W,H) / 2;
+    exitSpan = Math.max(1, (heroEl ? heroEl.offsetHeight : innerHeight) * 0.85);
+    if (!t0) t0 = performance.now();
+  }
+
+  wrap.addEventListener('pointermove', e => {
+    const r = canvas.getBoundingClientRect();
+    mx = e.clientX - r.left; my = e.clientY - r.top;
+  }, { passive:true });
+  wrap.addEventListener('pointerleave', () => { mx = my = -9e9; });
+
+  function draw(now){
+    if (!W){ measure(); requestAnimationFrame(draw); return; }
+    ctx.clearRect(0,0,W,H);
+
+    const t = now - t0;
+
+    /* everything fades up once, together */
+    const reveal = RM ? 1 : Math.max(0, Math.min(1, t / 900));
+
+    /* Scrubbed, not triggered: the diagram takes itself apart as the hero
+       leaves — platforms first, then the spokes retract to the core, then
+       the core itself dims. Scroll back up and it rebuilds, because the
+       whole thing is bound to position rather than to a one-shot trigger. */
+    if (!RM) exit = Math.max(0, Math.min(1, scrollY / exitSpan));
+    const platGone = smooth(0.00, 0.50, exit);
+    const spokeGone = smooth(0.10, 0.70, exit);
+    const rimGone   = smooth(0.00, 0.45, exit);
+    const coreGone  = smooth(0.55, 1.00, exit);
+    if (coreGone >= 1) { if (!RM) requestAnimationFrame(draw); return; }
+
+    /* the figure settles back a touch as it goes */
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(1 - 0.10 * exit, 1 - 0.10 * exit);
+    ctx.translate(-cx, -cy);
+
+    const ring = R * 0.72;
+    const gs   = Math.max(16, R * 0.170);   /* balanced glyphs read small; give them presence */
+    const core = R * 0.135;
+
+    /* which platform is under the pointer */
+    let near = -1;
+    if (!RM && mx > -1e8){
+      let best = Infinity;
+      for (let i = 0; i < PLATFORMS.length; i++){
+        const p = PLATFORMS[i];
+        const [gx, gy] = P(ring, angleOf(i));
+        const d = Math.hypot(mx - gx, my - gy);
+        const hit = gs * p.k * Math.max(p.hw, p.hh) + gs * 0.5;
+        if (d < hit && d < best){ best = d; near = i; }
+      }
+    }
+
+    /* Each glyph's own clearance, so the rim and the spokes stop the same
+       optical distance from every device instead of one fixed number that
+       suited none of them. */
+    const clear = i => {
+      const p = PLATFORMS[i], sz = gs * p.k;
+      return { tan: sz * p.hw + gs * 0.34, rad: sz * Math.max(p.hw, p.hh) + gs * 0.34 };
+    };
+
+    /* 1 · the rim, broken around each platform.
+       A continuous circle ran straight through the middle of all five
+       glyphs, which looked like a drawing error. Now it is an arc between
+       neighbours and the devices sit in its gaps. */
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = rgba(INK, 0.16 * reveal * (1 - rimGone));
+    for (let i = 0; i < PLATFORMS.length; i++){
+      const j = (i + 1) % PLATFORMS.length;
+      const a0 = angleOf(i) + clear(i).tan / ring;
+      let   a1 = angleOf(j) - clear(j).tan / ring;
+      if (a1 < a0) a1 += Math.PI * 2;
+      ctx.beginPath(); ctx.arc(cx, cy, ring, a0, a1);
+      ctx.stroke();
+    }
+
+    /* 2 · spokes from core to each platform */
+    for (let i = 0; i < PLATFORMS.length; i++){
+      const a = angleOf(i);
+      const rIn = core * 1.35, rOut = ring - clear(i).rad;
+      const [x1, y1] = P(rIn, a);
+      const [x2, y2] = P(rIn + (rOut - rIn) * (1 - spokeGone), a);   // retracts
+      ctx.beginPath();
+      ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = rgba(INK, (i === near ? 0.45 : 0.22) * reveal * (1 - spokeGone));
+      ctx.stroke();
+    }
+
+    /* 3 · the pulse — shared code leaving the core, one platform at a time */
+    if (!RM){
+      for (let i = 0; i < PLATFORMS.length; i++){
+        const phase = ((t + i * STAGGER) % (PULSE * PLATFORMS.length)) / PULSE;
+        if (phase > 1) continue;                       // this spoke is resting
+        const a = angleOf(i);
+        const rIn = core * 1.35, rOut = ring - clear(i).rad;
+        const rp = rIn + (rOut - rIn) * phase;
+        const fade = Math.sin(phase * Math.PI);        // in and out at the ends
+        const [px, py] = P(rp, a);
+        ctx.beginPath(); ctx.arc(px, py, 2.6, 0, Math.PI*2);
+        ctx.fillStyle = rgba(mix(SIN, HAL, 0.35), 0.9 * fade * reveal * (1 - spokeGone));
+        ctx.fill();
+      }
+    }
+
+    /* 4 · the core.
+       Three equal stacked lines read as a hamburger menu button — an icon
+       nobody wants in the middle of a hero. A ring around a filled centre
+       says "origin" without borrowing a UI control's shape. */
+    ctx.beginPath(); ctx.arc(cx, cy, core, 0, Math.PI*2);
+    ctx.fillStyle = rgba(SIN, 0.07 * reveal * (1 - coreGone));
+    ctx.fill();
+    ctx.lineWidth = 1.4;
+    ctx.strokeStyle = rgba(SIN, 0.8 * reveal * (1 - coreGone));
+    ctx.stroke();
+
+    ctx.beginPath(); ctx.arc(cx, cy, core * 0.52, 0, Math.PI*2);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = rgba(SIN, 0.32 * reveal * (1 - coreGone));
+    ctx.stroke();
+
+    ctx.beginPath(); ctx.arc(cx, cy, core * 0.17, 0, Math.PI*2);
+    ctx.fillStyle = rgba(SIN, 0.9 * reveal * (1 - coreGone));
+    ctx.fill();
+
+    /* 5 · the platforms */
+    for (let i = 0; i < PLATFORMS.length; i++){
+      const [gx, gy] = P(ring, angleOf(i));
+      const lit = i === near;
+      ctx.save();
+      ctx.translate(gx, gy);
+      ctx.beginPath();
+      PLATFORMS[i].glyph(gs * PLATFORMS[i].k);
+      ctx.lineWidth = lit ? 1.7 : 1.1;
+      ctx.strokeStyle = rgba(lit ? SIN : INK, (lit ? 0.95 : 0.42) * reveal * (1 - platGone));
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    ctx.restore();
+
+    if (near !== hoverPlat){
+      hoverPlat = near;
+      capEl.textContent = near < 0
+        ? CAP_DEFAULT
+        : PLATFORMS[near].name + ' · ' + PLATFORMS[near].os;
+    }
+
+    if (!RM) requestAnimationFrame(draw);
+  }
+
+  readTheme();
+  measure();
+  requestAnimationFrame(draw);
+
+  let rt;
+  addEventListener('resize', () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => { measure(); if (RM) requestAnimationFrame(draw); }, 200);
+  });
+})();
+</script>
+</body>
+</html>
