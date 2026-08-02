@@ -352,6 +352,17 @@ window.PROJECTS = [
         'Too recently released for usage data worth reporting. What it already proves is narrower and more useful: one person can carry a product from SwiftUI view to Cloudflare secret without a team behind them.'
       ],
 
+      /* Written from Dipti's own answers. Deliberately specific and
+         deliberately unflattering — a regret section that hedges is worth
+         less than no regret section, and this is the part of a study a
+         senior reader actually weighs. */
+      differently: [
+        'I hardened the AI before anyone had used it. Prompt work to hold the token cost down, guards against abusive input, and keeping every answer strictly about MoMudra and nothing else — all of that needed to exist eventually. None of it needed to exist before the first user did.',
+        'I spent a long time deciding how the numbers should read, and settled on the pay cycle as a mathematical expression: income, minus spent, minus saved, equals free to spend. I still like it. I am less sure it was worth the weeks it took to arrive at.',
+        'The widget shipped at launch. Nobody had asked for one yet, and it could have waited for the release where somebody did.',
+        'Light mode and the notification system got the least of my attention, and they are the first two things I would rebuild. I built the app in dark mode, at night — so dark mode is the one that actually got designed.'
+      ],
+
       lessons: [
         'Most of an AI feature is the unhappy path. The prompt took an afternoon; the failure, retry, cache-invalidation and honest-copy work took the rest.',
         'Any number that appears in more than one place has to be computed in exactly one. A second implementation that agrees today will disagree eventually.',
