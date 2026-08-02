@@ -96,6 +96,7 @@ window.PROJECTS = [
        spells out. Everything else here is genuinely unknown. */
     metrics: [
       { label: 'Apps from one codebase', value: '18' },
+      { label: 'To stand up a new brand', value: '~1 day' },
       { label: 'Test coverage', value: '90%+' },
       { label: 'Brands shipped', value: '2 — Beam & TVE' }
     ],
@@ -111,7 +112,7 @@ window.PROJECTS = [
        client's system beyond what he has said out loud. */
     problem: 'One shared source feeding many shipping brands means every choice is made on behalf of teams you will never meet. The question stops being "does this work" and becomes "what does this cost whoever inherits it".',
     decision: 'Everything that differs between brands — design tokens, Figma configuration, component placement — lives outside the core rather than in a fork of it, so eighteen apps ship without eighteen codebases.',
-    result: 'Eighteen apps across two brands and three Apple platforms, from one codebase, held at 90%+ test coverage.',
+    result: 'Eighteen apps across two brands and three Apple platforms, from one codebase, held at 90%+ test coverage — and a new brand now takes about a day to stand up.',
 
     study: {
       standfirst: 'Eighteen streaming apps, two brands, three Apple platforms — and one codebase that has to survive every team that touches it.',
@@ -140,7 +141,7 @@ window.PROJECTS = [
       decisions: [
         {
           title: 'Per-brand variation lives outside the core',
-          body: 'Tokens, Figma configuration and component placement are all resolved outside the shared code. The moment a brand requirement is satisfied by editing the core, the next brand pays for it — and the fork that follows is permanent.'
+          body: 'What differs between brands is small and bounded: design tokens, a Google service plist, the app plist and ATT entries, assets and localisations. Everything else is shared. The moment a brand requirement is satisfied by editing the core, the next brand pays for it — and the fork that follows is permanent.'
         },
         {
           title: 'One owner per computed value',
@@ -162,7 +163,7 @@ window.PROJECTS = [
 
       outcome: [
         'Eighteen apps across two brands — Beam and TVE — shipping on iOS, tvOS and visionOS from a single codebase, held at 90%+ test coverage.',
-        '[Placeholder: anything you can say publicly about release cadence, or how long a new brand takes to stand up now versus before.]'
+        'Standing up a new brand is now about a day\'s work. That is the whole return on the architecture: because the deltas are bounded and none of them live in the shared code, a new app is configuration rather than engineering — and it stays that way as the count grows.'
       ],
 
       lessons: [
