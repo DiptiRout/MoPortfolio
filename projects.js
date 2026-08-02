@@ -317,35 +317,28 @@ window.PROJECTS = [
         'The second decision is what made the first one non-negotiable. The moment a model is reading your figures back to you, any disagreement between two screens becomes a credibility problem.'
       ],
 
+      /* Technique and mechanism only. These were seven paragraphs, which is
+         the wrong register for the part of a study an engineer skims to
+         find out how the thing is actually built. No decision was dropped —
+         each still states what was decided and how it is enforced, in about
+         a third of the words. */
       decisions: [
-        {
-          title: 'One cycle-scoped source of truth for “free to spend”',
-          body: 'That number shows on Home, in the widget, and inside AI answers. Computing it in three places meant three chances to disagree — and when a chart and a sentence disagree about your money, the user stops trusting both. It is now derived once, cycle-scoped, and everything else calls that.'
-        },
-        {
-          title: 'Provider routing with one self-heal retry',
-          body: 'Claude and Groq sit behind a shared protocol, with selection and fallback order driven by backend config rather than hardcoded in the app. On a total failure the router forces one fresh config pull and rebuilds the chain before surfacing an error — cheap, because it only runs on the already-rare failure path, and it silently absorbs a routing fix that shipped server-side before this client re-checked.'
-        },
-        {
-          title: 'A truncated reply is a failure, not a short answer',
-          body: 'A response cut off by a token limit reads like a valid, if terse, answer. Cached and replayed, it becomes a permanent one. Those are now rejected outright, and the response cache is keyed on a hash of the full final prompt so any change in the underlying figures busts the key on its own.'
-        },
-        {
-          title: 'Parse the vendor response defensively',
-          body: 'A model can return a reasoning block ahead of the actual answer even when you did not ask for one. Assuming the answer sits at a fixed position silently discarded real replies and reported an outage instead. Now the parser looks for the answer rather than assuming where it is — with a regression test pinned to that exact shape.'
-        },
-        {
-          title: 'Say the true thing when it breaks',
-          body: 'When retries are genuinely exhausted the app says so plainly, without the red-alert framing that makes a user think their data is gone. Failed questions stay retryable, and errors are never fed back into the model as if they were conversation.'
-        },
-        {
-          title: 'Keys never ship to the device',
-          body: 'Vendor credentials live as secrets on a Cloudflare Worker. The app authenticates to that backend; the backend authenticates to the vendor. Remote config is served from KV and cached client-side with a lazy staleness check, so a routing change does not need an App Store release.'
-        },
-        {
-          title: 'Tell the truth about the subscription too',
-          body: 'A cancelled subscription still has a future expiry date. Reading only that date meant telling people their plan would “renew” when it would not. It now reads the real renewal info before making any claim about what happens next.'
-        }
+        { title: 'One cycle-scoped accessor',
+          body: 'Derived once, scoped to the pay cycle. Home, the widget and every AI answer call it; nothing re-derives it.' },
+        { title: 'Config-driven provider routing',
+          body: 'Claude primary, Groq fallback, behind one shared protocol. Order comes from Worker KV rather than the binary, so it changes without a release.' },
+        { title: 'One self-heal retry',
+          body: 'A total failure forces a fresh config pull and rebuilds the chain before any error reaches the user.' },
+        { title: 'Truncated replies rejected',
+          body: 'A token-limit stop reason throws instead of caching. The response cache is keyed on a hash of the full final prompt.' },
+        { title: 'Position-free response parsing',
+          body: 'Finds the answer block rather than assuming its index, with a regression test pinned to a reasoning block arriving first.' },
+        { title: 'Keys server-side only',
+          body: 'Vendor credentials are Cloudflare Worker secrets. The app authenticates to the Worker; the Worker authenticates to the vendor.' },
+        { title: 'Failure copy without alarm',
+          body: 'Plain wording, the question stays retryable, and errors are never fed back into the model as conversation.' },
+        { title: 'Real renewal state',
+          body: 'Reads the subscription renewal info rather than inferring from an expiry date, which a cancelled plan also has.' }
       ],
 
       outcome: [
@@ -360,14 +353,12 @@ window.PROJECTS = [
       differently: [
         'I hardened the AI before anyone had used it. Prompt work to hold the token cost down, guards against abusive input, and keeping every answer strictly about MoMudra and nothing else — all of that needed to exist eventually. None of it needed to exist before the first user did.',
         'I spent a long time deciding how the numbers should read, and settled on the pay cycle as a mathematical expression: income, minus spent, minus saved, equals free to spend. I still like it. I am less sure it was worth the weeks it took to arrive at.',
-        'The widget shipped at launch. Nobody had asked for one yet, and it could have waited for the release where somebody did.',
         'Light mode and the notification system got the least of my attention, and they are the first two things I would rebuild. I built the app in dark mode, at night — so dark mode is the one that actually got designed.'
       ],
 
       lessons: [
         'Most of an AI feature is the unhappy path. The prompt took an afternoon; the failure, retry, cache-invalidation and honest-copy work took the rest.',
         'Any number that appears in more than one place has to be computed in exactly one. A second implementation that agrees today will disagree eventually.',
-        'A bug that needs four fixes at four call sites is not a hard bug. It is the absence of an owner for that value.',
         'On-device OCR does not read every currency. Testing it for receipt capture, it would not reliably recognise the rupee symbol — which is why that feature is not in the app yet. Not something a tutorial warns you about; you find it the first time you point it at a receipt from your own country.',
         'The cheapest AI call is the one you never make. Rules handle whatever rules can, and an image is shrunk before it is ever sent. On a subscription that promises unlimited AI for $2.99, the work done before the model runs is what makes that promise survivable.'
       ]
