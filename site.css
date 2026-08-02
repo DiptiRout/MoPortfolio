@@ -921,6 +921,18 @@ footer{ border-top:var(--rule); padding-block:26px; display:flex; flex-wrap:wrap
 /* The hero visual sits above the standfirst: a reader should see the thing
    before being told about it. Full measure, not the 68ch prose column. */
 .case-hero{ margin:clamp(34px,4.5vw,56px) 0 0; }
+.case-lead{ margin:clamp(34px,4.5vw,56px) 0 0; }
+.case-lead .case-hero{ margin:0; }
+@media (min-width:1000px){
+  .case-lead{
+    display:grid; grid-template-columns:300px minmax(0,1fr);
+    column-gap:clamp(36px,4.5vw,80px); align-items:start;
+  }
+  /* Stacked into a narrower column, the glance reads as a list rather than
+     a strip, so its cells wrap to two per row instead of six across. */
+  .case-lead .glance{ margin:0; }
+  .case-lead .glance > div{ flex:1 1 200px; }
+}
 .case-hero .media-diagram{
   padding:clamp(20px,2.6vw,36px);
   border:var(--rule); border-radius:6px;
@@ -935,7 +947,33 @@ footer{ border-top:var(--rule); padding-block:26px; display:flex; flex-wrap:wrap
 /* Outcome numbers, in the same treatment as the hero stats and the cards. */
 .case-figs{ margin:26px 0 0; padding:22px 0 0; border-top:var(--rule); }
 
-.case-body{ max-width:68ch; margin-top:clamp(52px,7vw,96px); }
+/* The study used to be one 68ch column hugging the left edge — 51% of a
+   1440px page, with a 632px empty gutter beside it and seven screens of
+   scrolling. Each section is now its own grid: the heading sits in a left
+   rail and sticks while its section is on screen, and lists spread across
+   the width the prose does not need. */
+.case-body{ margin-top:clamp(52px,7vw,96px); }
+.case-sec{ margin-top:clamp(44px,5.5vw,78px); }
+.case-sec:first-child{ margin-top:0; }
+.case-sec-body{ min-width:0; }
+/* Prose keeps a readable measure even though its container is now wide. */
+.case-sec-body > p{ max-width:68ch; }
+
+@media (min-width:1000px){
+  .case-sec{
+    display:grid; grid-template-columns:minmax(0,200px) minmax(0,1fr);
+    column-gap:clamp(36px,4.5vw,80px); align-items:start;
+  }
+  .case-sec > h2{
+    position:sticky; top:104px; margin:0;
+    border-top:0; padding-top:0;
+  }
+  /* Eight decisions stacked ran nearly two screens on their own. */
+  .dec{ display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:0 clamp(28px,3vw,52px); }
+  .takeaways{ columns:2; column-gap:clamp(28px,3.4vw,56px); }
+  .takeaways li{ break-inside:avoid; }
+}
+
 .case-body h2{
   font-size:clamp(26px,3.2vw,40px); margin:clamp(48px,6vw,84px) 0 0;
   padding-top:clamp(26px,3vw,38px); border-top:var(--rule);

@@ -167,49 +167,54 @@ function studyHTML(p) {
      it. The study leads with the NEXT ready screenshot instead, so the two
      pages never open on the same picture. */
   const heroShot = (p.media || []).slice(1).find(m => m.kind === 'shot' && m.ready);
-  if (heroShot) {
-    out.push(`<div class="case-hero">${MEDIA.html(heroShot, { eager: true })}</div>`);
-  }
   out.push(`<p class="case-stand">${esc(s.standfirst)}</p>`);
-  out.push(glanceHTML(s));
+  /* The screenshot is a 300px-wide phone. On its own row it left roughly a
+     thousand pixels empty beside it, so it shares a row with the at-a-glance
+     panel — which also puts the facts next to the thing they describe. */
+  const glance = glanceHTML(s);
+  if (heroShot) {
+    out.push(`<div class="case-lead">
+      <div class="case-hero">${MEDIA.html(heroShot, { eager: true })}</div>
+      ${glance}
+    </div>`);
+  } else {
+    out.push(glance);
+  }
+
+  /* Each section is its own grid: heading in a left rail, content beside
+     it. Flat h2-then-content left the prose at 51% of a 1440px page with a
+     632px empty gutter, and made the study seven screens long. */
+  const sec = (title, inner) => inner && inner.trim()
+    ? `<section class="case-sec"><h2>${title}</h2><div class="case-sec-body">${inner}</div></section>`
+    : '';
 
   out.push('<div class="case-body">');
-  out.push(`<h2>The problem</h2>`);
-  out.push(paras(s.problem));
-  out.push(figHTML(f.problem));
+  out.push(sec('The problem', paras(s.problem) + figHTML(f.problem)));
 
   /* Pulled from the project object, not the study — the card and the study
      must state the same constraint or neither can be trusted. */
-  if (p.constraint) {
-    out.push(`<h2>The constraint</h2>`);
-    out.push(`<p>${gaps(p.constraint)}</p>`);
-  }
+  if (p.constraint) out.push(sec('The constraint', `<p>${gaps(p.constraint)}</p>`));
 
-  out.push(`<h2>The approach</h2>`);
-  out.push(paras(s.approach));
-  out.push(figHTML(f.approach));
+  out.push(sec('The approach', paras(s.approach) + figHTML(f.approach)));
 
   if (s.decisions && s.decisions.length) {
-    out.push(`<h2>The decisions</h2>`);
-    out.push(`<ol class="dec">${s.decisions.map(d =>
-      `<li><h3>${esc(d.title)}</h3><p>${gaps(d.body)}</p></li>`).join('')}</ol>`);
+    out.push(sec('The decisions', `<ol class="dec">${s.decisions.map(d =>
+      `<li><h3>${esc(d.title)}</h3><p>${gaps(d.body)}</p></li>`).join('')}</ol>`));
   }
 
-  out.push(`<h2>The result</h2>`);
   const real = (p.metrics || []).filter(m => m.value !== null && m.value !== undefined);
-  if (real.length) {
-    out.push(`<ul class="figs case-figs">${real.map(m =>
-      `<li><b>${esc(m.value)}</b><span>${esc(m.label)}</span></li>`).join('')}</ul>`);
-  }
-  out.push(paras(s.outcome));
+  out.push(sec('The result',
+    (real.length ? `<ul class="figs case-figs">${real.map(m =>
+      `<li><b>${esc(m.value)}</b><span>${esc(m.label)}</span></li>`).join('')}</ul>` : '') +
+    paras(s.outcome)));
 
   if (s.lessons && s.lessons.length) {
-    out.push(`<h2>What it taught me</h2>`);
-    out.push(`<ul class="takeaways">${s.lessons.map(l => `<li>${gaps(l)}</li>`).join('')}</ul>`);
+    out.push(sec('What it taught me',
+      `<ul class="takeaways">${s.lessons.map(l => `<li>${gaps(l)}</li>`).join('')}</ul>`));
   }
   if (s.differently && s.differently.length) {
-    out.push(`<h2>What I'd do differently</h2>`);
-    out.push(paras(s.differently));
+    out.push(sec("What I'd do differently",
+      `<ul class="takeaways">${s.differently.map(l => `<li>${gaps(l)}</li>`).join('')}</ul>`));
   }
 
   const store = p.links && p.links.appStore;

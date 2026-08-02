@@ -270,34 +270,24 @@
       <div class="leaf" data-rv>
         <span class="n">Sthapatya — the building of it</span>
         <h3>One owner per idea</h3>
-        <p class="take">A value computed in two places will disagree eventually.</p>
-        <p>When a bug needs four fixes at four call sites, that isn't a hard bug — it's a value with no owner. I'd rather ship three similar lines than one abstraction invented before it was needed.</p>
-        <pre class="snip"><code>// Derived once, cycle-scoped.
-func freeToSpend(in cycle: PayCycle) -&gt; Decimal
-
-// Home, the widget and every AI answer
-// call this. None of them re-derive it.</code></pre>
+        <p class="take">A value computed in two places will disagree eventually — and I would rather ship three similar lines than one abstraction invented before it was needed.</p>
+        <pre class="snip"><code>func freeToSpend(in cycle: PayCycle) -&gt; Decimal
+// one owner — Home, widget and AI all call it</code></pre>
         <div class="leaf-sig">Paid for on <b>Fuse</b></div>
       </div>
       <div class="leaf" data-rv data-d="1">
         <span class="n">Laya — tempo and flow</span>
         <h3>Tests are what make speed safe</h3>
-        <p class="take">The number bought one thing — the confidence to change shared code.</p>
-        <p>Coverage past 90% was never the goal in itself. It was the price of being able to change shared code on a Friday and still sleep that night.</p>
-        <pre class="snip"><code>// Named for the guarantee it protects, so a
-// failure explains the regression on its own.
-@Test func unpaidManualRecurringReducesFreeToSpend()
+        <p class="take">Coverage past 90% was never the goal. It was the price of changing shared code on a Friday and still sleeping that night.</p>
+        <pre class="snip"><code>@Test func unpaidManualRecurringReducesFreeToSpend()
 @Test func thinkingBlockBeforeTextBlockStillParses()</code></pre>
         <div class="leaf-sig">Learned the hard way on <b>Fuse</b> and <b>First Bus</b></div>
       </div>
       <div class="leaf" data-rv data-d="2">
         <span class="n">Drishti — the way it is seen</span>
         <h3>Accessibility is structural</h3>
-        <p class="take">A focus engine retrofitted late is a rewrite, not a feature.</p>
-        <p>Building VoiceOver and tvOS Focus support from scratch cost less than bolting either one on afterwards would have — and it decided how the view layer was shaped.</p>
-        <pre class="snip"><code>// The component declares its own semantics,
-// so focus order follows structure, not layout.
-PosterCard(show: show)
+        <p class="take">A focus engine retrofitted late is a rewrite, not a feature. Building VoiceOver and tvOS Focus from scratch cost less — and decided how the view layer was shaped.</p>
+        <pre class="snip"><code>PosterCard(show: show)
     .focusable()
     .accessibilityLabel(show.title)
     .accessibilityHint("Opens the series")</code></pre>
@@ -306,11 +296,8 @@ PosterCard(show: show)
       <div class="leaf" data-rv data-d="3">
         <span class="n">Satya — what it says when it fails</span>
         <h3>Say the true thing when it breaks</h3>
-        <p class="take">What software says while failing is a design decision, not an afterthought.</p>
-        <p>When MoMudra's AI genuinely can't answer, it says so plainly — no red alarm, no invented result, and the question stays retryable.</p>
-        <pre class="snip"><code>// A reply cut off by a token limit reads like a
-// short answer. Cached, it becomes a wrong one.
-guard response.stopReason != .maxTokens else {
+        <p class="take">What software says while failing is a design decision. When MoMudra&rsquo;s AI cannot answer it says so plainly, and the question stays retryable.</p>
+        <pre class="snip"><code>guard response.stopReason != .maxTokens else {
     throw AIError.truncated
 }</code></pre>
         <div class="leaf-sig">Proven on <b>MoMudra</b> — read the study</div>
@@ -318,9 +305,8 @@ guard response.stopReason != .maxTokens else {
       <div class="leaf" data-rv data-d="4">
         <span class="n">Abhyāsa — practice, repeated</span>
         <h3>Retooling is the job now</h3>
-        <p class="take">An agent may draft. I review every line, and never ship what I can't explain.</p>
-        <p>I work with agents daily — Claude Code, Cursor, Codex, Xcode's own coding intelligence. Ten years in, the willingness to learn the tools again is worth more than any framework I already know.</p>
-        <div class="leaf-sig">Practised on <b>MoMudra</b> — drafted with agents, reviewed line by line</div>
+        <p class="take">An agent may draft; I review every line and never ship what I cannot explain. Ten years in, the willingness to relearn the tools is worth more than any framework I already know.</p>
+        <div class="leaf-sig">Claude Code · Cursor · Codex · Xcode intelligence — daily, on <b>MoMudra</b></div>
       </div>
     </div>
   </div>
