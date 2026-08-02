@@ -415,12 +415,17 @@ onScroll();
   /* Owned work leads. Anyone judging whether this person can carry a
      product end to end should meet the one he built alone first, not after
      three things he contributed to. */
-  const ordered = [...window.PROJECTS].sort((a, b) => (b.mine ? 1 : 0) - (a.mine ? 1 : 0));
+  const ordered = window.PROJECTS
+    .filter(p => p.tier !== 'archive')
+    .sort((a, b) => (b.mine ? 1 : 0) - (a.mine ? 1 : 0));
   const html = ordered.map((p, i) => {
     const n = String(i + 1).padStart(2, '0');
-    const href = p.study ? `case.html?p=${encodeURIComponent(p.slug)}` : p.link;
-    const ext  = !p.study && p.link;
-    const cta  = p.study ? 'Case study →' : (p.linkLabel ? p.linkLabel + ' →' : '');
+    /* The case-study URL is derived, never stored, so it cannot drift
+       out of sync with which projects actually have a study. */
+    const store = p.links && p.links.appStore;
+    const href = p.study ? `case.html?p=${encodeURIComponent(p.slug)}` : store;
+    const ext  = !p.study && store;
+    const cta  = p.study ? 'Case study →' : (store ? 'App Store →' : '');
     const attrs = href
       ? `href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ''}`
       : '';
@@ -431,7 +436,7 @@ onScroll();
         <div class="card-id">
           ${p.ownership ? `<span class="owner${p.mine ? ' owner-mine' : ''}">${esc(p.ownership)}</span>` : ''}
           <h3>${esc(p.name)}</h3>
-          <span class="role">${esc(p.role)} · ${esc(p.years)}</span>
+          <span class="role">${esc(p.role)} · ${esc(p.dateRange)}</span>
           <p class="blurb">${esc(p.blurb)}</p>
           ${p.stack ? `<ul class="tags">${p.stack.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
         </div>

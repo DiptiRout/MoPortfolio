@@ -207,20 +207,21 @@ const FIGURES = {
 
   document.title = `${p.name} — case study — Diptiranjan Rout`;
   const s = p.study;
+  const store = p.links && p.links.appStore;
   const paras = a => (a || []).map(t => `<p>${esc(t)}</p>`).join('');
 
   const head = `
     <a class="case-back" href="index.html#work">← All work</a>
     <div class="case-head"><h1>${esc(p.name)}</h1></div>
     <div class="case-meta">
-      <span>${esc(p.role)}</span><span>${esc(p.years)}</span><span>${p.tags.map(esc).join(' · ')}</span>
+      <span>${esc(p.role)}</span><span>${esc(p.dateRange)}</span><span>${p.platforms.map(esc).join(' · ')}</span>
     </div>`;
 
   if (!s){
     root.innerHTML = head + `
       <p class="case-soon">${esc(p.blurb)}</p>
       <p class="case-soon">The full study for this one isn't written yet.</p>
-      ${p.link ? `<div class="case-out"><a class="btn" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkLabel)} →</a></div>` : ''}`;
+      ${store ? `<div class="case-out"><a class="btn" href="${esc(store)}" target="_blank" rel="noopener">App Store →</a></div>` : ''}`;
     return;
   }
 
@@ -244,7 +245,7 @@ const FIGURES = {
       <h2>What it taught me</h2>
       <ul class="takeaways">${s.lessons.map(l => `<li>${esc(l)}</li>`).join('')}</ul>
       <div class="case-out">
-        ${p.link ? `<a class="btn" href="${esc(p.link)}" target="_blank" rel="noopener">${esc(p.linkLabel)} →</a>` : ''}
+        ${store ? `<a class="btn" href="${esc(store)}" target="_blank" rel="noopener">App Store →</a>` : ''}
         <a class="btn" href="index.html#work">All work →</a>
       </div>
     </div>`;

@@ -5,71 +5,193 @@
    a full study from the same objects. Adding a project means adding
    one object here and nothing else — no markup, no CSS.
 
-   `ownership` states plainly whose product it is. A reader evaluating
-   whether someone can own a thing end to end should not have to infer it
-   from a job title, and the distinction also governs what may be said:
-   only work Dipti owns carries a full case study.
+   ── FIELD CONTRACT ─────────────────────────────────────────
+   slug        stable id; also the ?p= key for case.html
+   tier        'selected' → a full card in #work
+               'archive'  → data only, for the ledger and CV context
+   ownership   whose product it is, in plain words
+   mine        true only for products Dipti owns outright
+   name        product name
+   company     who it was built for/at (kept separate from `role`
+               so neither has to be parsed out of the other)
+   role        job title only — no company, no dates
+   dateRange   'YYYY–YYYY' or 'YYYY–Present'
+   platforms   Apple platforms actually shipped to
+   oneLiner    max 12 words. The scannable summary — this is what a
+               recruiter reads instead of the paragraph.
+   blurb       one sentence of context beneath the name
+   architecture how the thing is actually put together, backend
+               through to view layer. This is what shows on the card
+               in place of a screenshot.
+   stack       renders as chips
+   metrics     [{ label, value }] — value is null until Dipti supplies
+               a real figure. NEVER invent one. A null renders as a
+               marked gap, not as a number.
+   links       { appStore, github, site } — null where none exists.
+               The case-study URL is NOT stored here; it is derived
+               from the presence of `study`, so it cannot drift.
+   media       [] until Phase 2 fills it. See ASSETS-TODO.md.
+   problem     \
+   constraint   |  the case-study spine. One to three sentences each,
+   decision     |  null where the honest answer is "not established".
+   result      /
+   study       optional long-form study. Only owned work carries one.
 
-   `architecture` is what shows on the card instead of a screenshot:
-   how the thing is actually put together, backend through to view
-   layer. `stack` renders as chips beneath it. `study` is optional; a
-   project without one links straight out.
+   `[Placeholder: …]` inside any prose string is deliberate and
+   renders as a visible "still to confirm" note. Do not replace one
+   with plausible-sounding prose — an unanswered detail written in
+   the same voice as sourced fact is worse than an admitted gap.
    ============================================================ */
 window.PROJECTS = [
   {
     slug: 'first-bus',
+    tier: 'selected',
     ownership: 'Client work · Robosoft',
     name: 'First Bus',
-    role: 'Senior iOS Engineer · Robosoft',
-    years: '2021–Present',
-    tags: ['SwiftUI', 'Atomic Design', 'Clean Architecture', 'Google Maps'],
+    company: 'FirstGroup (via Robosoft)',
+    role: 'Senior iOS Engineer',
+    dateRange: '2021–Present',
+    platforms: ['iOS'],
+    oneLiner: 'Live bus tracking, routes and ticketing for a major UK operator.',
     blurb: 'Live bus tracking, routes and ticketing for FirstGroup, one of the UK’s largest operators.',
     /* Sourced from Dipti's own notes + the 2026 CV. The bracketed line is a
        real gap — do not replace it with plausible-sounding prose. */
     architecture: 'SwiftUI on Clean Architecture and MVVM, modular where it needed to be. Google Maps carries routing, live location and stop-level updates, with Atomic Design in the view layer. [Placeholder: how the live vehicle feed reaches the UI — polling or socket, and where it is normalised.]',
     stack: ['Swift', 'SwiftUI', 'Atomic Design', 'Google Maps SDK', 'Swift-Dependency', 'Snapshot Testing'],
-    link: 'https://apps.apple.com/gb/app/first-bus/id566586379',
-    linkLabel: 'App Store'
+    metrics: [
+      { label: 'App Store rating', value: null },
+      { label: 'Crash-free rate', value: null },
+      { label: 'Test coverage', value: null }
+    ],
+    links: { appStore: 'https://apps.apple.com/gb/app/first-bus/id566586379', github: null, site: null },
+    media: [],
+    problem: null,
+    constraint: null,
+    decision: null,
+    result: null
   },
   {
     slug: 'fuse',
+    tier: 'selected',
     ownership: 'Client work · Robosoft',
     name: 'Fuse',
-    role: 'Senior iOS Engineer · Robosoft',
-    years: '2021–Present',
-    tags: ['tvOS', 'visionOS', 'Shared Codebase', 'Accessibility'],
+    company: 'Warner Bros. Discovery (via Robosoft)',
+    role: 'Senior iOS Engineer',
+    dateRange: '2021–Present',
+    platforms: ['iOS', 'tvOS', 'visionOS'],
+    oneLiner: 'One codebase shipping eighteen streaming apps across iOS, tvOS and visionOS.',
     blurb: 'One codebase across iOS, tvOS and visionOS, behind Discovery+, HBO Max, Max, TLC and fourteen more streaming apps.',
     architecture: 'Built on CommandBuilder, Template, Interactor and Router with protocol-oriented design and dependency injection. UIFocus Environment drives tvOS remote navigation, and accessibility was built across the whole platform from scratch rather than retrofitted late. [Placeholder: how per-brand config and theming separate from the shared core.]',
     stack: ['Swift', 'SwiftUI', 'tvOS', 'visionOS', 'CommandBuilder', 'Interactor', 'Router', 'SSO', 'MUX', 'Braze', 'Branch.io', 'GitHub Actions'],
-    link: null,
-    linkLabel: null
+    /* 18 is sourced — it is the same figure the hero counts and the blurb
+       spells out. Everything else here is genuinely unknown. */
+    metrics: [
+      { label: 'Apps from one codebase', value: '18' },
+      { label: 'Test coverage', value: null },
+      { label: 'Brands shipped', value: null }
+    ],
+    links: { appStore: null, github: null, site: null },
+    media: [],
+    problem: null,
+    constraint: null,
+    decision: null,
+    result: null
   },
   {
     slug: 'bajaj-markets',
+    tier: 'selected',
     ownership: 'Client work · Bajaj Markets',
     name: 'Bajaj Markets',
+    company: 'Bajaj Finserv',
     role: 'iOS & tvOS Developer',
-    years: '2019–2020',
-    tags: ['MVVM', 'CMS-Driven UI', 'Deep Linking', 'WebView Auth'],
+    dateRange: '2019–2020',
+    platforms: ['iOS', 'tvOS'],
+    oneLiner: 'A fintech marketplace for loans, cards, insurance, investments and UPI.',
     blurb: 'A fintech marketplace — loans, cards, insurance, investments, UPI and EMI shopping.',
     architecture: 'CMS-driven UI, so screens are described server-side rather than hardcoded in the client. MVVM over RESTful services with real-time data changes and deep linking, and an in-app-browser session bridged into native for auto-login. [Placeholder: how the CMS layout contract handled an unknown component type.]',
     stack: ['Objective-C', 'Swift', 'MVVM', 'CMS-driven layout', 'Deep Linking', 'REST', 'Bitbucket', 'Jira'],
-    link: 'https://apps.apple.com/in/app/bajaj-markets-loan-finance/id1482914241',
-    linkLabel: 'App Store'
+    metrics: [
+      { label: 'App Store rating', value: null },
+      { label: 'Monthly active users', value: null }
+    ],
+    links: { appStore: 'https://apps.apple.com/in/app/bajaj-markets-loan-finance/id1482914241', github: null, site: null },
+    media: [],
+    problem: null,
+    constraint: null,
+    decision: null,
+    result: null
+  },
+  {
+    slug: 'muvi',
+    tier: 'archive',
+    ownership: 'Client work · Muvi',
+    name: 'Muvi',
+    company: 'Muvi',
+    role: 'iOS Developer',
+    dateRange: '2018–2019',
+    platforms: ['iOS'],
+    oneLiner: 'A platform other companies launched their own streaming services on.',
+    blurb: 'A white-label streaming platform — Muvi’s customers stood up their own services on what we shipped.',
+    architecture: '[Placeholder: how the white-label build was structured — what varied per customer and what stayed shared.]',
+    stack: ['Swift', 'Alamofire', 'MVVM', 'Crashlytics', 'Unit Tests'],
+    metrics: [{ label: 'Customer services shipped', value: null }],
+    links: { appStore: null, github: null, site: null },
+    media: [],
+    problem: null,
+    constraint: null,
+    decision: null,
+    result: null
+  },
+  {
+    slug: 'mobiona',
+    tier: 'archive',
+    ownership: 'Client work · Mobiona',
+    name: 'Mobiona (services era)',
+    company: 'Mobiona',
+    role: 'iOS Developer',
+    dateRange: '2016–2018',
+    platforms: ['iOS'],
+    oneLiner: 'Objective-C giving way to Swift, one client project at a time.',
+    blurb: 'A services shop, so a lot of work came across the desk — where the decade started.',
+    architecture: 'Objective-C and UIKit with Core Data and Realm, Storyboards, and SOAP/XML services. [Placeholder: which shipped apps from this era are worth naming individually.]',
+    stack: ['Objective-C', 'UIKit', 'Core Data', 'Realm', 'Storyboards', 'SOAP / XML'],
+    metrics: [{ label: 'Apps shipped', value: null }],
+    links: { appStore: null, github: null, site: null },
+    media: [],
+    problem: null,
+    constraint: null,
+    decision: null,
+    result: null
   },
   {
     slug: 'momudra',
+    tier: 'selected',
     ownership: 'My own product',
     mine: true,
     name: 'MoMudra',
+    company: 'Independent',
     role: 'Solo iOS engineer',
-    years: '2026',
-    tags: ['SwiftUI', 'StoreKit 2', 'Claude AI', 'Cloudflare Workers'],
+    dateRange: '2026',
+    platforms: ['iOS'],
+    oneLiner: 'Budgeting that follows your pay cycle, not the calendar month.',
     blurb: 'A personal finance app that budgets around your pay cycle, not the calendar month.',
     architecture: 'A Cloudflare Worker holds the vendor keys and serves routing config from KV, so the app never calls a model provider directly. On device SwiftData persists the cycles, one cycle-scoped calculator owns every derived figure, and AI replies cache by prompt hash.',
     stack: ['SwiftUI', 'SwiftData', 'StoreKit 2', 'Swift Concurrency', 'Claude', 'Groq', 'Cloudflare Workers', 'KV'],
-    link: 'https://apps.apple.com/in/app/momudra-ai-money-tracker/id6785097723',
-    linkLabel: 'App Store',
+    metrics: [
+      { label: 'Shipped', value: 'v1.0.0 · July 2026' },
+      { label: 'Downloads', value: null },
+      { label: 'App Store rating', value: null },
+      { label: 'Crash-free rate', value: null }
+    ],
+    links: { appStore: 'https://apps.apple.com/in/app/momudra-ai-money-tracker/id6785097723', github: null, site: null },
+    media: [],
+
+    /* Restated from the study below rather than written fresh, so the card
+       and the study cannot drift apart. */
+    problem: 'Almost every budgeting app assumes a calendar month, but most people are not paid on the first. A “monthly” budget quietly lies to you for the days between your payday and the reset.',
+    constraint: null,
+    decision: 'The pay cycle — not the month — became the unit of time everywhere: Home, widgets and AI answers all read one cycle-scoped calculator, so no two surfaces can disagree about what is left to spend.',
+    result: 'Shipped solo to the App Store as v1.0.0 in July 2026 — the SwiftUI app, the AI layer and the Cloudflare Worker backend.',
 
     study: {
       standfirst: 'Built alone, end to end: the app, the AI layer, and the backend that keeps the keys off the device.',
