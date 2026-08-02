@@ -556,6 +556,47 @@ header.tuck{
 .leaf .n{ font-family:var(--f-mono); font-size:10.5px; letter-spacing:.11em; color:var(--sindoor); text-transform:uppercase; display:block; }
 .leaf h3{ font-size:clamp(22px,2.1vw,29px); margin:16px 0 14px; }
 .leaf p{ margin:0 0 26px; color:var(--ink-soft); font-size:15px; line-height:1.68; }
+
+/* THE SCAN LAYER
+   A reader who reads only the .take lines and the figures should still get
+   the whole argument. So the takeaway is set in the display face at reading
+   size and full ink, and the paragraph beneath it steps down — the prose is
+   the reward for stopping, not the price of understanding. */
+.take{
+  font-family:var(--f-display); font-weight:400;
+  font-size:clamp(16px,1.35vw,19px); line-height:1.42;
+  color:var(--ink); margin:0 0 16px !important;
+}
+.leaf .take{ margin-bottom:16px !important; }
+
+/* A code artifact is evidence, not decoration — so it is small, quiet, and
+   only appears where it shows the principle doing something. Wide lines
+   scroll inside the block; the page never scrolls sideways. */
+.snip{
+  margin:0 0 24px; padding:14px 16px; overflow-x:auto;
+  border:var(--rule); border-left:2px solid color-mix(in srgb, var(--sindoor) 40%, transparent);
+  border-radius:4px; background:color-mix(in srgb, var(--paper-deep) 55%, transparent);
+}
+.snip code{
+  font-family:var(--f-mono); font-size:11px; line-height:1.72;
+  color:var(--ink-soft); display:block;
+  /* The leaf columns are ~313px, so `pre` made every snippet scroll even on
+     a wide screen. Wrapping with a hanging indent keeps the real identifier
+     names intact and nothing hidden behind a sideways scroll. */
+  white-space:pre-wrap; overflow-wrap:anywhere;
+  padding-left:1.6em; text-indent:-1.6em;
+}
+
+/* The one countable fact about an era, in the same figure treatment used by
+   the hero, the cards and the case studies. */
+.era-fig{
+  margin:0 0 18px !important; font-family:var(--f-mono); font-size:10.5px;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint);
+}
+.era-fig b{
+  font-family:var(--f-display); font-weight:400; font-size:19px;
+  color:var(--ink); letter-spacing:0; font-variant-numeric:tabular-nums;
+}
 /* Evidence anchor, not a chip row. The old <code> badges listed
    frameworks — claiming expertise. This names the project where the
    conviction above was actually paid for. */

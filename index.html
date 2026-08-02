@@ -250,31 +250,56 @@
       <div class="leaf" data-rv>
         <span class="n">Sthapatya — the building of it</span>
         <h3>One owner per idea</h3>
-        <p>Any number computed twice will disagree eventually. When a bug needs four fixes at four call sites, that isn't a hard bug — it's a value with no owner. I'd rather ship three similar lines than one abstraction invented before it was needed.</p>
+        <p class="take">A value computed in two places will disagree eventually.</p>
+        <p>When a bug needs four fixes at four call sites, that isn't a hard bug — it's a value with no owner. I'd rather ship three similar lines than one abstraction invented before it was needed.</p>
+        <pre class="snip"><code>// Derived once, cycle-scoped.
+func freeToSpend(in cycle: PayCycle) -&gt; Decimal
+
+// Home, the widget and every AI answer
+// call this. None of them re-derive it.</code></pre>
         <div class="leaf-sig">Paid for on <b>Fuse</b></div>
       </div>
       <div class="leaf" data-rv data-d="1">
         <span class="n">Laya — tempo and flow</span>
         <h3>Tests are what make speed safe</h3>
+        <p class="take">The number bought one thing — the confidence to change shared code.</p>
         <p>Coverage past 90% was never the goal in itself. It was the price of being able to change shared code on a Friday and still sleep that night.</p>
+        <pre class="snip"><code>// Named for the guarantee it protects, so a
+// failure explains the regression on its own.
+@Test func unpaidManualRecurringReducesFreeToSpend()
+@Test func thinkingBlockBeforeTextBlockStillParses()</code></pre>
         <div class="leaf-sig">Learned the hard way on <b>Fuse</b> and <b>First Bus</b></div>
       </div>
       <div class="leaf" data-rv data-d="2">
         <span class="n">Drishti — the way it is seen</span>
         <h3>Accessibility is structural</h3>
-        <p>A focus engine retrofitted late is a rewrite, not a feature. Building VoiceOver and tvOS Focus support from scratch cost less than bolting either one on afterwards would have — and it decided how the view layer was shaped.</p>
+        <p class="take">A focus engine retrofitted late is a rewrite, not a feature.</p>
+        <p>Building VoiceOver and tvOS Focus support from scratch cost less than bolting either one on afterwards would have — and it decided how the view layer was shaped.</p>
+        <pre class="snip"><code>// The component declares its own semantics,
+// so focus order follows structure, not layout.
+PosterCard(show: show)
+    .focusable()
+    .accessibilityLabel(show.title)
+    .accessibilityHint("Opens the series")</code></pre>
         <div class="leaf-sig">Built into <b>Fuse</b> from the first commit</div>
       </div>
       <div class="leaf" data-rv data-d="3">
         <span class="n">Satya — what it says when it fails</span>
         <h3>Say the true thing when it breaks</h3>
-        <p>Software fails. What it says while failing is a design decision, and usually an afterthought. When MoMudra's AI genuinely can't answer, it says so plainly — no red alarm, no invented result, and the question stays retryable.</p>
+        <p class="take">What software says while failing is a design decision, not an afterthought.</p>
+        <p>When MoMudra's AI genuinely can't answer, it says so plainly — no red alarm, no invented result, and the question stays retryable.</p>
+        <pre class="snip"><code>// A reply cut off by a token limit reads like a
+// short answer. Cached, it becomes a wrong one.
+guard response.stopReason != .maxTokens else {
+    throw AIError.truncated
+}</code></pre>
         <div class="leaf-sig">Proven on <b>MoMudra</b> — read the study</div>
       </div>
       <div class="leaf" data-rv data-d="4">
         <span class="n">Abhyāsa — practice, repeated</span>
         <h3>Retooling is the job now</h3>
-        <p>I work with agents daily — Claude Code, Cursor, Codex, Xcode's own coding intelligence. The discipline is simple and non-negotiable: an agent may draft, but I review every line and I never ship what I can't explain. Ten years in, the willingness to learn the tools again is worth more than any framework I already know.</p>
+        <p class="take">An agent may draft. I review every line, and never ship what I can't explain.</p>
+        <p>I work with agents daily — Claude Code, Cursor, Codex, Xcode's own coding intelligence. Ten years in, the willingness to learn the tools again is worth more than any framework I already know.</p>
         <div class="leaf-sig">Practised on <b>MoMudra</b> — drafted with agents, reviewed line by line</div>
       </div>
     </div>
@@ -297,7 +322,9 @@
           <div class="era-body">
             <div class="yr">2021 — Present · Robosoft · Bengaluru, remote</div>
             <h3>Scale changed the question</h3>
-            <p>One shared source, many shipping brands — so every choice I made was a choice made on behalf of teams I will never meet. The question stopped being “does this work” and became “what does this cost whoever inherits it.”</p>
+            <p class="take">Every choice was made on behalf of teams I would never meet.</p>
+            <p class="era-fig"><b>18</b> apps · <b>2</b> brands · <b>3</b> Apple platforms</p>
+            <p>The question stopped being “does this work” and became “what does this cost whoever inherits it.”</p>
             <p>The codebase taught me more than any course could. Feature flags, design tokens, XcodeGen, interactors and templates, dependency injection, an AppObserver pattern that keeps AppDelegate almost empty — reading code that good is its own apprenticeship.</p>
           </div>
           <p class="era-stack">Swift 6 · SwiftUI · tvOS · visionOS · XcodeGen · Sonar Cloud</p>
@@ -308,7 +335,9 @@
           <div class="era-body">
             <div class="yr">2019 — 2020 · Bajaj Markets · Pune</div>
             <h3>Money on the other side</h3>
-            <p>The first place a mistake would cost someone money rather than a session. Convenience stopped being a neutral word to me here — a shortcut through an auth boundary is a promise you are making on the user's behalf, whether or not you meant to.</p>
+            <p class="take">The first place a mistake would cost someone money, not a session.</p>
+            <p class="era-fig"><b>6</b> product lines in one app — loans, cards, insurance, investments, UPI, EMI</p>
+            <p>Convenience stopped being a neutral word to me here — a shortcut through an auth boundary is a promise you are making on the user's behalf, whether or not you meant to.</p>
           </div>
           <p class="era-stack">Deep Linking · CMS-driven layout · WebView auth · Jira</p>
         </div>
@@ -318,7 +347,8 @@
           <div class="era-body">
             <div class="yr">2018 — 2019 · Muvi · Bhubaneswar</div>
             <h3>Building for builders</h3>
-            <p>Muvi's customers stood up their own streaming services on what we shipped. Writing for other developers instead of end users is the first time an awkward API stops being your opinion and becomes someone else's whole afternoon.</p>
+            <p class="take">Writing for other developers, where an awkward API costs someone their afternoon.</p>
+            <p>Muvi's customers stood up their own streaming services on what we shipped.</p>
           </div>
           <p class="era-stack">Swift · Alamofire · MVVM · Crashlytics · Unit Tests</p>
         </div>
@@ -328,7 +358,8 @@
           <div class="era-body">
             <div class="yr">2016 — 2018 · Mobiona · Bhubaneswar</div>
             <h3>Where it started</h3>
-            <p>A services shop, so a lot of work came across the desk — Objective-C giving way to Swift, one project at a time. This is where I hit the things nobody teaches you: project-file conflicts, why code needs a repository at all, animation timing, and SOAP and XML that did not want to be parsed.</p>
+            <p class="take">A services shop, Objective-C giving way to Swift one project at a time.</p>
+            <p>This is where I hit the things nobody teaches you: project-file conflicts, why code needs a repository at all, animation timing, and SOAP and XML that did not want to be parsed.</p>
             <p>I stayed because of what I could see underneath it. The tools for building here, and the standard the platform holds you to, were better than anything else I had touched — and every piece of knowledge made the next piece easier. It compounds. That is the whole reason I am still at it.</p>
           </div>
           <p class="era-stack">Objective-C · UIKit · Core Data · Realm · Storyboards · SOAP / XML</p>
