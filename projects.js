@@ -356,7 +356,8 @@ window.PROJECTS = [
         'Most of an AI feature is the unhappy path. The prompt took an afternoon; the failure, retry, cache-invalidation and honest-copy work took the rest.',
         'Any number that appears in more than one place has to be computed in exactly one. A second implementation that agrees today will disagree eventually.',
         'A bug that needs four fixes at four call sites is not a hard bug. It is the absence of an owner for that value.',
-        '[Placeholder: your own third lesson — the one that surprised you.]'
+        'On-device OCR does not read every currency. It would not reliably recognise the rupee symbol — not something a tutorial warns you about, and not something you discover until a real receipt from your own country comes back wrong.',
+        'The cheapest AI call is the one you never make. Rules handle whatever rules can, and an image is shrunk before it is ever sent. On a subscription that promises unlimited AI for $2.99, the work done before the model runs is what makes that promise survivable.'
       ]
     }
   }
