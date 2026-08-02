@@ -264,18 +264,20 @@ window.PROJECTS = [
     /* Owned outright, so this is the one project that gets real screens. */
     /* The architecture diagram leads because it is ready now; the real
        screens slot in beside it the moment they are captured. */
+    /* The one project Dipti owns outright, so it is the one place real
+       product UI belongs. The architecture diagram is NOT listed here — it
+       lives in study.figures.approach, so the card and the study never show
+       the same picture. */
     media: [
-      { kind:'diagram', figure:'stack', ready:true, w:720, h:260,
-        alt:'The app talks only to a Cloudflare Worker, which holds the vendor keys and routing config and calls Claude first, falling back to Groq.',
-        caption:'No vendor key ever reaches the device' },
-      { kind:'shot', slot:'momudra-home', ready:false, w:1290, h:2796,
+      { kind:'shot', slot:'momudra-home', ready:true, w:1206, h:2622,
         widths:[430,645,860], fallbackExt:'png',
-        alt:'MoMudra home screen showing the amount free to spend for the current pay cycle.',
+        alt:'MoMudra home screen: $10,038 free to spend for the current pay cycle, derived from $11,300 income less $312 spent and $950 saved, with 19 days to pay day and buttons to log by voice, typing or asking.',
         caption:'Home — free to spend, scoped to the cycle' },
-      { kind:'shot', slot:'momudra-ai', ready:false, w:1290, h:2796,
+      { kind:'shot', slot:'momudra-report', ready:true, w:1206, h:2622,
         widths:[430,645,860], fallbackExt:'png',
-        alt:'An AI answer in MoMudra responding to a question about spending, quoting the same figures shown elsewhere in the app.' },
-      { kind:'shot', slot:'momudra-widget', ready:false, w:1290, h:2796,
+        alt:'MoMudra spending report card grading a month B+ overall, with budget discipline, saving habit and logging consistency scored separately, a category breakdown, and a written AI remark explaining that food spending rose $180 mostly at weekends.',
+        caption:'The month, graded — and explained in a sentence' },
+      { kind:'shot', slot:'momudra-widget', ready:false, w:1170, h:2532,
         widths:[430,645,860], fallbackExt:'png',
         alt:'The MoMudra home-screen widget showing the current cycle balance alongside other iOS widgets.' }
     ],

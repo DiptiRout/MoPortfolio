@@ -154,7 +154,6 @@ function glanceHTML(s) {
 function studyHTML(p) {
   const s = p.study;
   const f = s.figures || {};
-  const hero = MEDIA.primary(p);
   const out = [];
 
   out.push(`<a class="case-back" href="index.html#work">← All work</a>`);
@@ -164,8 +163,12 @@ function studyHTML(p) {
      just clicked, and on MoMudra it repeated the study's own approach figure
      lower down — the same picture three times. Diagrams now appear once,
      inside the section that explains them. */
-  if (hero && hero.kind === 'shot') {
-    out.push(`<div class="case-hero">${MEDIA.html(hero, { eager: true })}</div>`);
+  /* The card already showed media[0]; a reader arriving here just clicked
+     it. The study leads with the NEXT ready screenshot instead, so the two
+     pages never open on the same picture. */
+  const heroShot = (p.media || []).slice(1).find(m => m.kind === 'shot' && m.ready);
+  if (heroShot) {
+    out.push(`<div class="case-hero">${MEDIA.html(heroShot, { eager: true })}</div>`);
   }
   out.push(`<p class="case-stand">${esc(s.standfirst)}</p>`);
   out.push(glanceHTML(s));

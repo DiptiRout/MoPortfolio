@@ -11,38 +11,33 @@ sizes* at the bottom.
 
 ---
 
-## 1. HAVE — MoMudra (you own it, so it gets real screens)
+## 1. MoMudra — 2 of 3 delivered
 
-Capture on an **iPhone 16 Pro simulator** at the App Store 6.7" size:
-**1290 × 2796**. Simulator screenshots come out at exactly this. Capture in
-**dark mode** — the site's default ground is `#141a2b`, and a light
-screenshot will glare against it. If a light version is easy, send both and
-I'll switch them per theme.
+| Slot | Status |
+|---|---|
+| `momudra-home` | **Live.** 1206×2622, leads the work card. |
+| `momudra-report` | **Live.** The report card — grades, category split and the written AI remark. Leads the case study. |
+| `momudra-widget` | **Held** — see below. |
 
-Do **not** add a device frame, drop shadow, or marketing caption in the
-image. The frame is drawn in CSS so it stays theme-aware and never looks
-dated. Just the screen.
+### The widget shot needs one re-capture
 
-| Slot | What to capture | Why this screen |
-|---|---|---|
-| `momudra-home` | Home, showing **free to spend** for the current cycle | The one number the whole app is built around. This is the card's primary visual. |
-| `momudra-ai` | An AI answer to a real spending question | Your actual differentiator. Pick a question whose answer quotes a figure — it proves the "same numbers everywhere" claim visually. |
-| `momudra-widget` | The home-screen widget among other iOS widgets | Proves widget work, and the App Group snapshot architecture, in one image. |
+The supplied widget reads **$150,000 free · ≈$6,818.18/day · Spent this
+month $0**. The home screen beside it reads **$10,038 free**. Both would
+sit on the same page.
 
-**Use real-looking but non-personal data.** Your actual salary should not
-be on a public site. Round, plausible numbers.
+That matters more here than it normally would, because MoMudra's whole
+case study rests on *"one cycle-scoped source of truth — Home, the widget
+and every AI answer all call it, so no two surfaces can disagree."* Two
+screenshots disagreeing by a factor of fifteen is the one thing that
+undercuts the claim the project is built on. A reader who notices reads it
+as debug data, which is exactly what it looks like.
 
-### Worth adding if you have 20 minutes
+**What I need:** the widget captured against the same state as the home
+screen — around **$10,038 free**, with a non-zero "spent this month". A
+plainer wallpaper would also help it sit against the limestone page, but
+that is taste, not correctness.
 
-| Slot | What | Why |
-|---|---|---|
-| `momudra-cycle` | The pay-cycle setup screen | Shows the premise rather than asserting it |
-| `momudra-demo` | **8–12s screen recording**, 1290×2796 `.mp4` (H.264) + a `-poster.jpg` first frame | Motion earns far more attention than a still. Ask a question, show the answer arriving. Keep it under ~2 MB. |
-
-App icon is already public at 512×512 and can be pulled from your listing
-if we want it in the ledger — no capture needed.
-
----
+Everything else stays as it is; the slot is wired and holds its shape.
 
 ## 2. NEED YOUR DECISION — client work
 

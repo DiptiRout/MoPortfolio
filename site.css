@@ -14,13 +14,18 @@
      paperback, which reads as dated rather than ancient. Stone is what
      actually survives millennia — cooler, higher in value, and it lets the
      sindoor do the warming instead of the ground. */
-  --paper:        #ebe7de;
-  --paper-lit:    #f5f2eb;
-  --paper-deep:   #ddd7c9;
+  /* The page sits deeper than the panels on it. The previous values put
+     paper and paper-lit 11% apart in luminance, against 98% in the night
+     set — which is why day mode read as one flat sheet of beige while
+     night had real depth. Now 27%: the page is the desk, the panels are
+     paper on it. */
+  --paper:        #e4dfd3;
+  --paper-lit:    #faf8f3;
+  --paper-deep:   #dbd4c5;
   --ink:          #1a1916;
   --ink-soft:     #4c4840;
-  --ink-faint:    #676153;   /* 5.0:1 on paper — carries every micro-label */
-  --sindoor:      #9c3a1b;   /* 5.5:1 on paper — the one accent that holds text */
+  --ink-faint:    #625c4e;   /* 5.0:1 on the deeper paper — carries every micro-label */
+  --sindoor:      #96371a;   /* 5.5:1 on paper — the one accent that holds text */
   --haldi:        #b5851a;   /* decorative only; never sized below 24px */
   --oxblood:      #6e1f1f;
 
@@ -395,6 +400,9 @@ header.tuck{
   background:linear-gradient(160deg, color-mix(in srgb, var(--paper-lit) 62%, transparent), transparent 80%);
 }
 .card-vis .media-ph{ max-width:340px; }
+/* A 0.46-ratio phone screenshot in an 820px-wide slot would be ~1700px
+   tall. Sized like a device held next to the text instead. */
+.card-vis .media-shot{ max-width:300px; }
 
 /* Identity first, THEN the picture. With the diagram on top, scrolling gave
    you a figure with no idea whose it was until the name appeared below it.
@@ -412,6 +420,23 @@ header.tuck{
 
 .card-body{ min-width:0; }
 .card-body .arch{ max-width:62ch; }
+
+/* A wide diagram wants the full width; a phone screenshot is 0.46 ratio and
+   capped at 300px, so full width left ~840px of dead air beside it. When the
+   visual is a screenshot the card goes two-column and the prose fills that
+   space instead. */
+@supports selector(:has(*)){
+  @media (min-width:861px){
+    .card:has(.card-vis .media-shot){
+      grid-template-columns:300px minmax(0,1fr);
+      grid-template-areas:"head head" "vis body";
+      column-gap:clamp(28px,3.6vw,56px);
+    }
+    .card:has(.card-vis .media-shot) > .card-head{ grid-area:head; }
+    .card:has(.card-vis .media-shot) > .card-vis{ grid-area:vis; }
+    .card:has(.card-vis .media-shot) > .card-body{ grid-area:body; align-self:start; }
+  }
+}
 
 .card .idx{
   position:absolute; top:clamp(30px,3.6vw,52px); right:0;
