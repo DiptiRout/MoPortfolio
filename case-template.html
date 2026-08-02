@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}" />
+<meta name="theme-color" content="#e9e0cd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141a2b" media="(prefers-color-scheme: dark)">
+
+<script>
+  (function(){
+    var d = document.documentElement;
+    d.classList.add('js');
+    try{
+      var saved = localStorage.getItem('gurukul-theme');
+      if (saved) d.setAttribute('data-theme', saved);
+    }catch(e){}
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<div id="progress"></div>
+
+<header id="top-bar">
+  <div class="shell nav">
+    <a class="mark" href="index.html">
+      <b>Diptiranjan Rout</b>
+      <small>Apple Application Developer</small>
+    </a>
+
+    <nav class="nav-links" id="menu">
+      <ul>
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="index.html#craft">Craft</a></li>
+        <li><a href="index.html#path">Path</a></li>
+        <li><a href="index.html#talk">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-act">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch theme">
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/></svg>
+      </button>
+      <a class="btn solid" href="index.html#talk">Let's talk</a>
+      <button class="icon-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span class="bars"></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <article class="case">
+    <div class="shell" id="case">
+      <!-- BUILD:study:start -->
+      <!-- BUILD:study:end -->
+    </div>
+  </article>
+</main>
+
+<div class="shell">
+  <footer>
+    <span>© <span id="yr"></span> Diptiranjan Rout</span>
+    <span>Practice, made visible.</span>
+    <span>Odisha, India</span>
+  </footer>
+</div>
+
+<script>
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---- theme (same contract as index.html) ---- */
+(function theme(){
+  const root = document.documentElement;
+  const sysDark = matchMedia('(prefers-color-scheme: dark)');
+  const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : sysDark.matches;
+  const sync = () => $('#themeBtn').setAttribute('aria-label', isDark() ? 'Switch to day theme' : 'Switch to night theme');
+  $('#themeBtn').addEventListener('click', () => {
+    root.dataset.theme = isDark() ? 'light' : 'dark';
+    try{ localStorage.setItem('gurukul-theme', root.dataset.theme); }catch(e){}
+    sync();
+  });
+  sysDark.addEventListener('change', sync);
+  sync();
+})();
+
+/* ---- scroll progress + tucked nav ---- */
+const bar = $('#progress'), barTop = $('#top-bar');
+const onScroll = () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = (max > 0 ? Math.min(1, scrollY / max) * 100 : 0) + '%';
+  barTop.classList.toggle('tuck', scrollY > 40);
+};
+addEventListener('scroll', onScroll, { passive:true });
+onScroll();
+
+/* ---- mobile menu ---- */
+(function menu(){
+  const btn = $('#menuBtn'), panel = $('#menu');
+  const set = open => {
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    panel.classList.toggle('open', open);
+  };
+  btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+  addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+})();
+</script>
+</body>
+</html>

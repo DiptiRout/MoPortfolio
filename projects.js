@@ -105,10 +105,74 @@ window.PROJECTS = [
         alt:'One shared core feeding a per-brand layer of design tokens and configuration, producing eighteen apps across iOS, tvOS and visionOS.',
         caption:'One core, eighteen apps' }
     ],
-    problem: null,
-    constraint: null,
-    decision: null,
-    result: null
+    /* Every line below is drawn from what Dipti has already stated about
+       this work — the craft principles that name Fuse, the career entry,
+       and the architecture field above. Nothing here is inferred about a
+       client's system beyond what he has said out loud. */
+    problem: 'One shared source feeding many shipping brands means every choice is made on behalf of teams you will never meet. The question stops being "does this work" and becomes "what does this cost whoever inherits it".',
+    decision: 'Everything that differs between brands — design tokens, Figma configuration, component placement — lives outside the core rather than in a fork of it, so eighteen apps ship without eighteen codebases.',
+    result: 'Eighteen apps across two brands and three Apple platforms, from one codebase, held at 90%+ test coverage.',
+
+    study: {
+      standfirst: 'Eighteen streaming apps, two brands, three Apple platforms — and one codebase that has to survive every team that touches it.',
+
+      glance: [
+        ['Role',      'Senior iOS Engineer'],
+        ['Client',    'Warner Bros. Discovery, via Robosoft'],
+        ['Platforms', 'iOS · tvOS · visionOS'],
+        ['Scale',     '18 apps · 2 brands'],
+        ['Coverage',  '90%+'],
+        ['Since',     '2021']
+      ],
+
+      /* The hero visual already carries fuse-brands; repeating it inside
+         the body would be decoration, not explanation. */
+      figures: {},
+
+      problem: [
+        'A shared codebase behind eighteen shipping apps changes what a decision is. Every choice is made on behalf of teams you will never meet, on schedules you do not control, for brands whose requirements arrive after your code does.',
+        'The question stops being "does this work" and becomes "what does this cost whoever inherits it". A shortcut that saves an afternoon here is paid for eighteen times, by people who cannot see why it was taken.'
+      ],
+
+      approach: [
+        'The platform is built on CommandBuilder, Template, Interactor and Router, with protocol-oriented design and dependency injection throughout. UIFocus Environment drives tvOS remote navigation, and accessibility was built across the whole platform from the start rather than retrofitted once someone complained.',
+        'The load-bearing idea is that nothing brand-specific belongs in the core. Design tokens, Figma configuration and backend-driven component placement all sit outside it, so a new brand is configuration rather than a fork.'
+      ],
+
+      decisions: [
+        {
+          title: 'Per-brand variation lives outside the core',
+          body: 'Tokens, Figma configuration and component placement are all resolved outside the shared code. The moment a brand requirement is satisfied by editing the core, the next brand pays for it — and the fork that follows is permanent.'
+        },
+        {
+          title: 'One owner per computed value',
+          body: 'Any number computed twice will disagree eventually. When a bug needs four fixes at four call sites, that is not a hard bug — it is a value with no owner. Across eighteen apps that disagreement is not a display error; it is eighteen support threads.'
+        },
+        {
+          title: 'Coverage past 90% as the price of speed, not a target',
+          body: 'The number was never the goal. It was what made it possible to change shared code on a Friday and still sleep — which, on a codebase this many teams depend on, is the difference between shipping weekly and shipping carefully once a quarter.'
+        },
+        {
+          title: 'Accessibility built in, not retrofitted',
+          body: 'It was built across the whole platform from the start. Retrofitting it later would have meant doing it eighteen times, against eighteen release schedules, by which point the shortcuts are load-bearing.'
+        },
+        {
+          title: 'The remote is a first-class input',
+          body: 'tvOS navigation runs through UIFocus Environment rather than being approximated. A focus engine is not a mouse and pretending otherwise produces a TV app that is technically usable and actually miserable.'
+        }
+      ],
+
+      outcome: [
+        'Eighteen apps across two brands — Beam and TVE — shipping on iOS, tvOS and visionOS from a single codebase, held at 90%+ test coverage.',
+        '[Placeholder: anything you can say publicly about release cadence, or how long a new brand takes to stand up now versus before.]'
+      ],
+
+      lessons: [
+        'Writing for other engineers is a different job from writing for users. An awkward API stops being your opinion and becomes someone else\'s whole afternoon.',
+        'Reading a codebase that good is its own apprenticeship — feature flags, design tokens, XcodeGen, interactors and templates, an AppObserver pattern that keeps AppDelegate almost empty.',
+        'Scale does not make decisions harder. It makes the cost of a careless one visible, which is a different and more useful problem.'
+      ]
+    }
   },
   {
     slug: 'bajaj-markets',

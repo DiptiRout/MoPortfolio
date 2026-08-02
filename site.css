@@ -829,6 +829,23 @@ footer{ border-top:var(--rule); padding-block:26px; display:flex; flex-wrap:wrap
   font-family:var(--f-display); font-size:clamp(19px,2.1vw,27px);
   line-height:1.42; color:var(--ink-soft);
 }
+/* The hero visual sits above the standfirst: a reader should see the thing
+   before being told about it. Full measure, not the 68ch prose column. */
+.case-hero{ margin:clamp(34px,4.5vw,56px) 0 0; }
+.case-hero .media-diagram{
+  padding:clamp(20px,2.6vw,36px);
+  border:var(--rule); border-radius:6px;
+  background:linear-gradient(160deg, color-mix(in srgb, var(--paper-lit) 62%, transparent), transparent 80%);
+}
+.case-hero .media-shot{ max-width:300px; }
+@media (max-width:720px){
+  .case-hero .media-diagram{ overflow-x:auto; }
+  .case-hero .media-diagram svg{ min-width:640px; }
+}
+
+/* Outcome numbers, in the same treatment as the hero stats and the cards. */
+.case-figs{ margin:26px 0 0; padding:22px 0 0; border-top:var(--rule); }
+
 .case-body{ max-width:68ch; margin-top:clamp(52px,7vw,96px); }
 .case-body h2{
   font-size:clamp(26px,3.2vw,40px); margin:clamp(48px,6vw,84px) 0 0;

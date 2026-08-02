@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fuse — case study — Diptiranjan Rout</title>
+<meta name="description" content="How Fuse was built: One codebase shipping eighteen streaming apps across iOS, tvOS and visionOS. A case study by Diptiranjan Rout, Apple application developer." />
+<meta name="theme-color" content="#e9e0cd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141a2b" media="(prefers-color-scheme: dark)">
+
+<script>
+  (function(){
+    var d = document.documentElement;
+    d.classList.add('js');
+    try{
+      var saved = localStorage.getItem('gurukul-theme');
+      if (saved) d.setAttribute('data-theme', saved);
+    }catch(e){}
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<div id="progress"></div>
+
+<header id="top-bar">
+  <div class="shell nav">
+    <a class="mark" href="index.html">
+      <b>Diptiranjan Rout</b>
+      <small>Apple Application Developer</small>
+    </a>
+
+    <nav class="nav-links" id="menu">
+      <ul>
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="index.html#craft">Craft</a></li>
+        <li><a href="index.html#path">Path</a></li>
+        <li><a href="index.html#talk">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-act">
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch theme">
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2z"/></svg>
+      </button>
+      <a class="btn solid" href="index.html#talk">Let's talk</a>
+      <button class="icon-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span class="bars"></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <article class="case">
+    <div class="shell" id="case">
+      <!-- BUILD:study:start -->
+      <a class="case-back" href="index.html#work">← All work</a>
+          <div class="case-head"><h1>Fuse</h1></div>
+          <p class="case-meta"><span>Senior iOS Engineer</span><span>2021–Present</span><span>iOS · tvOS · visionOS</span></p>
+          <div class="case-hero"><figure class="media media-diagram"><svg viewBox="0 0 720 300" width="720" height="300" role="img" aria-label="A single shared core feeds a per-brand layer of design tokens, Figma configuration and backend-driven component placement, which produces eighteen apps across iOS, tvOS and visionOS."><g class="fig-mute" font-size="11" font-family="var(--f-mono)" letter-spacing="1.5"><text x="0" y="20">ONE SOURCE</text><text x="243" y="20">VARIES PER BRAND</text><text x="561" y="20">SHIPS AS</text></g><g class="fig-box"><rect x="0" y="44" width="176" height="196" rx="4"/></g><text x="88" y="106" text-anchor="middle" class="fig-strong" font-size="15">Shared core</text><text x="88" y="132" text-anchor="middle" class="fig-mute" font-size="11">CommandBuilder</text><text x="88" y="150" text-anchor="middle" class="fig-mute" font-size="11">Interactor · Router</text><text x="88" y="168" text-anchor="middle" class="fig-mute" font-size="11">Template</text><text x="88" y="196" text-anchor="middle" class="fig-mute" font-size="11">accessibility,</text><text x="88" y="212" text-anchor="middle" class="fig-mute" font-size="11">built in from the start</text><rect x="243" y="44" width="196" height="196" rx="4" class="fig-gap"/><g class="fig-box"><rect x="243" y="44" width="196" height="196" rx="4"/></g><text x="341" y="100" text-anchor="middle" class="fig-accent" font-size="13">Design tokens</text><text x="341" y="132" text-anchor="middle" class="fig-accent" font-size="13">Figma config</text><text x="341" y="164" text-anchor="middle" class="fig-accent" font-size="13">Backend-driven</text><text x="341" y="182" text-anchor="middle" class="fig-accent" font-size="13">placement</text><text x="341" y="216" text-anchor="middle" class="fig-mute" font-size="11">no forks, no per-brand branches</text><path d="M176 142 H243" class="fig-arrow"/><path d="M439 142 H506" class="fig-arrow"/><g class="fig-box"><rect x="561" y="44" width="159" height="52" rx="4"/><rect x="561" y="116" width="159" height="52" rx="4"/><rect x="561" y="188" width="159" height="52" rx="4"/></g><text x="640" y="70" text-anchor="middle" class="fig-strong" font-size="13">iOS</text><text x="640" y="86" text-anchor="middle" class="fig-mute" font-size="11">phone &amp; tablet</text><text x="640" y="142" text-anchor="middle" class="fig-strong" font-size="13">tvOS</text><text x="640" y="158" text-anchor="middle" class="fig-mute" font-size="11">focus-engine navigation</text><text x="640" y="214" text-anchor="middle" class="fig-strong" font-size="13">visionOS</text><text x="640" y="230" text-anchor="middle" class="fig-mute" font-size="11">spatial</text><text x="360" y="286" text-anchor="middle" class="fig-accent" font-size="11" font-family="var(--f-mono)" letter-spacing="1.4">18 APPS · 2 BRANDS · ONE CODEBASE</text></svg><figcaption>One core, eighteen apps</figcaption></figure></div>
+          <p class="case-stand">Eighteen streaming apps, two brands, three Apple platforms — and one codebase that has to survive every team that touches it.</p>
+          <dl class="glance">
+            <div><dt>Role</dt><dd>Senior iOS Engineer</dd></div>
+            <div><dt>Client</dt><dd>Warner Bros. Discovery, via Robosoft</dd></div>
+            <div><dt>Platforms</dt><dd>iOS · tvOS · visionOS</dd></div>
+            <div><dt>Scale</dt><dd>18 apps · 2 brands</dd></div>
+            <div><dt>Coverage</dt><dd>90%+</dd></div>
+            <div><dt>Since</dt><dd>2021</dd></div>
+          </dl>
+          <div class="case-body">
+          <h2>The problem</h2>
+          <p>A shared codebase behind eighteen shipping apps changes what a decision is. Every choice is made on behalf of teams you will never meet, on schedules you do not control, for brands whose requirements arrive after your code does.</p>
+            <p>The question stops being &quot;does this work&quot; and becomes &quot;what does this cost whoever inherits it&quot;. A shortcut that saves an afternoon here is paid for eighteen times, by people who cannot see why it was taken.</p>
+          <h2>The approach</h2>
+          <p>The platform is built on CommandBuilder, Template, Interactor and Router, with protocol-oriented design and dependency injection throughout. UIFocus Environment drives tvOS remote navigation, and accessibility was built across the whole platform from the start rather than retrofitted once someone complained.</p>
+            <p>The load-bearing idea is that nothing brand-specific belongs in the core. Design tokens, Figma configuration and backend-driven component placement all sit outside it, so a new brand is configuration rather than a fork.</p>
+          <h2>The decisions</h2>
+          <ol class="dec"><li><h3>Per-brand variation lives outside the core</h3><p>Tokens, Figma configuration and component placement are all resolved outside the shared code. The moment a brand requirement is satisfied by editing the core, the next brand pays for it — and the fork that follows is permanent.</p></li><li><h3>One owner per computed value</h3><p>Any number computed twice will disagree eventually. When a bug needs four fixes at four call sites, that is not a hard bug — it is a value with no owner. Across eighteen apps that disagreement is not a display error; it is eighteen support threads.</p></li><li><h3>Coverage past 90% as the price of speed, not a target</h3><p>The number was never the goal. It was what made it possible to change shared code on a Friday and still sleep — which, on a codebase this many teams depend on, is the difference between shipping weekly and shipping carefully once a quarter.</p></li><li><h3>Accessibility built in, not retrofitted</h3><p>It was built across the whole platform from the start. Retrofitting it later would have meant doing it eighteen times, against eighteen release schedules, by which point the shortcuts are load-bearing.</p></li><li><h3>The remote is a first-class input</h3><p>tvOS navigation runs through UIFocus Environment rather than being approximated. A focus engine is not a mouse and pretending otherwise produces a TV app that is technically usable and actually miserable.</p></li></ol>
+          <h2>The result</h2>
+          <ul class="figs case-figs"><li><b>18</b><span>Apps from one codebase</span></li><li><b>90%+</b><span>Test coverage</span></li><li><b>2 — Beam &amp; TVE</b><span>Brands shipped</span></li></ul>
+          <p>Eighteen apps across two brands — Beam and TVE — shipping on iOS, tvOS and visionOS from a single codebase, held at 90%+ test coverage.</p>
+            <p><span class="gap">still to confirm — anything you can say publicly about release cadence, or how long a new brand takes to stand up now versus before.</span></p>
+          <h2>What it taught me</h2>
+          <ul class="takeaways"><li>Writing for other engineers is a different job from writing for users. An awkward API stops being your opinion and becomes someone else's whole afternoon.</li><li>Reading a codebase that good is its own apprenticeship — feature flags, design tokens, XcodeGen, interactors and templates, an AppObserver pattern that keeps AppDelegate almost empty.</li><li>Scale does not make decisions harder. It makes the cost of a careless one visible, which is a different and more useful problem.</li></ul>
+          <div class="case-out">
+      
+            <a class="btn" href="index.html#work">All work →</a>
+          </div>
+          </div>
+      <!-- BUILD:study:end -->
+    </div>
+  </article>
+</main>
+
+<div class="shell">
+  <footer>
+    <span>© <span id="yr"></span> Diptiranjan Rout</span>
+    <span>Practice, made visible.</span>
+    <span>Odisha, India</span>
+  </footer>
+</div>
+
+<script>
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---- theme (same contract as index.html) ---- */
+(function theme(){
+  const root = document.documentElement;
+  const sysDark = matchMedia('(prefers-color-scheme: dark)');
+  const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : sysDark.matches;
+  const sync = () => $('#themeBtn').setAttribute('aria-label', isDark() ? 'Switch to day theme' : 'Switch to night theme');
+  $('#themeBtn').addEventListener('click', () => {
+    root.dataset.theme = isDark() ? 'light' : 'dark';
+    try{ localStorage.setItem('gurukul-theme', root.dataset.theme); }catch(e){}
+    sync();
+  });
+  sysDark.addEventListener('change', sync);
+  sync();
+})();
+
+/* ---- scroll progress + tucked nav ---- */
+const bar = $('#progress'), barTop = $('#top-bar');
+const onScroll = () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = (max > 0 ? Math.min(1, scrollY / max) * 100 : 0) + '%';
+  barTop.classList.toggle('tuck', scrollY > 40);
+};
+addEventListener('scroll', onScroll, { passive:true });
+onScroll();
+
+/* ---- mobile menu ---- */
+(function menu(){
+  const btn = $('#menuBtn'), panel = $('#menu');
+  const set = open => {
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    panel.classList.toggle('open', open);
+  };
+  btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
+  addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
+})();
+</script>
+</body>
+</html>

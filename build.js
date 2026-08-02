@@ -60,7 +60,7 @@ function metricsHTML(p) {
 
 function linksHTML(p) {
   const out = [];
-  if (p.study) out.push(`<a class="card-cta" href="case.html?p=${encodeURIComponent(p.slug)}">Read the case study →</a>`);
+  if (p.study) out.push(`<a class="card-cta" href="case-${esc(p.slug)}.html">Read the case study →</a>`);
   const store = p.links && p.links.appStore;
   if (store) out.push(`<a class="card-cta ghost" href="${esc(store)}" target="_blank" rel="noopener">App Store<span class="sr-only"> (opens in a new tab)</span> →</a>`);
   return out.length ? `<div class="card-links">${out.join('')}</div>` : '';
@@ -125,6 +125,108 @@ function buildShipped() {
   return SHIPPED.map(ledgerHTML).join('\n');
 }
 
+/* ---------- case studies ----------
+   One static page per study, generated from the same PROJECTS objects the
+   cards use, so a project can never carry one name on the card and another
+   here. These used to be rendered client-side, which meant a case study was
+   zero words to anything that did not run JavaScript. */
+
+const FIG = global.window.FIGURES;
+
+function figHTML(key) {
+  const f = key && FIG[key];
+  if (!f) return '';
+  return `<figure class="fig">${f.svg()}` +
+         (f.caption ? `<figcaption>${esc(f.caption)}</figcaption>` : '') + '</figure>';
+}
+
+const paras = a => (a || []).map(t => `<p>${gaps(t)}</p>`).join('\n      ');
+
+function glanceHTML(s) {
+  if (!s.glance || !s.glance.length) return '';
+  return `<dl class="glance">
+      ${s.glance.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('\n      ')}
+    </dl>`;
+}
+
+function studyHTML(p) {
+  const s = p.study;
+  const f = s.figures || {};
+  const hero = MEDIA.primary(p);
+  const out = [];
+
+  out.push(`<a class="case-back" href="index.html#work">← All work</a>`);
+  out.push(`<div class="case-head"><h1>${esc(p.name)}</h1></div>`);
+  out.push(`<p class="case-meta"><span>${esc(p.role)}</span><span>${esc(p.dateRange)}</span><span>${p.platforms.map(esc).join(' · ')}</span></p>`);
+  /* The hero visual comes before the standfirst: a reader should see the
+     thing before being told about it. */
+  if (hero) out.push(`<div class="case-hero">${MEDIA.html(hero, { eager: true })}</div>`);
+  out.push(`<p class="case-stand">${esc(s.standfirst)}</p>`);
+  out.push(glanceHTML(s));
+
+  out.push('<div class="case-body">');
+  out.push(`<h2>The problem</h2>`);
+  out.push(paras(s.problem));
+  out.push(figHTML(f.problem));
+
+  /* Pulled from the project object, not the study — the card and the study
+     must state the same constraint or neither can be trusted. */
+  if (p.constraint) {
+    out.push(`<h2>The constraint</h2>`);
+    out.push(`<p>${gaps(p.constraint)}</p>`);
+  }
+
+  out.push(`<h2>The approach</h2>`);
+  out.push(paras(s.approach));
+  out.push(figHTML(f.approach));
+
+  if (s.decisions && s.decisions.length) {
+    out.push(`<h2>The decisions</h2>`);
+    out.push(`<ol class="dec">${s.decisions.map(d =>
+      `<li><h3>${esc(d.title)}</h3><p>${gaps(d.body)}</p></li>`).join('')}</ol>`);
+  }
+
+  out.push(`<h2>The result</h2>`);
+  const real = (p.metrics || []).filter(m => m.value !== null && m.value !== undefined);
+  if (real.length) {
+    out.push(`<ul class="figs case-figs">${real.map(m =>
+      `<li><b>${esc(m.value)}</b><span>${esc(m.label)}</span></li>`).join('')}</ul>`);
+  }
+  out.push(paras(s.outcome));
+
+  if (s.lessons && s.lessons.length) {
+    out.push(`<h2>What it taught me</h2>`);
+    out.push(`<ul class="takeaways">${s.lessons.map(l => `<li>${gaps(l)}</li>`).join('')}</ul>`);
+  }
+  if (s.differently && s.differently.length) {
+    out.push(`<h2>What I'd do differently</h2>`);
+    out.push(paras(s.differently));
+  }
+
+  const store = p.links && p.links.appStore;
+  out.push(`<div class="case-out">
+      ${store ? `<a class="btn" href="${esc(store)}" target="_blank" rel="noopener">App Store<span class="sr-only"> (opens in a new tab)</span> →</a>` : ''}
+      <a class="btn" href="index.html#work">All work →</a>
+    </div>`);
+  out.push('</div>');
+  return out.filter(Boolean).join('\n    ');
+}
+
+function buildStudies() {
+  const tpl = fs.readFileSync(path.join(ROOT, 'case-template.html'), 'utf8');
+  const written = [];
+  for (const p of PROJECTS) {
+    if (!p.study) continue;
+    let out = inject(tpl, 'study', studyHTML(p));
+    out = out.replace('{{TITLE}}', `${p.name} — case study — Diptiranjan Rout`)
+             .replace('{{DESC}}', `How ${p.name} was built: ${p.oneLiner} A case study by Diptiranjan Rout, Apple application developer.`);
+    const name = `case-${p.slug}.html`;
+    fs.writeFileSync(path.join(ROOT, name), out);
+    written.push(name);
+  }
+  return written;
+}
+
 /* ---------- inject ---------- */
 
 function inject(html, name, body) {
@@ -144,6 +246,9 @@ let html = fs.readFileSync(file, 'utf8');
 html = inject(html, 'cards', buildWork());
 html = inject(html, 'ledger', buildShipped());
 fs.writeFileSync(file, html);
+
+const studies = buildStudies();
+studies.forEach(n => console.log('built ' + n));
 
 const selected = PROJECTS.filter(p => p.tier === 'selected').length;
 const shots = PROJECTS.flatMap(p => p.media || []).filter(m => !m.ready).length;
