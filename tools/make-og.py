@@ -72,7 +72,7 @@ d.text((PAD + w, sub_y), " in iOS.", font=serif(28), fill=FAINT)
 
 # the three numbers that carry the page
 d.line([PAD, H - 122, W - PAD, H - 122], fill=(52, 54, 62), width=1)
-stats = [("10+", "YEARS SHIPPING"), ("18", "APPS FROM ONE CODEBASE"), ("90%+", "TEST COVERAGE")]
+stats = [("10+", "YEARS SHIPPING"), ("18", "APPS FROM ONE CODEBASE"), ("90%+", "TEST COVERAGE ON FUSE")]
 x = PAD
 for value, label in stats:
     d.text((x, H - 104), value, font=serif(38), fill=INK)
