@@ -123,7 +123,54 @@
       <p class="note" data-rv data-d="1">Only what shipped to the App Store, or what a lot of shipped apps were built on.</p>
     </div>
 
-    <div class="cards" id="cards"><!-- rendered from projects.js --></div>
+    <div class="cards" id="cards">
+      <!-- BUILD:cards:start -->
+      <article class="card" id="work-momudra">
+        <div class="card-vis"><figure class="media media-diagram"><svg viewBox="0 0 720 260" width="720" height="260" role="img" aria-label="The app talks only to a Cloudflare Worker, which holds the vendor keys and routing config and calls Claude first, falling back to Groq."><g class="fig-box"><rect x="0" y="86" width="150" height="70" rx="4"/></g><text x="75" y="116" text-anchor="middle" class="fig-strong" font-size="14">MoMudra</text><text x="75" y="134" text-anchor="middle" class="fig-mute" font-size="11">iOS app</text><g class="fig-box"><rect x="255" y="70" width="180" height="102" rx="4"/></g><text x="345" y="102" text-anchor="middle" class="fig-strong" font-size="14">Cloudflare Worker</text><text x="345" y="122" text-anchor="middle" class="fig-mute" font-size="11">vendor keys · routing</text><text x="345" y="140" text-anchor="middle" class="fig-mute" font-size="11">config in KV</text><g class="fig-box"><rect x="545" y="34" width="150" height="58" rx="4"/></g><text x="620" y="60" text-anchor="middle" class="fig-strong" font-size="13">Claude</text><text x="620" y="78" text-anchor="middle" class="fig-mute" font-size="11">primary</text><g class="fig-box"><rect x="545" y="150" width="150" height="58" rx="4"/></g><text x="620" y="176" text-anchor="middle" class="fig-strong" font-size="13">Groq</text><text x="620" y="194" text-anchor="middle" class="fig-mute" font-size="11">fallback</text><path d="M150 121 H255" class="fig-arrow"/><path d="M435 110 H500 V63 H545" class="fig-arrow"/><path d="M435 132 H500 V179 H545" class="fig-arrow fig-dash"/><path d="M620 208 V236 H345 V172" class="fig-arrow fig-dash"/><text x="482" y="252" text-anchor="middle" class="fig-accent" font-size="11" font-family="var(--f-mono)" letter-spacing="1.4">ONE SELF-HEAL RETRY BEFORE ADMITTING FAILURE</text></svg><figcaption>No vendor key ever reaches the device</figcaption></figure></div>
+        <div class="card-body">
+          <span class="idx" aria-hidden="true">01</span>
+          <span class="owner owner-mine">My own product</span>
+          <h3>MoMudra</h3>
+          <p class="one">Budgeting that follows your pay cycle, not the calendar month.</p>
+          <p class="card-meta">Solo iOS engineer · 2026 · iOS</p>
+          <ul class="figs"><li><b>30 Jul 2026</b><span>Shipped</span></li><li><b>Solo</b><span>Built by</span></li><li><b>iOS 18+</b><span>Requires</span></li></ul>
+          <ul class="tags"><li>SwiftUI</li><li>SwiftData</li><li>StoreKit 2</li><li>Swift Concurrency</li><li>Claude</li><li>Groq</li><li>Cloudflare Workers</li><li>KV</li></ul>
+          <p class="arch"><span class="lbl">How it's built</span>A Cloudflare Worker holds the vendor keys and serves routing config from KV, so the app never calls a model provider directly. On device SwiftData persists the cycles, one cycle-scoped calculator owns every derived figure, and AI replies cache by prompt hash.</p>
+          <div class="card-links"><a class="card-cta" href="case.html?p=momudra">Read the case study →</a><a class="card-cta ghost" href="https://apps.apple.com/in/app/momudra-ai-money-tracker/id6785097723" target="_blank" rel="noopener">App Store<span class="sr-only"> (opens in a new tab)</span> →</a></div>
+        </div>
+      </article>
+
+      <article class="card" id="work-first-bus">
+        <div class="card-vis"><figure class="media media-diagram"><svg viewBox="0 0 720 240" width="720" height="240" role="img" aria-label="Live vehicle positions arrive over a WebSocket, are normalised in the network layer, pass through the domain layer, and reach the SwiftUI map as settled values. The view layer never sees the wire format."><g class="fig-mute" font-size="11" font-family="var(--f-mono)" letter-spacing="1.5"><text x="0" y="20">LIVE FEED</text><text x="516" y="20">WHAT THE VIEW SEES</text></g><g class="fig-box"><rect x="0" y="44" width="148" height="76" rx="4"/></g><text x="74" y="76" text-anchor="middle" class="fig-strong" font-size="13">WebSocket</text><text x="74" y="96" text-anchor="middle" class="fig-mute" font-size="11">vehicle positions</text><rect x="196" y="34" width="180" height="96" rx="4" class="fig-gap"/><g class="fig-box"><rect x="196" y="34" width="180" height="96" rx="4"/></g><text x="286" y="68" text-anchor="middle" class="fig-strong" font-size="13">Network layer</text><text x="286" y="90" text-anchor="middle" class="fig-accent" font-size="12">normalised here</text><text x="286" y="112" text-anchor="middle" class="fig-mute" font-size="11">wire shape stops at this line</text><g class="fig-box"><rect x="424" y="44" width="140" height="76" rx="4"/></g><text x="494" y="76" text-anchor="middle" class="fig-strong" font-size="13">Domain</text><text x="494" y="96" text-anchor="middle" class="fig-mute" font-size="11">routes · stops</text><g class="fig-box"><rect x="612" y="44" width="108" height="76" rx="4"/></g><text x="666" y="76" text-anchor="middle" class="fig-strong" font-size="13">SwiftUI</text><text x="666" y="96" text-anchor="middle" class="fig-mute" font-size="11">map view</text><path d="M148 82 H196" class="fig-arrow"/><path d="M376 82 H424" class="fig-arrow"/><path d="M564 82 H612" class="fig-arrow"/><line x1="376" y1="24" x2="376" y2="150" class="fig-accent-line fig-dash"/><text x="386" y="168" class="fig-mute" font-size="11">nothing past this line knows the transport</text><text x="360" y="220" text-anchor="middle" class="fig-accent" font-size="11" font-family="var(--f-mono)" letter-spacing="1.4">ONE PLACE OWNS THE SHAPE OF A LIVE VEHICLE</text></svg><figcaption>Where the wire format stops</figcaption></figure></div>
+        <div class="card-body">
+          <span class="idx" aria-hidden="true">02</span>
+          <span class="owner">Client work · Robosoft</span>
+          <h3>First Bus</h3>
+          <p class="one">Live bus tracking, routes and ticketing for a major UK operator.</p>
+          <p class="card-meta">Senior iOS Engineer · 2021–Present · iOS</p>
+          <ul class="figs"><li><b>4.6★ · 197k ratings</b><span>App Store rating</span></li><li><b>80%+</b><span>Test coverage</span></li></ul>
+          <ul class="tags"><li>Swift</li><li>SwiftUI</li><li>Atomic Design</li><li>Google Maps SDK</li><li>Swift-Dependency</li><li>Snapshot Testing</li></ul>
+          <p class="arch"><span class="lbl">How it's built</span>SwiftUI on Clean Architecture and MVVM, modular where it needed to be. Google Maps carries routing, live location and stop-level updates, with Atomic Design in the view layer. The live vehicle feed arrives over a WebSocket and is normalised in the network layer, so the view layer never sees the wire format.</p>
+          <div class="card-links"><a class="card-cta ghost" href="https://apps.apple.com/gb/app/first-bus/id566586379" target="_blank" rel="noopener">App Store<span class="sr-only"> (opens in a new tab)</span> →</a></div>
+        </div>
+      </article>
+
+      <article class="card" id="work-fuse">
+        <div class="card-vis"><figure class="media media-diagram"><svg viewBox="0 0 720 300" width="720" height="300" role="img" aria-label="A single shared core feeds a per-brand layer of design tokens, Figma configuration and backend-driven component placement, which produces eighteen apps across iOS, tvOS and visionOS."><g class="fig-mute" font-size="11" font-family="var(--f-mono)" letter-spacing="1.5"><text x="0" y="20">ONE SOURCE</text><text x="243" y="20">VARIES PER BRAND</text><text x="561" y="20">SHIPS AS</text></g><g class="fig-box"><rect x="0" y="44" width="176" height="196" rx="4"/></g><text x="88" y="106" text-anchor="middle" class="fig-strong" font-size="15">Shared core</text><text x="88" y="132" text-anchor="middle" class="fig-mute" font-size="11">CommandBuilder</text><text x="88" y="150" text-anchor="middle" class="fig-mute" font-size="11">Interactor · Router</text><text x="88" y="168" text-anchor="middle" class="fig-mute" font-size="11">Template</text><text x="88" y="196" text-anchor="middle" class="fig-mute" font-size="11">accessibility,</text><text x="88" y="212" text-anchor="middle" class="fig-mute" font-size="11">built in from the start</text><rect x="243" y="44" width="196" height="196" rx="4" class="fig-gap"/><g class="fig-box"><rect x="243" y="44" width="196" height="196" rx="4"/></g><text x="341" y="100" text-anchor="middle" class="fig-accent" font-size="13">Design tokens</text><text x="341" y="132" text-anchor="middle" class="fig-accent" font-size="13">Figma config</text><text x="341" y="164" text-anchor="middle" class="fig-accent" font-size="13">Backend-driven</text><text x="341" y="182" text-anchor="middle" class="fig-accent" font-size="13">placement</text><text x="341" y="216" text-anchor="middle" class="fig-mute" font-size="11">no forks, no per-brand branches</text><path d="M176 142 H243" class="fig-arrow"/><path d="M439 142 H506" class="fig-arrow"/><g class="fig-box"><rect x="561" y="44" width="159" height="52" rx="4"/><rect x="561" y="116" width="159" height="52" rx="4"/><rect x="561" y="188" width="159" height="52" rx="4"/></g><text x="640" y="70" text-anchor="middle" class="fig-strong" font-size="13">iOS</text><text x="640" y="86" text-anchor="middle" class="fig-mute" font-size="11">phone &amp; tablet</text><text x="640" y="142" text-anchor="middle" class="fig-strong" font-size="13">tvOS</text><text x="640" y="158" text-anchor="middle" class="fig-mute" font-size="11">focus-engine navigation</text><text x="640" y="214" text-anchor="middle" class="fig-strong" font-size="13">visionOS</text><text x="640" y="230" text-anchor="middle" class="fig-mute" font-size="11">spatial</text><text x="360" y="286" text-anchor="middle" class="fig-accent" font-size="11" font-family="var(--f-mono)" letter-spacing="1.4">18 APPS · 2 BRANDS · ONE CODEBASE</text></svg><figcaption>One core, eighteen apps</figcaption></figure></div>
+        <div class="card-body">
+          <span class="idx" aria-hidden="true">03</span>
+          <span class="owner">Client work · Robosoft</span>
+          <h3>Fuse</h3>
+          <p class="one">One codebase shipping eighteen streaming apps across iOS, tvOS and visionOS.</p>
+          <p class="card-meta">Senior iOS Engineer · 2021–Present · iOS · tvOS · visionOS</p>
+          <ul class="figs"><li><b>18</b><span>Apps from one codebase</span></li><li><b>90%+</b><span>Test coverage</span></li><li><b>2 — Beam &amp; TVE</b><span>Brands shipped</span></li></ul>
+          <ul class="tags"><li>Swift</li><li>SwiftUI</li><li>tvOS</li><li>visionOS</li><li>CommandBuilder</li><li>Interactor</li><li>Router</li><li>SSO</li><li>MUX</li><li>Braze</li><li>Branch.io</li><li>GitHub Actions</li></ul>
+          <p class="arch"><span class="lbl">How it's built</span>Built on CommandBuilder, Template, Interactor and Router with protocol-oriented design and dependency injection. UIFocus Environment drives tvOS remote navigation, and accessibility was built across the whole platform from scratch rather than retrofitted late. Each brand carries its own design tokens and Figma configuration outside the shared core, and the backend drives UI and component placement.</p>
+    
+        </div>
+      </article>
+      <!-- BUILD:cards:end -->
+    </div>
   </div>
 </section>
 
@@ -137,7 +184,53 @@
       </div>
       <p class="note" data-rv data-d="1">Ten years across six domains. The early ones taught me Objective-C; the later ones are why I write Swift the way I do.</p>
     </div>
-    <div class="ledger" id="ledger"><!-- rendered from projects.js --></div>
+    <div class="ledger" id="ledger">
+      <!-- BUILD:ledger:start -->
+      <div class="led-group">
+        <h3 class="led-domain">OTT &amp; streaming</h3>
+        <ul class="led-apps">
+          <li><span class="led-name">Fuse</span><span class="led-note">18 apps from one source</span><span class="led-year">2021–Present · iOS · tvOS · visionOS</span></li>
+          <li><span class="led-name">Muvi</span><span class="led-note">live &amp; on-demand platform</span><span class="led-year">2018–2019 · iOS</span></li>
+        </ul>
+      </div>
+
+      <div class="led-group">
+        <h3 class="led-domain">Fintech</h3>
+        <ul class="led-apps">
+          <li><a href="https://apps.apple.com/in/app/bajaj-markets-loan-finance/id1482914241" target="_blank" rel="noopener" class="led-live"><span class="led-name">Bajaj Markets</span><span class="led-note">loans, insurance, UPI</span><span class="led-year">2019–2020 · iOS · tvOS</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+          <li><a href="https://apps.apple.com/in/app/momudra-ai-money-tracker/id6785097723" target="_blank" rel="noopener" class="led-live"><span class="led-name">MoMudra</span><span class="led-note">solo</span><span class="led-year">2026 · iOS</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <div class="led-group">
+        <h3 class="led-domain">Healthcare</h3>
+        <ul class="led-apps">
+          <li><a href="https://apps.apple.com/us/app/medtronic-carelink-mobile/id445860674" target="_blank" rel="noopener" class="led-live"><span class="led-name">Medtronic CareLink</span><span class="led-note">device companion</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <div class="led-group">
+        <h3 class="led-domain">Transport</h3>
+        <ul class="led-apps">
+          <li><a href="https://apps.apple.com/gb/app/first-bus/id566586379" target="_blank" rel="noopener" class="led-live"><span class="led-name">First Bus</span><span class="led-note">FirstGroup, UK</span><span class="led-year">2021–Present · iOS</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <div class="led-group">
+        <h3 class="led-domain">Hospitality</h3>
+        <ul class="led-apps">
+          <li><a href="https://apps.apple.com/in/app/tikme/id1302399301" target="_blank" rel="noopener" class="led-live"><span class="led-name">TikMe</span><span class="led-note">freelance · restaurant platform · Canada &amp; USA</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <div class="led-group">
+        <h3 class="led-domain">Productivity</h3>
+        <ul class="led-apps">
+          <li><a href="https://apps.apple.com/us/app/certificate-maker-diploma-ai/id1179092354" target="_blank" rel="noopener" class="led-live"><span class="led-name">Certificate Maker</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+        </ul>
+      </div>
+      <!-- BUILD:ledger:end -->
+    </div>
   </div>
 </section>
 
@@ -306,8 +399,6 @@
   </footer>
 </div>
 
-<script src="projects.js"></script>
-<script src="media.js"></script>
 <script>
 /* ============================================================
    1. UTILITIES
@@ -402,79 +493,6 @@ onScroll();
     for (const e of es) if (e.isIntersecting){ run(e.target); co.unobserve(e.target); }
   }, { threshold:.6 });
   $$('[data-count]').forEach(el => co.observe(el));
-})();
-
-/* ---- work cards, rendered from projects.js ----
-   The markup lives here exactly once; adding a project means adding
-   an object to PROJECTS and nothing else. */
-(function work(){
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  /* An unanswered detail set in the same voice as the rest of the paragraph
-     reads as broken copy. Marked up, it reads as a note. */
-  const gaps = s => esc(s).replace(/\[Placeholder:\s*([^\]]*)\]/g,
-    (_, body) => `<span class="gap">still to confirm — ${body.trim()}</span>`);
-  /* Owned work leads. Anyone judging whether this person can carry a
-     product end to end should meet the one he built alone first, not after
-     three things he contributed to. */
-  const ordered = window.PROJECTS
-    .filter(p => p.tier !== 'archive')
-    .sort((a, b) => (b.mine ? 1 : 0) - (a.mine ? 1 : 0));
-  const html = ordered.map((p, i) => {
-    const n = String(i + 1).padStart(2, '0');
-    /* The case-study URL is derived, never stored, so it cannot drift
-       out of sync with which projects actually have a study. */
-    const store = p.links && p.links.appStore;
-    const href = p.study ? `case.html?p=${encodeURIComponent(p.slug)}` : store;
-    const ext  = !p.study && store;
-    const cta  = p.study ? 'Case study →' : (store ? 'App Store →' : '');
-    /* One visual per card. An empty slot renders a marked frame at the
-       final aspect ratio rather than collapsing the layout. */
-    const m   = window.MEDIA && window.MEDIA.primary(p);
-    const vis = m ? window.MEDIA.html(m, { eager: i === 0 }) : '';
-    const attrs = href
-      ? `href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ''}`
-      : '';
-    const tag  = href ? 'a' : 'div';
-    return `
-      <${tag} class="card" data-rv ${attrs}>
-        <span class="idx">${n}</span>
-        ${vis}
-        <div class="card-id">
-          ${p.ownership ? `<span class="owner${p.mine ? ' owner-mine' : ''}">${esc(p.ownership)}</span>` : ''}
-          <h3>${esc(p.name)}</h3>
-          <span class="role">${esc(p.role)} · ${esc(p.dateRange)}</span>
-          <p class="blurb">${esc(p.blurb)}</p>
-          ${p.stack ? `<ul class="tags">${p.stack.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
-        </div>
-        <div class="decision">
-          <div class="lbl">How it's built</div>
-          <p class="arch">${gaps(p.architecture)}</p>
-          ${cta ? `<span class="go">${esc(cta)}</span>` : ''}
-        </div>
-      </${tag}>`;
-  }).join('');
-  $('#cards').innerHTML = html;
-})();
-
-/* ---- the shipped ledger ----
-   Breadth, grouped by domain. An app whose listing has gone renders as
-   plain text rather than a link that 404s — five of the early ones are
-   already dead, and a portfolio that pretends otherwise gets caught. */
-(function ledger(){
-  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  $('#ledger').innerHTML = (window.SHIPPED || []).map((g, i) => `
-    <div class="led-group" data-rv data-d="${Math.min(i, 4)}">
-      <h3 class="led-domain">${esc(g.domain)}</h3>
-      <ul class="led-apps">
-        ${g.apps.map(a => {
-          const label = `<span class="led-name">${esc(a.name)}</span>` +
-                        (a.note ? `<span class="led-note">${esc(a.note)}</span>` : '');
-          return `<li>${a.url
-            ? `<a href="${esc(a.url)}" target="_blank" rel="noopener" class="led-live">${label}</a>`
-            : label}</li>`;
-        }).join('')}
-      </ul>
-    </div>`).join('');
 })();
 
 /* Twelve links open in a new tab. Moving someone to a new context without

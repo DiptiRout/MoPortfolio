@@ -114,7 +114,16 @@
     opts = opts || {};
     if (!m.ready) return placeholder(m);
     if (m.kind === 'video') return video(m, opts);
-    if (m.kind === 'diagram') return m.svg ? '<figure class="media media-diagram">' + m.svg + '</figure>' : placeholder(m);
+    if (m.kind === 'diagram') {
+      var reg = root.FIGURES || {};
+      var fig = m.figure && reg[m.figure];
+      if (!fig) return placeholder(m);
+      /* A card wants the short caption; the figure's own long one is for a
+         study, where there is room to read it. */
+      var cap = m.caption || fig.caption;
+      return '<figure class="media media-diagram">' + fig.svg() +
+             (cap ? '<figcaption>' + esc(cap) + '</figcaption>' : '') + '</figure>';
+    }
     return shot(m, opts);
   }
 

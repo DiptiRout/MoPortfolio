@@ -357,10 +357,15 @@ header.tuck{
 /* The right panel now carries the substance (architecture + chips), so it
    gets the wider column, and both columns hang from the top — centring a
    short title block against a tall panel left it floating in space. */
+/* A card leads with a visual, then a scan layer, then prose — in that
+   order, because that is the order a reader who owes you nothing will
+   use them. The diagram spans the full card width: these are wide
+   figures, and squeezing one into a side column shrinks its labels
+   below legibility, which defeats the point of drawing it. */
 .card{
-  display:grid; grid-template-columns:56px .92fr 1.08fr; gap:clamp(18px,3vw,48px);
-  align-items:start; padding-block:clamp(28px,3.4vw,44px); border-bottom:var(--rule);
   position:relative; isolation:isolate;
+  display:grid; gap:clamp(22px,3vw,40px);
+  padding-block:clamp(30px,3.6vw,52px); border-bottom:var(--rule);
 }
 .cards > .card:first-child{ border-top:var(--rule); }
 .card::before{
@@ -369,18 +374,44 @@ header.tuck{
   opacity:0; transition:opacity .55s var(--ease);
 }
 .card:hover::before{ opacity:1; }
-/* The numeral used to float at the very top of the card with nothing near
-   it, reading as debris. Nudged onto the project name's baseline so it
-   belongs to something. */
+
+.card-vis{ min-width:0; }
+.card-vis .media-diagram{
+  /* Full card width made these ~475px tall and the card read as a poster
+     with a caption. Capped so the figure supports the text rather than
+     replacing it. */
+  max-width:820px;
+  padding:clamp(18px,2.4vw,32px);
+  border:var(--rule); border-radius:6px;
+  background:linear-gradient(160deg, color-mix(in srgb, var(--paper-lit) 62%, transparent), transparent 80%);
+}
+.card-vis .media-ph{ max-width:340px; }
+
+/* Left column carries identity and the numbers; right column carries the
+   tags, the prose and the way out. Someone reading only the left column
+   still learns what this is and how it went. */
+.card-body{
+  display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+  column-gap:clamp(24px,3.6vw,60px); align-items:start;
+}
+.card-body > .owner,
+.card-body > h3,
+.card-body > .one,
+.card-body > .card-meta,
+.card-body > .figs{ grid-column:1; }
+.card-body > .tags,
+.card-body > .arch,
+.card-body > .card-links{ grid-column:2; }
+
 .card .idx{
+  position:absolute; top:clamp(30px,3.6vw,52px); right:0;
   font-family:var(--f-mono); font-size:11px; letter-spacing:.12em;
   color:var(--ink-faint); transition:color .45s var(--ease);
-  padding-top:.9em;
 }
 .card:hover .idx{ color:var(--sindoor); }
-/* Whose product this is, stated before its name. */
+
 .owner{
-  display:block; margin-bottom:14px;
+  display:block; margin-bottom:12px;
   font-family:var(--f-mono); font-size:9.5px; letter-spacing:.16em;
   text-transform:uppercase; color:var(--ink-faint);
 }
@@ -389,64 +420,96 @@ header.tuck{
   content:""; display:inline-block; width:16px; height:1px; vertical-align:.28em;
   margin-right:.7em; background:var(--sindoor);
 }
-.card h3{ font-size:clamp(26px,3.4vw,48px); }
-.card .role{ font-family:var(--f-mono); font-size:11px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-faint); margin-top:12px; display:block; }
-.card .blurb{ margin:16px 0 0; color:var(--ink-soft); font-size:15px; max-width:46ch; }
-/* Chips sit under the blurb, not in the panel. The left column was ~200px
-   shorter than the right, which left a visible void beside every project;
-   this gives it mass and keeps the panel about the writing. */
-.card-id .tags{ margin-top:22px; }
-.tags{ display:flex; flex-wrap:wrap; gap:7px; margin:16px 0 0; padding:0; list-style:none; }
-.tags li{ font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; border:var(--rule); border-radius:999px; padding:4px 11px; color:var(--ink-soft); }
+.card h3{ font-size:clamp(26px,3.4vw,44px); line-height:1.05; }
 
-/* The decision panel replaces the screenshot. A screenshot shows
-   what the app looks like — which the App Store link already does,
-   better. This shows the one engineering choice that mattered,
-   which is the only thing on the card a reader can't get elsewhere. */
-.decision{
-  position:relative; align-self:stretch; display:flex; flex-direction:column; justify-content:center;
-  padding:clamp(22px,2.4vw,34px) clamp(20px,2.2vw,32px);
-  border-left:2px solid color-mix(in srgb, var(--sindoor) 45%, transparent);
-  background:linear-gradient(100deg, color-mix(in srgb, var(--paper-lit) 70%, transparent), transparent 85%);
-  transition:border-color .6s var(--ease), background .6s var(--ease);
+/* The scannable line. If a recruiter reads one thing per project, this
+   is it — so it gets real size, not caption treatment. */
+.card .one{
+  margin:14px 0 0; font-family:var(--f-display); font-weight:400;
+  font-size:clamp(17px,1.5vw,21px); line-height:1.4; color:var(--ink);
+  max-width:34ch;
 }
-.card:hover .decision{ border-left-color:var(--sindoor); }
-.decision .lbl{
-  font-family:var(--f-mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--ink-faint); margin-bottom:14px;
+.card .card-meta{
+  margin:14px 0 0; font-family:var(--f-mono); font-size:10.5px;
+  letter-spacing:.11em; text-transform:uppercase; color:var(--ink-faint);
 }
-/* Architecture prose. Body face, not the display italic: this is a
-   technical description meant to be read, not a pull-quote meant to be
-   admired. The earlier version read well and said nothing. */
-.decision .arch{
-  margin:0; font-size:14.5px; line-height:1.68; color:var(--ink-soft);
+
+/* Deliberately the same treatment as the hero's 10+ / 18 / 90%+. That
+   pairing already reads in under a second, and repeating it means a
+   reader learns the pattern once. */
+.figs{
+  display:flex; flex-wrap:wrap; gap:clamp(18px,2.4vw,34px);
+  margin:clamp(20px,2.4vw,30px) 0 0; padding:20px 0 0;
+  border-top:var(--rule); list-style:none;
 }
-.decision .go{ margin-top:22px; }
+.figs b{
+  font-family:var(--f-display); font-weight:400; display:block; line-height:1;
+  font-size:clamp(22px,2.2vw,30px); font-variant-numeric:tabular-nums; color:var(--ink);
+}
+.figs span{
+  display:block; margin-top:7px; font-family:var(--f-mono); font-size:9.5px;
+  letter-spacing:.11em; text-transform:uppercase; color:var(--ink-faint);
+}
+
+.tags{ display:flex; flex-wrap:wrap; gap:7px; margin:0; padding:0; list-style:none; }
+.led-year{
+  display:block; margin-top:3px; font-family:var(--f-mono); font-size:9.5px;
+  letter-spacing:.1em; color:var(--ink-faint);
+}
+.tags li{
+  font-family:var(--f-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+  border:var(--rule); border-radius:999px; padding:4px 11px; color:var(--ink-soft);
+}
+
+/* Prose is the reward for scrolling, not the entry fee — so it sits
+   below the scan layer, in the body face, sized to be read rather than
+   admired. */
+.card .arch{ margin:clamp(18px,2vw,24px) 0 0; font-size:14.5px; line-height:1.68; color:var(--ink-soft); }
+.card .arch .lbl{
+  display:block; margin-bottom:10px;
+  font-family:var(--f-mono); font-size:9.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-faint);
+}
 
 /* An unanswered detail, marked as one. */
 .gap{
   font-style:italic; color:var(--ink-faint);
   border-bottom:1px dotted color-mix(in srgb, var(--ink-faint) 55%, transparent);
 }
-/* The CTA sits in the panel's flow, at the bottom. It used to be
-   absolutely positioned at the card's vertical centre, which was fine
-   over a screenshot but printed straight through the decision quote
-   once real text moved in there. */
-.card .go{
-  margin-top:20px; align-self:flex-start;
-  font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--ink-faint);
-  opacity:0; transform:translateX(-8px);
-  transition:opacity .5s var(--ease), transform .5s var(--ease), color .5s var(--ease);
-}
-.card:hover .go{ opacity:1; transform:none; color:var(--sindoor); }
-/* Touch devices never hover, so the CTA would never appear at all. */
-@media (hover:none){ .card .go{ opacity:1; transform:none; } }
 
-@media (max-width:880px){
-  .card{ grid-template-columns:34px 1fr; gap:14px; }
-  .card .decision{ grid-column:1/-1; margin-top:20px; padding:20px 0 20px 20px; }
+/* Always visible. The old CTA revealed on hover, which meant a touch
+   user and a keyboard user could not see there was a way in at all. */
+.card-links{ display:flex; flex-wrap:wrap; gap:10px 22px; margin:clamp(20px,2.2vw,28px) 0 0; }
+.card-cta{
+  font-family:var(--f-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--sindoor); border-bottom:1px solid transparent;
+  padding:6px 0; min-height:24px;
+  transition:border-color .4s var(--ease), color .4s var(--ease);
 }
+.card-cta:hover{ border-bottom-color:var(--sindoor); }
+.card-cta.ghost{ color:var(--ink-faint); }
+.card-cta.ghost:hover{ color:var(--ink); border-bottom-color:var(--ink-faint); }
+
+@media (max-width:860px){
+  /* A 720-unit diagram squeezed into a 293px phone renders its labels at
+     roughly 4px. Below this width the figure scrolls in its own container
+     instead of shrinking past legibility — the page itself never scrolls
+     sideways. */
+  .card-vis .media-diagram{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .card-vis .media-diagram svg{ min-width:640px; }
+  .card-vis .media-diagram::after{
+    content:"scroll to see the whole diagram"; display:block; margin-top:10px;
+    font-family:var(--f-mono); font-size:9.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-faint);
+  }
+  .card-body{ grid-template-columns:1fr; }
+  .card-body > .tags,
+  .card-body > .arch,
+  .card-body > .card-links{ grid-column:1; }
+  .card-body > .tags{ margin-top:clamp(20px,3vw,26px); }
+  .card .idx{ position:static; display:block; margin-bottom:10px; }
+}
+
 
 /* ============================================================
    CRAFT — palm-leaf strips (tāla-patra)

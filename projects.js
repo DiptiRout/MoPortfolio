@@ -68,10 +68,11 @@ window.PROJECTS = [
     ],
     links: { appStore: 'https://apps.apple.com/gb/app/first-bus/id566586379', github: null, site: null },
     /* Client-owned UI — no reproduced screenshots. See ASSETS-TODO.md. */
+    /* Client-owned UI — a drawn diagram, never their screenshots. */
     media: [
-      { kind:'diagram', slot:'first-bus-feed', ready:false, w:1200, h:760,
-        placeholderLabel:'Diagram — live feed to view',
-        alt:'How a live vehicle position travels from a WebSocket, through normalisation in the network layer, to the map view.' }
+      { kind:'diagram', figure:'first-bus-feed', ready:true, w:720, h:240,
+        alt:'How a live vehicle position travels from a WebSocket, through normalisation in the network layer, to the map view.',
+        caption:'Where the wire format stops' }
     ],
     problem: null,
     constraint: null,
@@ -100,9 +101,9 @@ window.PROJECTS = [
     ],
     links: { appStore: null, github: null, site: null },
     media: [
-      { kind:'diagram', slot:'fuse-brands', ready:false, w:1200, h:760,
-        placeholderLabel:'Diagram — one core, many brands',
-        alt:'One shared core surrounded by per-brand design tokens and configuration, producing eighteen apps across iOS, tvOS and visionOS.' }
+      { kind:'diagram', figure:'fuse-brands', ready:true, w:720, h:300,
+        alt:'One shared core feeding a per-brand layer of design tokens and configuration, producing eighteen apps across iOS, tvOS and visionOS.',
+        caption:'One core, eighteen apps' }
     ],
     problem: null,
     constraint: null,
@@ -111,7 +112,7 @@ window.PROJECTS = [
   },
   {
     slug: 'bajaj-markets',
-    tier: 'selected',
+    tier: 'archive',
     ownership: 'Client work · Bajaj Markets',
     name: 'Bajaj Markets',
     company: 'Bajaj Finserv Markets',
@@ -127,11 +128,7 @@ window.PROJECTS = [
        for five years of someone else's work. */
     metrics: [],
     links: { appStore: 'https://apps.apple.com/in/app/bajaj-markets-loan-finance/id1482914241', github: null, site: 'https://www.bajajfinservmarkets.in/' },
-    media: [
-      { kind:'diagram', slot:'bajaj-bdui', ready:false, w:1200, h:760,
-        placeholderLabel:'Diagram — backend-driven UI',
-        alt:'A server response describing which components a screen contains and where they sit, rendered natively by the client.' }
-    ],
+    media: [],
     problem: null,
     constraint: null,
     decision: null,
@@ -197,13 +194,18 @@ window.PROJECTS = [
        The listing shows 5.0 from a single rating — true, and meaningless.
        Publishing it would read as padding, so it stays out. */
     metrics: [
-      { label: 'Shipped', value: '30 July 2026' },
-      { label: 'Built by', value: 'One person, end to end' },
+      { label: 'Shipped', value: '30 Jul 2026' },
+      { label: 'Built by', value: 'Solo' },
       { label: 'Requires', value: 'iOS 18+' }
     ],
     links: { appStore: 'https://apps.apple.com/in/app/momudra-ai-money-tracker/id6785097723', github: null, site: null },
     /* Owned outright, so this is the one project that gets real screens. */
+    /* The architecture diagram leads because it is ready now; the real
+       screens slot in beside it the moment they are captured. */
     media: [
+      { kind:'diagram', figure:'stack', ready:true, w:720, h:260,
+        alt:'The app talks only to a Cloudflare Worker, which holds the vendor keys and routing config and calls Claude first, falling back to Groq.',
+        caption:'No vendor key ever reaches the device' },
       { kind:'shot', slot:'momudra-home', ready:false, w:1290, h:2796,
         widths:[430,645,860], fallbackExt:'png',
         alt:'MoMudra home screen showing the amount free to spend for the current pay cycle.',
@@ -310,15 +312,15 @@ window.SHIPPED = [
   {
     domain: 'OTT & streaming',
     apps: [
-      { name: 'Fuse', note: '18 apps from one source' },
-      { name: 'Muvi', note: 'live & on-demand platform' }
+      { name: 'Fuse', note: '18 apps from one source', year: '2021–Present · iOS · tvOS · visionOS' },
+      { name: 'Muvi', note: 'live & on-demand platform', year: '2018–2019 · iOS' }
     ]
   },
   {
     domain: 'Fintech',
     apps: [
-      { name: 'Bajaj Markets', note: 'loans, insurance, UPI', url: 'https://apps.apple.com/in/app/bajaj-markets-loan-finance/id1482914241' },
-      { name: 'MoMudra', note: 'solo', url: 'https://apps.apple.com/in/app/momudra-ai-money-tracker/id6785097723' }
+      { name: 'Bajaj Markets', note: 'loans, insurance, UPI', year: '2019–2020 · iOS · tvOS', url: 'https://apps.apple.com/in/app/bajaj-markets-loan-finance/id1482914241' },
+      { name: 'MoMudra', note: 'solo', year: '2026 · iOS', url: 'https://apps.apple.com/in/app/momudra-ai-money-tracker/id6785097723' }
     ]
   },
   {
@@ -330,7 +332,7 @@ window.SHIPPED = [
   {
     domain: 'Transport',
     apps: [
-      { name: 'First Bus', note: 'FirstGroup, UK', url: 'https://apps.apple.com/gb/app/first-bus/id566586379' }
+      { name: 'First Bus', note: 'FirstGroup, UK', year: '2021–Present · iOS', url: 'https://apps.apple.com/gb/app/first-bus/id566586379' }
     ]
   },
   {
