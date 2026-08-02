@@ -23,27 +23,39 @@
 
     /* The whole premise of the app in one picture: the month resets,
        the money doesn't. */
+    /* The premise of the app in one picture. The previous version put the
+       25th at x=480 — two-thirds across a 30-day scale, which is day 20 —
+       and its bottom label overflowed the viewBox and was clipped mid-word.
+       Both are fixed: the marker sits at 25/30 of the width, and every
+       label is measured to sit inside 720. */
     cycle: {
-      caption: 'A month-based budget resets on the 1st. If you are paid on the 25th, it spends six days every cycle telling you about money you do not have yet.',
+      caption: 'A month-based budget resets on the 1st, but a salary paid on the 25th has to last until the 24th. For the last six days of every month the budget is counting money that belongs to the next cycle — and then it resets that money away.',
       svg: function () {
       return '' +
-      '<svg viewBox="0 0 720 250" width="720" height="250" role="img" aria-label="A calendar month resets on the 1st, but a salary paid on the 25th means six days where the budget has reset and the money has not arrived.">' +
-        '<g class="fig-mute" font-size="12" font-family="var(--f-mono)" letter-spacing="1.6">' +
-          '<text x="0" y="34">CALENDAR MONTH</text>' +
-          '<text x="0" y="150">YOUR PAY CYCLE</text>' +
+      '<svg viewBox="0 0 720 250" width="720" height="250" role="img" aria-label="A calendar-month budget resets on the 1st, but salary lands on the 25th. For the last six days of the month the budget counts money that belongs to the next pay cycle.">' +
+        '<g class="fig-mute" font-size="11" font-family="var(--f-mono)" letter-spacing="1.5">' +
+          '<text x="0" y="16">CALENDAR MONTH</text>' +
+          '<text x="0" y="112">YOUR PAY CYCLE</text>' +
         '</g>' +
-        '<rect x="0" y="50" width="720" height="34" rx="3" class="fig-band"/>' +
-        '<line x1="0" y1="50" x2="0" y2="84" class="fig-edge"/>' +
-        '<line x1="480" y1="44" x2="480" y2="90" class="fig-edge"/>' +
-        '<line x1="720" y1="50" x2="720" y2="84" class="fig-edge"/>' +
-        '<text x="8" y="72" class="fig-label" font-size="12">1st — budget resets</text>' +
-        '<text x="712" y="72" class="fig-label" font-size="12" text-anchor="end">30th</text>' +
-        '<rect x="480" y="166" width="240" height="34" rx="3" class="fig-band"/>' +
-        '<rect x="0" y="166" width="480" height="34" rx="3" class="fig-band"/>' +
-        '<line x1="480" y1="160" x2="480" y2="206" class="fig-accent-line"/>' +
-        '<text x="488" y="188" class="fig-accent" font-size="12">25th — salary lands</text>' +
-        '<rect x="480" y="44" width="240" height="162" class="fig-gap"/>' +
-        '<text x="600" y="232" text-anchor="middle" class="fig-accent" font-size="12" font-family="var(--f-mono)" letter-spacing="1.4">SIX DAYS THE BUDGET LIES TO YOU</text>' +
+
+        '<rect x="600" y="26" width="120" height="154" class="fig-gap"/>' +
+
+        '<rect x="0" y="34" width="720" height="36" rx="3" class="fig-band"/>' +
+        '<text x="12" y="57" class="fig-label" font-size="12">1st — budget resets</text>' +
+        '<text x="708" y="57" text-anchor="end" class="fig-label" font-size="12">30th</text>' +
+
+        '<text x="588" y="112" text-anchor="end" class="fig-accent" font-size="12">25th — salary lands</text>' +
+        '<rect x="0" y="130" width="600" height="36" rx="3" class="fig-band"/>' +
+        '<text x="300" y="153" text-anchor="middle" class="fig-mute" font-size="12">previous cycle</text>' +
+        '<rect x="600" y="130" width="120" height="36" class="fig-band"/>' +
+        '<rect x="600" y="130" width="120" height="36" class="fig-gap"/>' +
+        '<text x="656" y="153" text-anchor="middle" class="fig-accent" font-size="12">new cycle</text>' +
+        '<path d="M706 148 h10 m-4 -4 l4 4 l-4 4" class="fig-arrow"/>' +
+        '<line x1="600" y1="24" x2="600" y2="182" class="fig-accent-line"/>' +
+
+        '<path d="M600 198 V206 H720 V198" class="fig-arrow"/>' +
+        '<text x="660" y="226" text-anchor="middle" class="fig-accent" font-size="11" font-family="var(--f-mono)" letter-spacing="1.4">6 DAYS</text>' +
+        '<text x="360" y="246" text-anchor="middle" class="fig-mute" font-size="11" font-family="var(--f-mono)" letter-spacing="1.4">SALARY HAS LANDED · BUDGET HAS NOT RESET</text>' +
       '</svg>';
       }
     },
