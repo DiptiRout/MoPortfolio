@@ -690,6 +690,59 @@ footer{ border-top:var(--rule); padding-block:26px; display:flex; flex-wrap:wrap
 }
 
 /* ============================================================
+   MEDIA
+   Every visual on the site renders through media.js into these
+   classes. Two rules matter here:
+
+   1. The device frame is drawn in CSS, never baked into the image.
+      A bare screenshot stays theme-aware, reusable at any size, and
+      does not carry dated mockup chrome in its pixels.
+   2. A placeholder reserves the EXACT final aspect ratio, so the
+      layout does not move when the real asset lands. A frame that
+      admits it is empty beats a broken image or a stock photo.
+   ============================================================ */
+.media{ display:block; margin:0; width:100%; }
+.media img,
+.media video{ display:block; width:100%; height:auto; }
+
+.media-shot[data-frame="device"] picture{
+  display:block; position:relative; overflow:hidden;
+  border:1px solid var(--hair);
+  border-radius:clamp(16px,2.6vw,30px);
+  background:var(--paper-lit);
+  box-shadow:0 24px 64px -36px var(--lift);
+}
+.media-diagram svg{ width:100%; height:auto; display:block; }
+
+.media figcaption{
+  margin-top:12px; font-family:var(--f-mono); font-size:10px;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint);
+}
+
+.media-ph{
+  display:grid; place-content:center; align-content:center; gap:10px;
+  padding:20px; text-align:center;
+  border:1px dashed color-mix(in srgb, var(--ink) 24%, transparent);
+  border-radius:clamp(14px,2.2vw,24px);
+  background:
+    repeating-linear-gradient(135deg,
+      color-mix(in srgb, var(--ink) 3%, transparent) 0 10px,
+      transparent 10px 20px);
+}
+.media-ph-mark{
+  font-family:var(--f-mono); font-size:10px; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink-faint);
+}
+.media-ph-slot{
+  font-family:var(--f-mono); font-size:11px; color:var(--ink-soft);
+  word-break:break-all;
+}
+
+@media (prefers-reduced-motion:reduce){
+  .media video{ animation:none; }
+}
+
+/* ============================================================
    CASE STUDY (case.html)
    One narrow column. A case study is read, not scanned, so the
    measure stays near 68ch and nothing competes with the prose.

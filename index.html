@@ -307,6 +307,7 @@
 </div>
 
 <script src="projects.js"></script>
+<script src="media.js"></script>
 <script>
 /* ============================================================
    1. UTILITIES
@@ -426,6 +427,10 @@ onScroll();
     const href = p.study ? `case.html?p=${encodeURIComponent(p.slug)}` : store;
     const ext  = !p.study && store;
     const cta  = p.study ? 'Case study →' : (store ? 'App Store →' : '');
+    /* One visual per card. An empty slot renders a marked frame at the
+       final aspect ratio rather than collapsing the layout. */
+    const m   = window.MEDIA && window.MEDIA.primary(p);
+    const vis = m ? window.MEDIA.html(m, { eager: i === 0 }) : '';
     const attrs = href
       ? `href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ''}`
       : '';
@@ -433,6 +438,7 @@ onScroll();
     return `
       <${tag} class="card" data-rv ${attrs}>
         <span class="idx">${n}</span>
+        ${vis}
         <div class="card-id">
           ${p.ownership ? `<span class="owner${p.mine ? ' owner-mine' : ''}">${esc(p.ownership)}</span>` : ''}
           <h3>${esc(p.name)}</h3>

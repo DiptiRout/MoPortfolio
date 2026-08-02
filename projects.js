@@ -67,7 +67,12 @@ window.PROJECTS = [
       { label: 'Crash-free rate', value: null }
     ],
     links: { appStore: 'https://apps.apple.com/gb/app/first-bus/id566586379', github: null, site: null },
-    media: [],
+    /* Client-owned UI — no reproduced screenshots. See ASSETS-TODO.md. */
+    media: [
+      { kind:'diagram', slot:'first-bus-feed', ready:false, w:1200, h:760,
+        placeholderLabel:'Diagram — live feed to view',
+        alt:'How a live vehicle position travels from a WebSocket, through normalisation in the network layer, to the map view.' }
+    ],
     problem: null,
     constraint: null,
     decision: null,
@@ -94,7 +99,11 @@ window.PROJECTS = [
       { label: 'Brands shipped', value: '2 — Beam & TVE' }
     ],
     links: { appStore: null, github: null, site: null },
-    media: [],
+    media: [
+      { kind:'diagram', slot:'fuse-brands', ready:false, w:1200, h:760,
+        placeholderLabel:'Diagram — one core, many brands',
+        alt:'One shared core surrounded by per-brand design tokens and configuration, producing eighteen apps across iOS, tvOS and visionOS.' }
+    ],
     problem: null,
     constraint: null,
     decision: null,
@@ -118,7 +127,11 @@ window.PROJECTS = [
        for five years of someone else's work. */
     metrics: [],
     links: { appStore: 'https://apps.apple.com/in/app/bajaj-markets-loan-finance/id1482914241', github: null, site: 'https://www.bajajfinservmarkets.in/' },
-    media: [],
+    media: [
+      { kind:'diagram', slot:'bajaj-bdui', ready:false, w:1200, h:760,
+        placeholderLabel:'Diagram — backend-driven UI',
+        alt:'A server response describing which components a screen contains and where they sit, rendered natively by the client.' }
+    ],
     problem: null,
     constraint: null,
     decision: null,
@@ -189,7 +202,19 @@ window.PROJECTS = [
       { label: 'Requires', value: 'iOS 18+' }
     ],
     links: { appStore: 'https://apps.apple.com/in/app/momudra-ai-money-tracker/id6785097723', github: null, site: null },
-    media: [],
+    /* Owned outright, so this is the one project that gets real screens. */
+    media: [
+      { kind:'shot', slot:'momudra-home', ready:false, w:1290, h:2796,
+        widths:[430,645,860], fallbackExt:'png',
+        alt:'MoMudra home screen showing the amount free to spend for the current pay cycle.',
+        caption:'Home — free to spend, scoped to the cycle' },
+      { kind:'shot', slot:'momudra-ai', ready:false, w:1290, h:2796,
+        widths:[430,645,860], fallbackExt:'png',
+        alt:'An AI answer in MoMudra responding to a question about spending, quoting the same figures shown elsewhere in the app.' },
+      { kind:'shot', slot:'momudra-widget', ready:false, w:1290, h:2796,
+        widths:[430,645,860], fallbackExt:'png',
+        alt:'The MoMudra home-screen widget showing the current cycle balance alongside other iOS widgets.' }
+    ],
 
     /* Restated from the study below rather than written fresh, so the card
        and the study cannot drift apart. */
