@@ -89,21 +89,19 @@ which the ledger already carries.
 
 ## 3. Still needed in words, not pixels
 
-- [ ] **Your third MoMudra lesson** — the one that surprised you. Currently
-      renders as a visible "still to confirm" in the MoMudra study.
-- [ ] **"What I'd do differently"** — the section is built and stays hidden
-      until you supply content. Add `differently: ['…']` to a study in
-      `projects.js`. I won't invent regrets.
-- [ ] **Fuse release cadence** — or how long standing up a new brand takes
-      now versus before. The one gap in the Fuse study.
-- [ ] **"90%+ test coverage"** — you said Fuse *and* First Bus, but also
-      that First Bus is 80%+. The hero stat is therefore Fuse's. Say the
-      word and I'll label it `90%+ on Fuse`.
-- [ ] **Which apps from 2016–19** (Muvi / Mobiona) are worth naming.
-- [ ] **Alt text review** — written for screens I have not seen. Correct
-      once the captures exist; they're in `projects.js` under each `media[]`.
-- [x] ~~Availability~~ — done: open to full-time, remote first,
-      Bhubaneswar, IST (UTC+5:30).
+All seven answered. Nothing on the site now renders an unanswered note.
+
+- [x] Third MoMudra lesson — became two: on-device OCR and the rupee
+      symbol, and cutting AI cost before the call.
+- [x] "What I'd do differently" — four items, live on the MoMudra study.
+- [x] Fuse release cadence — deliberately NOT stated (Dipti does not set
+      it). Replaced with the far better fact: a new brand is ~1 day.
+- [x] "90%+ coverage" — now attributed to Fuse, in the hero and on the
+      share card.
+- [x] 2016–19 apps — Medtronic CareLink and Certificate Maker placed at
+      Mobiona, TikMe as freelance during Bajaj. Every ledger row dated.
+- [x] Alt text — reviewed against the real screens. One real error found
+      and fixed: Ask questions the AI, it does not log.
 
 ## Deriving the sizes
 

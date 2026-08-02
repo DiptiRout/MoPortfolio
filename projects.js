@@ -272,7 +272,7 @@ window.PROJECTS = [
     media: [
       { kind:'shot', slot:'momudra-home', ready:true, w:1206, h:2622,
         widths:[430,645,860], fallbackExt:'png',
-        alt:'MoMudra home screen: $10,038 free to spend for the current pay cycle, derived from $11,300 income less $312 spent and $950 saved, with 19 days to pay day and buttons to log by voice, typing or asking.',
+        alt:'MoMudra home screen: $10,038 free to spend for the current pay cycle, derived from $11,300 income less $312 spent and $950 saved, with 19 days to pay day. Below it, hold-to-speak and type both log an entry, while Ask puts a question to the AI about entries already logged.',
         caption:'Home — free to spend, scoped to the cycle' },
       { kind:'shot', slot:'momudra-report', ready:true, w:1206, h:2622,
         widths:[430,645,860], fallbackExt:'png',
