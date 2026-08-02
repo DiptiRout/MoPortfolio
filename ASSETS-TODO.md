@@ -94,18 +94,21 @@ which the ledger already carries.
 
 ## 3. Still needed in words, not pixels
 
-- [ ] **Which apps from 2016–19** (Muvi / Mobiona) are worth naming
-- [ ] **Your third MoMudra lesson** — the one that surprised you
+- [ ] **Your third MoMudra lesson** — the one that surprised you. Currently
+      renders as a visible "still to confirm" in the MoMudra study.
+- [ ] **"What I'd do differently"** — the section is built and stays hidden
+      until you supply content. Add `differently: ['…']` to a study in
+      `projects.js`. I won't invent regrets.
+- [ ] **Fuse release cadence** — or how long standing up a new brand takes
+      now versus before. The one gap in the Fuse study.
 - [ ] **"90%+ test coverage"** — you said Fuse *and* First Bus, but also
-      that First Bus is 80%+. So the hero stat is Fuse's. Confirm I should
-      label it `90%+ on Fuse`, or give me a blended figure.
-- [ ] **Availability** (Phase 6) — full-time, contract, or neither; plus
-      location and timezone for remote
-- [ ] **Alt text review** — I wrote alt for screens I have not seen.
-      Correct them once the captures exist; they are in `projects.js`
-      under each `media[]` entry.
-
----
+      that First Bus is 80%+. The hero stat is therefore Fuse's. Say the
+      word and I'll label it `90%+ on Fuse`.
+- [ ] **Which apps from 2016–19** (Muvi / Mobiona) are worth naming.
+- [ ] **Alt text review** — written for screens I have not seen. Correct
+      once the captures exist; they're in `projects.js` under each `media[]`.
+- [x] ~~Availability~~ — done: open to full-time, remote first,
+      Bhubaneswar, IST (UTC+5:30).
 
 ## Deriving the sizes
 

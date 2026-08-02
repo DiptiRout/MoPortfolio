@@ -218,8 +218,15 @@ function buildStudies() {
   for (const p of PROJECTS) {
     if (!p.study) continue;
     let out = inject(tpl, 'study', studyHTML(p));
-    out = out.replace('{{TITLE}}', `${p.name} — case study — Diptiranjan Rout`)
-             .replace('{{DESC}}', `How ${p.name} was built: ${p.oneLiner} A case study by Diptiranjan Rout, Apple application developer.`);
+    const title = `${p.name} — case study — Diptiranjan Rout`;
+    const desc = `How ${p.name} was built: ${p.oneLiner} A case study by Diptiranjan Rout, Apple application developer.`;
+    /* Every token appears more than once (title tag, og:title, twitter:title),
+       so these must be global replacements — a plain .replace() would fill the
+       <title> and leave the share tags reading "{{TITLE}}". */
+    out = out.split('{{TITLE}}').join(esc(title))
+             .split('{{DESC}}').join(esc(desc))
+             .split('{{CANONICAL}}').join(`https://diptirout.com/case-${p.slug}.html`)
+             .split('{{OGTYPE}}').join('article');
     const name = `case-${p.slug}.html`;
     fs.writeFileSync(path.join(ROOT, name), out);
     written.push(name);
