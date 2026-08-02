@@ -72,15 +72,20 @@
       <div class="hero-copy">
         <div class="eyebrow" data-rv>Gurukul — an old discipline</div>
 
+        <!-- The designation leads, not the tenure. A job title is the durable
+             fact; "ten years" is a number that changes every January and
+             reads as trivia beside it. -->
         <h1 id="headline" data-rv="mask">
-          <span class="m"><span>Ten years</span></span>
-          <span class="m" data-d="1"><span>of <em>craft</em></span></span>
-          <span class="m" data-d="2"><span>in iOS<i class="tick"></i></span></span>
+          <span class="m"><span>Apple</span></span>
+          <span class="m" data-d="1"><span>Application</span></span>
+          <span class="m" data-d="2"><span>Developer<i class="tick"></i></span></span>
         </h1>
 
-        <p class="lede" data-rv data-d="2">I build for the Apple ecosystem — iOS, iPadOS, tvOS and visionOS. A decade of Swift, from live transit tracking to streaming at scale, and most recently a finance app I shipped alone, backend included.</p>
+        <p class="hero-sub" data-rv data-d="2">Ten years of <em>craft</em> in iOS.</p>
 
-        <ul class="stats" data-rv data-d="3">
+        <p class="lede" data-rv data-d="3">I build for the Apple ecosystem — iOS, iPadOS, tvOS and visionOS. From live transit tracking to streaming at scale, and most recently a finance app I shipped alone, backend included.</p>
+
+        <ul class="stats" data-rv data-d="4">
           <li><b data-count>10+</b><span>Years shipping</span></li>
           <li><b data-count>18</b><span>Apps from one codebase</span></li>
           <li><b data-count>90%+</b><span>Test coverage</span></li>
@@ -100,7 +105,7 @@
 
     <div class="hero-foot">
       <div class="scrollcue"><i></i> scroll to explore</div>
-      <p class="side-note" data-rv>In the old schools, a craft was earned through repetition — the same stroke, thrown again, until the hand stopped shaking. Ten rings, one per year. The wheel keeps a slow turn on its own; effort only ever adds to it.</p>
+      <p class="side-note" data-rv>One core at the centre, the five Apple platforms on spokes around it, and a pulse that travels outward along each in turn. That is the whole method: build the thing once, properly, and let every device inherit it. Eighteen shipped apps from a single codebase is what it looks like when it works.</p>
     </div>
   </div>
 </section>
@@ -632,7 +637,7 @@ let repaintFigure = () => {};
     ctx.scale(1 - 0.10 * exit, 1 - 0.10 * exit);
     ctx.translate(-cx, -cy);
 
-    const ring = R * 0.72;
+    const ring = R * 0.78;
     const gs   = Math.max(16, R * 0.170);   /* balanced glyphs read small; give them presence */
     const core = R * 0.135;
 

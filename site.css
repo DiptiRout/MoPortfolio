@@ -241,20 +241,31 @@ header.tuck{
 .hero > .shell{ flex:1; display:flex; flex-direction:column; }
 .hero-grid{
   flex:1;
-  display:grid; grid-template-columns:1.05fr .95fr;
-  gap:clamp(28px,5vw,88px); align-items:center;
+  display:grid; grid-template-columns:1.06fr .94fr;
+  gap:clamp(20px,2.7vw,44px); align-items:center;
 }
 .hero-copy .eyebrow{ margin-bottom:clamp(20px,2.6vw,34px); }
 
 /* Masking/rise behaviour lives entirely in the [data-rv="mask"] rules so
    nothing here out-specifies them — an #id rule beat them once already. */
-#headline{ font-size:clamp(46px,7.6vw,116px); line-height:1.04; }
+/* Sized so the longest line ("Application") very nearly fills its column.
+   The dead air between the type and the diagram is almost entirely a
+   function of headline ink width — a smaller face reopens the gap. */
+#headline{ font-size:clamp(50px,8.05vw,112px); line-height:1.03; letter-spacing:-.012em; }
 #headline em{ font-style:italic; color:var(--sindoor); }
 #headline .tick{
   display:inline-block; width:.5em; height:.05em; background:var(--sindoor);
   vertical-align:.26em; margin-left:.14em;
 }
-.lede{ margin:clamp(24px,3vw,38px) 0 0; color:var(--ink-soft); font-size:16.5px; max-width:44ch; }
+/* The tenure, demoted to a supporting line — it still earns the one
+   italic sindoor word the hero is built around. */
+.hero-sub{
+  margin:clamp(16px,1.8vw,24px) 0 0; font-family:var(--f-display); font-weight:400;
+  font-size:clamp(19px,2vw,27px); line-height:1.3; color:var(--ink-soft);
+}
+.hero-sub em{ font-style:italic; color:var(--sindoor); }
+
+.lede{ margin:clamp(18px,2.2vw,28px) 0 0; color:var(--ink-soft); font-size:16.5px; max-width:44ch; }
 
 .stats{
   display:flex; flex-wrap:wrap; gap:clamp(20px,3vw,40px);
