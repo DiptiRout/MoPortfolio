@@ -229,7 +229,7 @@ window.PROJECTS = [
     platforms: ['iOS'],
     oneLiner: 'Objective-C giving way to Swift, one client project at a time.',
     blurb: 'A services shop, so a lot of work came across the desk — where the decade started.',
-    architecture: 'Objective-C and UIKit with Core Data and Realm, Storyboards, and SOAP/XML services. [Placeholder: which shipped apps from this era are worth naming individually.]',
+    architecture: 'Objective-C and UIKit with Core Data and Realm, Storyboards, and SOAP/XML services. Medtronic CareLink and Certificate Maker both shipped from this desk — a device companion and a document tool, which is what a services shop looks like from the inside.',
     stack: ['Objective-C', 'UIKit', 'Core Data', 'Realm', 'Storyboards', 'SOAP / XML'],
     metrics: [{ label: 'Apps shipped', value: null }],
     links: { appStore: null, github: null, site: null },
@@ -403,7 +403,7 @@ window.SHIPPED = [
   {
     domain: 'Healthcare',
     apps: [
-      { name: 'Medtronic CareLink', note: 'device companion', url: 'https://apps.apple.com/us/app/medtronic-carelink-mobile/id445860674' }
+      { name: 'Medtronic CareLink', note: 'device companion', year: '2016–2018 · iOS', url: 'https://apps.apple.com/us/app/medtronic-carelink-mobile/id445860674' }
     ]
   },
   {
@@ -415,13 +415,13 @@ window.SHIPPED = [
   {
     domain: 'Hospitality',
     apps: [
-      { name: 'TikMe', note: 'freelance · restaurant platform · Canada & USA', url: 'https://apps.apple.com/in/app/tikme/id1302399301' }
+      { name: 'TikMe', note: 'freelance · restaurant platform · Canada & USA', year: '2019–2020 · iOS', url: 'https://apps.apple.com/in/app/tikme/id1302399301' }
     ]
   },
   {
     domain: 'Productivity',
     apps: [
-      { name: 'Certificate Maker', url: 'https://apps.apple.com/us/app/certificate-maker-diploma-ai/id1179092354' }
+      { name: 'Certificate Maker', year: '2016–2018 · iOS', url: 'https://apps.apple.com/us/app/certificate-maker-diploma-ai/id1179092354' }
     ]
   }
 ];
