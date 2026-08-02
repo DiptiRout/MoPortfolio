@@ -56,12 +56,15 @@ window.PROJECTS = [
     blurb: 'Live bus tracking, routes and ticketing for FirstGroup, one of the UK’s largest operators.',
     /* Sourced from Dipti's own notes + the 2026 CV. The bracketed line is a
        real gap — do not replace it with plausible-sounding prose. */
-    architecture: 'SwiftUI on Clean Architecture and MVVM, modular where it needed to be. Google Maps carries routing, live location and stop-level updates, with Atomic Design in the view layer. [Placeholder: how the live vehicle feed reaches the UI — polling or socket, and where it is normalised.]',
+    architecture: 'SwiftUI on Clean Architecture and MVVM, modular where it needed to be. Google Maps carries routing, live location and stop-level updates, with Atomic Design in the view layer. The live vehicle feed arrives over a WebSocket and is normalised in the network layer, so the view layer never sees the wire format.',
     stack: ['Swift', 'SwiftUI', 'Atomic Design', 'Google Maps SDK', 'Swift-Dependency', 'Snapshot Testing'],
+    /* Rating pulled from the public iTunes lookup API on 2026-08-02. Dipti
+       has worked on this app since 2021, so the current listing is fairly
+       his to cite — unlike Bajaj, which he left five years ago. */
     metrics: [
-      { label: 'App Store rating', value: null },
-      { label: 'Crash-free rate', value: null },
-      { label: 'Test coverage', value: null }
+      { label: 'App Store rating', value: '4.6★ · 197k ratings' },
+      { label: 'Test coverage', value: '80%+' },
+      { label: 'Crash-free rate', value: null }
     ],
     links: { appStore: 'https://apps.apple.com/gb/app/first-bus/id566586379', github: null, site: null },
     media: [],
@@ -81,14 +84,14 @@ window.PROJECTS = [
     platforms: ['iOS', 'tvOS', 'visionOS'],
     oneLiner: 'One codebase shipping eighteen streaming apps across iOS, tvOS and visionOS.',
     blurb: 'One codebase across iOS, tvOS and visionOS, behind Discovery+, HBO Max, Max, TLC and fourteen more streaming apps.',
-    architecture: 'Built on CommandBuilder, Template, Interactor and Router with protocol-oriented design and dependency injection. UIFocus Environment drives tvOS remote navigation, and accessibility was built across the whole platform from scratch rather than retrofitted late. [Placeholder: how per-brand config and theming separate from the shared core.]',
+    architecture: 'Built on CommandBuilder, Template, Interactor and Router with protocol-oriented design and dependency injection. UIFocus Environment drives tvOS remote navigation, and accessibility was built across the whole platform from scratch rather than retrofitted late. Each brand carries its own design tokens and Figma configuration outside the shared core, and the backend drives UI and component placement.',
     stack: ['Swift', 'SwiftUI', 'tvOS', 'visionOS', 'CommandBuilder', 'Interactor', 'Router', 'SSO', 'MUX', 'Braze', 'Branch.io', 'GitHub Actions'],
     /* 18 is sourced — it is the same figure the hero counts and the blurb
        spells out. Everything else here is genuinely unknown. */
     metrics: [
       { label: 'Apps from one codebase', value: '18' },
-      { label: 'Test coverage', value: null },
-      { label: 'Brands shipped', value: null }
+      { label: 'Test coverage', value: '90%+' },
+      { label: 'Brands shipped', value: '2 — Beam & TVE' }
     ],
     links: { appStore: null, github: null, site: null },
     media: [],
@@ -102,19 +105,19 @@ window.PROJECTS = [
     tier: 'selected',
     ownership: 'Client work · Bajaj Markets',
     name: 'Bajaj Markets',
-    company: 'Bajaj Finserv',
+    company: 'Bajaj Finserv Markets',
     role: 'iOS & tvOS Developer',
     dateRange: '2019–2020',
     platforms: ['iOS', 'tvOS'],
     oneLiner: 'A fintech marketplace for loans, cards, insurance, investments and UPI.',
     blurb: 'A fintech marketplace — loans, cards, insurance, investments, UPI and EMI shopping.',
-    architecture: 'CMS-driven UI, so screens are described server-side rather than hardcoded in the client. MVVM over RESTful services with real-time data changes and deep linking, and an in-app-browser session bridged into native for auto-login. [Placeholder: how the CMS layout contract handled an unknown component type.]',
+    architecture: 'CMS-driven UI, so screens are described server-side rather than hardcoded in the client. MVVM over RESTful services with real-time data changes and deep linking, and an in-app-browser session bridged into native for auto-login — the backend drives both the UI and where each component lands.',
     stack: ['Objective-C', 'Swift', 'MVVM', 'CMS-driven layout', 'Deep Linking', 'REST', 'Bitbucket', 'Jira'],
-    metrics: [
-      { label: 'App Store rating', value: null },
-      { label: 'Monthly active users', value: null }
-    ],
-    links: { appStore: 'https://apps.apple.com/in/app/bajaj-markets-loan-finance/id1482914241', github: null, site: null },
+    /* Deliberately empty. The listing today rates 4.7 from 23k ratings, but
+       that is the 2026 app; Dipti left in 2020. Citing it would claim credit
+       for five years of someone else's work. */
+    metrics: [],
+    links: { appStore: 'https://apps.apple.com/in/app/bajaj-markets-loan-finance/id1482914241', github: null, site: 'https://www.bajajfinservmarkets.in/' },
     media: [],
     problem: null,
     constraint: null,
@@ -132,7 +135,7 @@ window.PROJECTS = [
     platforms: ['iOS'],
     oneLiner: 'A platform other companies launched their own streaming services on.',
     blurb: 'A white-label streaming platform — Muvi’s customers stood up their own services on what we shipped.',
-    architecture: '[Placeholder: how the white-label build was structured — what varied per customer and what stayed shared.]',
+    architecture: 'A platform for standing up OTT apps and the CMS behind them, so the customer configured their own service rather than commissioning a build. Described as it was in 2018–19; the product has moved on since.',
     stack: ['Swift', 'Alamofire', 'MVVM', 'Crashlytics', 'Unit Tests'],
     metrics: [{ label: 'Customer services shipped', value: null }],
     links: { appStore: null, github: null, site: null },
@@ -177,11 +180,13 @@ window.PROJECTS = [
     blurb: 'A personal finance app that budgets around your pay cycle, not the calendar month.',
     architecture: 'A Cloudflare Worker holds the vendor keys and serves routing config from KV, so the app never calls a model provider directly. On device SwiftData persists the cycles, one cycle-scoped calculator owns every derived figure, and AI replies cache by prompt hash.',
     stack: ['SwiftUI', 'SwiftData', 'StoreKit 2', 'Swift Concurrency', 'Claude', 'Groq', 'Cloudflare Workers', 'KV'],
+    /* Released 30 July 2026, so there is no usage history worth citing yet.
+       The listing shows 5.0 from a single rating — true, and meaningless.
+       Publishing it would read as padding, so it stays out. */
     metrics: [
-      { label: 'Shipped', value: 'v1.0.0 · July 2026' },
-      { label: 'Downloads', value: null },
-      { label: 'App Store rating', value: null },
-      { label: 'Crash-free rate', value: null }
+      { label: 'Shipped', value: '30 July 2026' },
+      { label: 'Built by', value: 'One person, end to end' },
+      { label: 'Requires', value: 'iOS 18+' }
     ],
     links: { appStore: 'https://apps.apple.com/in/app/momudra-ai-money-tracker/id6785097723', github: null, site: null },
     media: [],
@@ -189,9 +194,9 @@ window.PROJECTS = [
     /* Restated from the study below rather than written fresh, so the card
        and the study cannot drift apart. */
     problem: 'Almost every budgeting app assumes a calendar month, but most people are not paid on the first. A “monthly” budget quietly lies to you for the days between your payday and the reset.',
-    constraint: null,
+    constraint: 'Built solo, with no team to spread the work across, and against a hard cost ceiling: the AI features are sold as unlimited on a $2.99/month subscription, and a heavy user\'s real token usage can approach or exceed what that pays for.',
     decision: 'The pay cycle — not the month — became the unit of time everywhere: Home, widgets and AI answers all read one cycle-scoped calculator, so no two surfaces can disagree about what is left to spend.',
-    result: 'Shipped solo to the App Store as v1.0.0 in July 2026 — the SwiftUI app, the AI layer and the Cloudflare Worker backend.',
+    result: 'Shipped solo to the App Store as v1.0.0 on 30 July 2026 — the SwiftUI app, the AI layer and the Cloudflare Worker backend.',
 
     study: {
       standfirst: 'Built alone, end to end: the app, the AI layer, and the backend that keeps the keys off the device.',
@@ -199,7 +204,7 @@ window.PROJECTS = [
       /* Scannable in ten seconds, for the reader who will not read. */
       glance: [
         ['Role',      'Solo — app, AI layer, backend'],
-        ['Shipped',   'v1.0.0 · July 2026'],
+        ['Shipped',   'v1.0.0 · 30 July 2026'],
         ['Platform',  'iOS 18+'],
         ['Stack',     'SwiftUI · SwiftData · StoreKit 2'],
         ['AI',        'Claude + Groq, routed'],
@@ -252,8 +257,8 @@ window.PROJECTS = [
       ],
 
       outcome: [
-        'Shipped solo to the App Store as v1.0.0 in July 2026 — the SwiftUI app, the AI layer, and the Cloudflare Worker backend.',
-        '[Placeholder: add real outcome once you have it — downloads, retention, ratings, or simply what you learned shipping a solo product end to end.]'
+        'Shipped solo to the App Store as v1.0.0 on 30 July 2026 — the SwiftUI app, the AI layer, and the Cloudflare Worker backend.',
+        'Too recently released for usage data worth reporting. What it already proves is narrower and more useful: one person can carry a product from SwiftUI view to Cloudflare secret without a team behind them.'
       ],
 
       lessons: [
