@@ -75,14 +75,16 @@ function cardHTML(p, i) {
 
   return `
 <article class="card" id="work-${esc(p.slug)}">
-  <div class="card-vis">${vis}</div>
-  <div class="card-body">
+  <div class="card-head">
     <span class="idx" aria-hidden="true">${n}</span>
     <span class="owner${p.mine ? ' owner-mine' : ''}">${esc(p.ownership)}</span>
     <h3>${esc(p.name)}</h3>
     <p class="one">${esc(p.oneLiner)}</p>
     <p class="card-meta">${esc(p.role)} · ${esc(p.dateRange)} · ${p.platforms.map(esc).join(' · ')}</p>
     ${metricsHTML(p)}
+  </div>
+  <div class="card-vis">${vis}</div>
+  <div class="card-body">
     <ul class="tags">${p.stack.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
     <p class="arch"><span class="lbl">How it's built</span>${gaps(p.architecture)}</p>
     ${linksHTML(p)}
@@ -158,9 +160,13 @@ function studyHTML(p) {
   out.push(`<a class="case-back" href="index.html#work">← All work</a>`);
   out.push(`<div class="case-head"><h1>${esc(p.name)}</h1></div>`);
   out.push(`<p class="case-meta"><span>${esc(p.role)}</span><span>${esc(p.dateRange)}</span><span>${p.platforms.map(esc).join(' · ')}</span></p>`);
-  /* The hero visual comes before the standfirst: a reader should see the
-     thing before being told about it. */
-  if (hero) out.push(`<div class="case-hero">${MEDIA.html(hero, { eager: true })}</div>`);
+  /* Only a screenshot leads. A diagram hero repeated the card a reader had
+     just clicked, and on MoMudra it repeated the study's own approach figure
+     lower down — the same picture three times. Diagrams now appear once,
+     inside the section that explains them. */
+  if (hero && hero.kind === 'shot') {
+    out.push(`<div class="case-hero">${MEDIA.html(hero, { eager: true })}</div>`);
+  }
   out.push(`<p class="case-stand">${esc(s.standfirst)}</p>`);
   out.push(glanceHTML(s));
 

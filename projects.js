@@ -125,9 +125,7 @@ window.PROJECTS = [
         ['Since',     '2021']
       ],
 
-      /* The hero visual already carries fuse-brands; repeating it inside
-         the body would be decoration, not explanation. */
-      figures: {},
+      figures: { approach: 'fuse-brands' },
 
       problem: [
         'A shared codebase behind eighteen shipping apps changes what a decision is. Every choice is made on behalf of teams you will never meet, on schedules you do not control, for brands whose requirements arrive after your code does.',

@@ -396,21 +396,22 @@ header.tuck{
 }
 .card-vis .media-ph{ max-width:340px; }
 
-/* Left column carries identity and the numbers; right column carries the
-   tags, the prose and the way out. Someone reading only the left column
-   still learns what this is and how it went. */
-.card-body{
-  display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
-  column-gap:clamp(24px,3.6vw,60px); align-items:start;
+/* Identity first, THEN the picture. With the diagram on top, scrolling gave
+   you a figure with no idea whose it was until the name appeared below it.
+   The metrics ride alongside the name so the head block answers what this
+   is and how it went before any visual appears. */
+.card-head{
+  display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  column-gap:clamp(24px,3.6vw,60px); align-items:end;
 }
-.card-body > .owner,
-.card-body > h3,
-.card-body > .one,
-.card-body > .card-meta,
-.card-body > .figs{ grid-column:1; }
-.card-body > .tags,
-.card-body > .arch,
-.card-body > .card-links{ grid-column:2; }
+.card-head > .owner,
+.card-head > h3,
+.card-head > .one,
+.card-head > .card-meta{ grid-column:1; }
+.card-head > .figs{ grid-column:2; grid-row:2 / span 4; align-self:end; margin-top:0; }
+
+.card-body{ min-width:0; }
+.card-body .arch{ max-width:62ch; }
 
 .card .idx{
   position:absolute; top:clamp(30px,3.6vw,52px); right:0;
@@ -500,6 +501,8 @@ header.tuck{
 .card-cta.ghost:hover{ color:var(--ink); border-bottom-color:var(--ink-faint); }
 
 @media (max-width:860px){
+  .card-head{ grid-template-columns:1fr; }
+  .card-head > .figs{ grid-column:1; grid-row:auto; }
   /* A 720-unit diagram squeezed into a 293px phone renders its labels at
      roughly 4px. Below this width the figure scrolls in its own container
      instead of shrinking past legibility — the page itself never scrolls
