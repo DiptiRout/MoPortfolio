@@ -35,7 +35,7 @@ require(path.join(ROOT, 'figures.js'));
 require(path.join(ROOT, 'projects.js'));
 require(path.join(ROOT, 'media.js'));
 
-const { PROJECTS, SHIPPED, MEDIA } = global.window;
+const { PROJECTS, SHIPPED, MEDIA, HERO_STATS, CAREER_APPS } = global.window;
 const esc = MEDIA.esc;
 
 /* An unanswered detail written in the same voice as sourced fact reads
@@ -45,6 +45,13 @@ const gaps = s => esc(s).replace(/\[Placeholder:\s*([^\]]*)\]/g,
 
 const indent = (html, pad) =>
   html.split('\n').map(l => (l.trim() ? pad + l : l)).join('\n');
+
+/* ---------- hero stats ---------- */
+
+function buildHeroStats() {
+  return HERO_STATS.map(st =>
+    `<li><b data-count>${esc(st.value)}</b><span>${esc(st.label)}</span></li>`).join('\n');
+}
 
 /* ---------- #work ---------- */
 
@@ -262,7 +269,16 @@ const file = path.join(ROOT, 'index.html');
 let html = fs.readFileSync(file, 'utf8');
 html = inject(html, 'cards', buildWork());
 html = inject(html, 'ledger', buildShipped());
+html = inject(html, 'heroStats', buildHeroStats());
 fs.writeFileSync(file, html);
+
+/* tools/make-og.py needs the same number the hero shows. Rather than a
+   second hardcoded "36" in a Python file that could silently drift from
+   this one, the total is handed off here — one number, one owner. */
+fs.writeFileSync(
+  path.join(ROOT, 'shots', 'hero-stats.json'),
+  JSON.stringify(HERO_STATS, null, 2) + '\n'
+);
 
 const studies = buildStudies();
 studies.forEach(n => console.log('built ' + n));

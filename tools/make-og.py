@@ -70,9 +70,18 @@ d.text((PAD + w, sub_y), "craft", font=serif_i(28), fill=SINDOOR)
 w += d.textlength("craft", font=serif_i(28))
 d.text((PAD + w, sub_y), " in iOS.", font=serif(28), fill=FAINT)
 
-# the three numbers that carry the page
+# the three numbers that carry the page — read from the same file
+# build.js writes, so this can't quietly drift from what the hero shows.
+import json, sys
+stats_path = "shots/hero-stats.json"
+try:
+    with open(stats_path) as f:
+        hero_stats = json.load(f)
+except FileNotFoundError:
+    sys.exit(f"{stats_path} not found — run `node build.js` first, then re-run this script.")
+stats = [(s["value"], s["label"].upper()) for s in hero_stats]
+
 d.line([PAD, H - 122, W - PAD, H - 122], fill=(52, 54, 62), width=1)
-stats = [("10+", "YEARS SHIPPING"), ("18", "APPS FROM ONE CODEBASE"), ("90%+", "TEST COVERAGE ON FUSE")]
 x = PAD
 for value, label in stats:
     d.text((x, H - 104), value, font=serif(38), fill=INK)

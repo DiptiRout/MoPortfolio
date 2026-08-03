@@ -376,6 +376,41 @@ window.PROJECTS = [
    of the early listings are already gone, which is what a ten-year
    back catalogue honestly looks like.
    ============================================================ */
+/* ============================================================
+   HERO STATS — the three numbers in the hero. Same rule as everywhere
+   else on this site: a number stated once, not re-typed at each use site.
+   build.js renders these into index.html's hero <ul>, and also drops
+   apps.total into shots/hero-stats.json so tools/make-og.py reads the
+   same figure rather than carrying its own hardcoded copy.
+
+   CAREER_APPS is the count behind the middle stat, sourced from Dipti
+   directly on 2026-08-03 — not derived from the ledger, which only
+   names apps worth naming individually and was never meant to be a
+   census. Do not add to this breakdown without an explicit count from
+   him; a wrong total here is worse than a smaller true one.
+   ============================================================ */
+window.CAREER_APPS = {
+  breakdown: [
+    { source: 'Fuse (Robosoft · one codebase)', count: 18 },
+    { source: 'First Bus',                      count: 1 },
+    { source: 'Bajaj Markets',                  count: 1 },
+    { source: 'MoMudra',                        count: 1 },
+    { source: 'Muvi',                           count: 3 },
+    { source: 'Mobiona (services era)',         count: 11 },
+    { source: 'TikMe (freelance)',               count: 1 }
+  ],
+  get total() { return this.breakdown.reduce((n, x) => n + x.count, 0); }
+};
+
+window.HERO_STATS = [
+  { value: '10+', label: 'Years shipping' },
+  /* Not "from one codebase" any more — that described only the Fuse
+     figure. This is the sum across every stop, so the label has to say
+     career rather than architecture. */
+  { value: String(window.CAREER_APPS.total), label: 'Apps shipped across my career' },
+  { value: '90%+', label: 'Test coverage on Fuse' }
+];
+
 window.SHIPPED = [
   {
     domain: 'OTT & streaming',
