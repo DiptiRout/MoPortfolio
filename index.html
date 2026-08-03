@@ -372,16 +372,13 @@
         </li>
       </ul>
 
-      <!-- The journey, drawn. The hero shows the full constellation as it
-           stands today; this rewinds it era by era, ending on the single
-           device the decade started from. -->
-      <!-- The journey, staged. One layer per era, cross-faded on scroll with
-           a little parallax so it reads as a scene rather than a slideshow.
-           Layers are built by JS from the eras themselves, so the timeline
-           and the artwork can never fall out of step. -->
-      <div class="path-fig" aria-hidden="true">
-        <div class="path-stage" id="pathStage"></div>
-        <p class="path-cap"><span id="pathCap"></span></p>
+      <!-- The knowledge tree. Grows as this section is read; every fruit is
+           a technology, every device an Apple platform, and the roots are the
+           habits underneath. Data lives in tree.js — nothing here is
+           hand-placed. -->
+      <div class="path-fig">
+        <div class="tree-stage" id="knowledgeTree"></div>
+        <p class="path-cap"><span id="pathCap">Hover a fruit to see what it connects to</span></p>
       </div>
     </div>
 
@@ -459,7 +456,6 @@
 
 <!-- BUILD:platformApps:start -->
       <script>window.PLATFORM_APPS={"iOS":36,"iPadOS":"iPad-only work at Mobiona, Muvi and Fuse","tvOS":19,"visionOS":18};</script>
-      <script>window.JOURNEY_ART=["2016","2018","2019","2021"];</script>
       <!-- BUILD:platformApps:end -->
 
 <script>
@@ -875,113 +871,8 @@ let repaintFigure = () => {};
   });
 })();
 
-/* ============================================================
-   THE PATH — the journey, staged.
-
-   Four still images, one per era, cross-faded as you scroll. The motion
-   is not drawn: it comes from fading between layers and drifting them
-   against the scroll, which is how a game landing page sells a scene
-   without animating a single frame by hand.
-
-   Layers are generated from the timeline's own <li> elements, so an era
-   cannot exist in the text and be missing from the artwork. An image
-   that is not there yet falls back to a marked placeholder at the exact
-   final aspect ratio — nothing moves when the real art lands.
-   ============================================================ */
-(function journey(){
-  const stage = $('#pathStage'), capEl = $('#pathCap');
-  if (!stage) return;
-  const items = $$('#path li[data-fig]');
-  if (!items.length) return;
-
-  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let active = -1, ticking = false;
-
-  /* Build one layer per era. The <img> is optimistic: if the file is not
-     there yet its error handler swaps in the placeholder, so adding the
-     artwork later needs no code change at all. */
-  const HAVE = window.JOURNEY_ART || [];
-  const layers = items.map((li, i) => {
-    const slug = li.dataset.fig;
-    const el = document.createElement('div');
-    el.className = 'stage-layer';
-    el.dataset.slug = slug;
-
-    if (HAVE.includes(slug)){
-      const img = new Image();
-      img.className = 'stage-img';
-      img.decoding = 'async';
-      /* All lazy, none eager. The stage is display:none below 1000px, where
-         a lazy image is never fetched — but an eager one is, which meant
-         phones downloaded 142KB for a panel they never see. On desktop the
-         section is far down the page, so lazy loads in plenty of time. */
-      img.loading = 'lazy';
-      img.alt = '';
-      img.src = 'shots/journey-' + slug + '.jpg';
-      el.appendChild(img);
-    } else {
-      /* Decided at build time, so a missing still never renders as a broken
-         image first and corrects itself afterwards. */
-      el.classList.add('is-empty');
-      el.innerHTML =
-        '<span class="stage-ph-mark">Artwork to come</span>' +
-        '<span class="stage-ph-slot">journey-' + slug + '.jpg</span>';
-    }
-    stage.appendChild(el);
-    return el;
-  });
-
-  function setEra(i){
-    if (i === active) return;
-    active = i;
-    layers.forEach((el, k) => el.classList.toggle('is-on', k === i));
-    const li = items[i];
-    const yr = (li.querySelector('.yr')?.textContent || '').split('·')[0].trim();
-    const n  = (li.dataset.plats || '').split(',').filter(Boolean).length;
-    capEl.textContent = yr ? yr + ' · ' + n + (n === 1 ? ' platform' : ' platforms') : '';
-  }
-
-  /* Whichever era sits nearest the reading line drives the stage; steadier
-     than firing on entry and exit, which flickers between adjacent eras. */
-  function update(){
-    ticking = false;
-    const mid = innerHeight * 0.42;
-    let best = Infinity, idx = active < 0 ? 0 : active;
-    items.forEach((li, i) => {
-      const b = li.getBoundingClientRect();
-      const d = Math.abs((b.top + b.height/2) - mid);
-      if (d < best){ best = d; idx = i; }
-    });
-    setEra(idx);
-
-    if (!RM){
-      /* Drift the live layer against the scroll. Small on purpose — enough
-         to feel like depth, not enough to read as sliding. */
-      const sb = stage.getBoundingClientRect();
-      const p = Math.max(-1, Math.min(1, (sb.top + sb.height/2 - innerHeight/2) / innerHeight));
-      stage.style.setProperty('--drift', (p * -14).toFixed(2) + 'px');
-    }
-  }
-
-  const onScroll = () => { if (!ticking){ ticking = true; requestAnimationFrame(update); } };
-  addEventListener('scroll', onScroll, { passive:true });
-  addEventListener('resize', onScroll, { passive:true });
-
-  if (!RM){
-    /* Mouse parallax, only while the section is actually on screen. */
-    addEventListener('pointermove', e => {
-      const sb = stage.getBoundingClientRect();
-      if (sb.bottom < 0 || sb.top > innerHeight) return;
-      const dx = (e.clientX / innerWidth  - 0.5) * 2;
-      const dy = (e.clientY / innerHeight - 0.5) * 2;
-      stage.style.setProperty('--mx', (dx * 6).toFixed(2) + 'px');
-      stage.style.setProperty('--my', (dy * 6).toFixed(2) + 'px');
-    }, { passive:true });
-  }
-
-  update();
-})();
 
 </script>
+<script src="tree.js"></script>
 </body>
 </html>

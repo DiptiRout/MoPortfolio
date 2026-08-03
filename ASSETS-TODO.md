@@ -39,14 +39,15 @@ that is taste, not correctness.
 
 Everything else stays as it is; the slot is wired and holds its shape.
 
-## 1b. THE JOURNEY STILLS — done
+## 1b. THE JOURNEY — replaced by the knowledge tree
 
-All four delivered and live: `journey-2016 / 2018 / 2019 / 2021.jpg`,
-1024×1536, in `shots/`. The character ages consistently across them and
-the 2021 still wears the same aubergine blazer as the contact portrait,
-which ties the two halves of the page together.
+The four character stills are gone, along with `shots/journey-*.jpg`. The
+Path now carries an interactive knowledge tree built from data in
+`tree.js` — no artwork needed, nothing outstanding.
 
-Nothing outstanding here.
+To add a technology, add one line to `NODES` in `tree.js`. To connect it
+to others, add pairs to `LINKS`. Positions are computed from the branch
+curves, so nothing has to be placed by hand.
 
 ---
 

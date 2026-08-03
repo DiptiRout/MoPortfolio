@@ -1098,14 +1098,10 @@ footer{ border-top:var(--rule); padding-block:26px; display:flex; flex-wrap:wrap
    The stack column is the quiet argument of this section — read the four
    of them top to bottom and you get Objective-C to visionOS without a
    single sentence claiming it. */
-/* THE PATH — the journey stage.
-   Four layers stacked in one box, only one visible at a time. Cross-fading
-   opacity between stills, plus a small drift against scroll and pointer, is
-   what turns four pictures into a scene — no frame-by-frame art required.
-
-   3:4 portrait, because the subject is a person. The ratio is fixed here
-   rather than left to the image so a missing file reserves exactly the
-   space the real one will take. */
+/* THE PATH — the knowledge tree.
+   Occupies exactly the space the portrait did: 2:3, centred, transparent,
+   nothing overflowing. Everything animated is opacity, transform or
+   stroke-dashoffset, so the browser never relayouts inside a frame. */
 .path-grid{ display:block; }
 .path-fig{ display:none; }
 
@@ -1116,57 +1112,117 @@ footer{ border-top:var(--rule); padding-block:26px; display:flex; flex-wrap:wrap
   }
   .path-fig{ display:block; position:sticky; top:118px; }
 
-  .path-stage{
+  .tree-stage{
     position:relative; width:100%; aspect-ratio:2/3;
-    border-radius:10px; overflow:hidden;
-    border:1px solid var(--hair);
-    background:linear-gradient(165deg,
-      color-mix(in srgb, var(--paper-lit) 70%, transparent), transparent 78%);
-    --drift:0px; --mx:0px; --my:0px;
+    background:transparent;   /* the tree is the object, not a panel */
   }
-  .stage-layer{
-    position:absolute; inset:0;
-    display:grid; place-content:center; gap:10px; text-align:center;
-    opacity:0; transition:opacity .75s var(--ease);
-    transform:translate3d(var(--mx), calc(var(--my) + var(--drift)), 0) scale(1.06);
-    will-change:transform, opacity;
-  }
-  .stage-layer.is-on{ opacity:1; }
-  /* The stills carry a warm cream backdrop, near-identical to the light
-     paper, so day mode blends on its own. At night an untreated 235-bright
-     panel glares like a lightbox on the dark ground — same treatment the
-     contact portrait gets, so both read as lamplight rather than a sticker. */
-  .stage-img{ width:100%; height:100%; object-fit:cover; display:block;
-              filter:brightness(.99) saturate(.97); }
+  .ktree{ width:100%; height:100%; display:block; overflow:visible; }
 
-  /* A layer whose file does not exist yet states so plainly, at the exact
-     size the artwork will occupy. */
-  .stage-layer.is-empty{
-    border:1px dashed color-mix(in srgb, var(--ink) 22%, transparent);
-    border-radius:10px;
-    background:repeating-linear-gradient(135deg,
-      color-mix(in srgb, var(--ink) 3%, transparent) 0 10px, transparent 10px 20px);
+  /* ---- the tree itself ---- */
+  .kt-trunk, .kt-branch{
+    fill:none;
+    stroke:color-mix(in srgb, var(--ink) 46%, transparent);
+    stroke-linecap:round;
+    stroke-dasharray:1; stroke-dashoffset:1;
   }
-  .stage-ph-mark{
-    font-family:var(--f-mono); font-size:10px; letter-spacing:.12em;
-    text-transform:uppercase; color:var(--ink-faint);
+  .kt-trunk{ stroke-width:5.5; }
+  .kt-branch{ stroke-width:2.4; }
+  .kt-branches, .kt-leaves{ transform-origin:300px 700px; }
+
+  .kt-root{
+    fill:none; stroke-linecap:round; stroke-width:1.6;
+    stroke:color-mix(in srgb, var(--ink) 26%, transparent);
+    stroke-dasharray:1; stroke-dashoffset:1;
   }
-  .stage-ph-slot{ font-family:var(--f-mono); font-size:11px; color:var(--ink-soft); }
+  .kt-roots{ --rootsOn:0; }
+  .kt-roots .kt-root{ opacity:calc(.45 + var(--rootsOn) * .55); }
+  .kt-root-label{
+    font-family:var(--f-mono); font-size:11px; letter-spacing:.06em;
+    fill:var(--ink-faint); opacity:var(--rootsOn);
+    transition:opacity .45s var(--ease); pointer-events:none;
+  }
+
+  .kt-leaf{
+    fill:color-mix(in srgb, var(--sage, #7d8a6a) 70%, transparent);
+    opacity:0;
+  }
+
+  /* ---- knowledge fruits: glass, not stickers ---- */
+  .kt-node{ cursor:default; opacity:0; }
+  .kt-node > .kt-glyph, .kt-node > .kt-halo{
+    transform:scale(var(--s,1)); transform-box:fill-box; transform-origin:center;
+    transition:none;
+  }
+  .kt-halo{
+    fill:color-mix(in srgb, var(--haldi) 16%, transparent);
+    opacity:0; transition:opacity .4s var(--ease);
+  }
+  .kt-fruit .kt-glyph{
+    fill:color-mix(in srgb, var(--paper-lit) 62%, transparent);
+    stroke:color-mix(in srgb, var(--sindoor) 62%, transparent);
+    stroke-width:1.4;
+  }
+  .kt-device .kt-glyph{
+    fill:none;
+    stroke:color-mix(in srgb, var(--ink) 52%, transparent);
+    stroke-width:1.6;
+  }
+
+  .kt-label{
+    font-family:var(--f-mono); font-size:11px; letter-spacing:.06em;
+    fill:var(--ink); opacity:0; pointer-events:none;
+    transition:opacity .32s var(--ease);
+  }
+
+  /* hover / focus */
+  .kt-node:hover .kt-label,
+  .kt-node:focus-visible .kt-label,
+  .kt-node.is-self .kt-label{ opacity:1; }
+  .kt-node.is-self .kt-halo{ opacity:1; }
+  .kt-node.is-lit .kt-glyph{ stroke:var(--sindoor); }
+  .kt-node.is-lit .kt-label{ opacity:.8; }
+  .kt-node.is-self .kt-label{ opacity:1; }
+  .kt-node.is-self .kt-glyph{ stroke:var(--sindoor); stroke-width:1.9; }
+  .kt-node:focus{ outline:none; }
+  .kt-node:focus-visible .kt-halo{ opacity:1; }
+
+  /* everything unrelated recedes rather than disappears */
+  .tree-stage.is-focused .kt-node:not(.is-lit):not(.is-self){ opacity:.28 !important; }
+  .tree-stage.is-focused .kt-leaf{ opacity:.25 !important; }
+
+  .kt-link{
+    fill:none; stroke:var(--sindoor); stroke-width:1.3; stroke-linecap:round;
+    stroke-dasharray:1; stroke-dashoffset:1; opacity:0;
+    filter:drop-shadow(0 0 3px color-mix(in srgb, var(--sindoor) 45%, transparent));
+  }
+
+  /* ---- an ordered progression, where sequence is the point ---- */
+  .kt-chain{
+    position:absolute; left:0; right:0; bottom:-6px;
+    display:flex; flex-wrap:wrap; justify-content:center; gap:5px 8px;
+    opacity:0; transition:opacity .3s var(--ease); pointer-events:none;
+  }
+  .kt-chain.is-on{ opacity:1; }
+  .kt-chain span{
+    font-family:var(--f-mono); font-size:9.5px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--ink-soft);
+    border:var(--rule); border-radius:999px; padding:3px 9px;
+    opacity:0; transform:translateY(4px);
+    transition:opacity .4s var(--ease), transform .4s var(--ease);
+  }
+  .kt-chain.is-on span{ opacity:1; transform:none; }
 
   .path-cap{
-    margin:14px 0 0; text-align:center;
+    margin:26px 0 0; text-align:center;
     font-family:var(--f-mono); font-size:10px; letter-spacing:.11em;
     text-transform:uppercase; color:var(--ink-faint); min-height:1.4em;
   }
 }
 
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .stage-img{ filter:brightness(.82) saturate(.88) sepia(.10); }
-}
-:root[data-theme="dark"] .stage-img{ filter:brightness(.82) saturate(.88) sepia(.10); }
-
+/* The tree is an enhancement, never the message. Motion off means it
+   simply stands there, fully grown. */
 @media (prefers-reduced-motion:reduce){
-  .stage-layer{ transition:none; transform:none; }
+  .kt-link, .kt-label, .kt-root-label, .kt-chain span{ transition:none; }
 }
 
 /* Single column now that the tag list is gone — it was the only reason
