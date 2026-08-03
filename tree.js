@@ -42,42 +42,42 @@
      off:  small perpendicular offset so fruits do not sit on the line */
   var NODES = [
     /* ---- the beginning: 2016, Objective-C and the tools ---- */
-    { id:'objc',    label:'Objective-C',     kind:'fruit',  at:0.04, b:4, t:0.30, off:-16 },
-    { id:'xcode',   label:'Xcode',           kind:'fruit',  at:0.06, b:4, t:0.46, off: 18 },
-    { id:'uikit',   label:'UIKit',           kind:'fruit',  at:0.10, b:0, t:0.42, off:-14 },
-    { id:'git',     label:'Git',             kind:'fruit',  at:0.12, b:1, t:0.38, off: 16 },
-    { id:'coredata',label:'Core Data',       kind:'fruit',  at:0.16, b:0, t:0.66, off: 14 },
-    { id:'mac',     label:'MacBook',         kind:'device', at:0.08, b:4, t:0.62, off:-26 },
-    { id:'iphone',  label:'iPhone',          kind:'device', at:0.14, b:0, t:0.92, off:  0 },
+    { id:'objc',    label:'Objective-C',     kind:'fruit',  at:0.04, b:4, t:0.30, size:'sm', drop:32 },
+    { id:'xcode',   label:'Xcode',           kind:'fruit',  at:0.06, b:4, t:0.46, size:'sm', drop:34 },
+    { id:'uikit',   label:'UIKit',           kind:'fruit',  at:0.10, b:0, t:0.42, size:'md', drop:30 },
+    { id:'git',     label:'Git',             kind:'fruit',  at:0.12, b:1, t:0.38, size:'sm', drop:32 },
+    { id:'coredata',label:'Core Data',       kind:'fruit',  at:0.16, b:0, t:0.66, size:'sm', drop:30 },
+    { id:'mac',     label:'MacBook',         kind:'device', at:0.08, b:4, t:0.62, size:'sm', drop:20 },
+    { id:'iphone',  label:'iPhone',          kind:'device', at:0.14, b:0, t:0.92, size:'lg', drop:16 },
 
     /* ---- Swift arrives, and structure with it ---- */
-    { id:'swift',   label:'Swift',           kind:'fruit',  at:0.26, b:1, t:0.62, off:-16 },
-    { id:'network', label:'Networking',      kind:'fruit',  at:0.30, b:1, t:0.84, off: 14 },
-    { id:'mvvm',    label:'MVVM',            kind:'fruit',  at:0.34, b:3, t:0.40, off:-16 },
-    { id:'testing', label:'Testing',         kind:'fruit',  at:0.38, b:4, t:0.66, off: 20 },
-    { id:'ipad',    label:'iPad',            kind:'device', at:0.32, b:2, t:0.92, off:  0 },
+    { id:'swift',   label:'Swift',           kind:'fruit',  at:0.26, b:1, t:0.62, size:'lg', drop:32 },
+    { id:'network', label:'Networking',      kind:'fruit',  at:0.30, b:1, t:0.84, size:'sm', drop:30 },
+    { id:'mvvm',    label:'MVVM',            kind:'fruit',  at:0.34, b:3, t:0.40, size:'sm', drop:32 },
+    { id:'testing', label:'Testing',         kind:'fruit',  at:0.38, b:4, t:0.66, size:'md', drop:36 },
+    { id:'ipad',    label:'iPad',            kind:'device', at:0.32, b:2, t:0.92, size:'sm', drop:16 },
 
     /* ---- money on the line: architecture becomes the job ---- */
-    { id:'arch',    label:'Architecture',    kind:'fruit',  at:0.46, b:3, t:0.62, off: 16 },
-    { id:'a11y',    label:'Accessibility',   kind:'fruit',  at:0.52, b:2, t:0.52, off:-16 },
-    { id:'appletv', label:'Apple TV',        kind:'device', at:0.50, b:3, t:0.92, off:  0 },
+    { id:'arch',    label:'Architecture',    kind:'fruit',  at:0.46, b:3, t:0.62, size:'lg', drop:32 },
+    { id:'a11y',    label:'Accessibility',   kind:'fruit',  at:0.52, b:2, t:0.52, size:'md', drop:32 },
+    { id:'appletv', label:'Apple TV',        kind:'device', at:0.50, b:3, t:0.92, size:'sm', drop:16 },
 
     /* ---- scale: one codebase, many brands ---- */
-    { id:'swiftui', label:'SwiftUI',         kind:'fruit',  at:0.60, b:5, t:0.46, off:-16 },
-    { id:'clean',   label:'Clean Architecture', kind:'fruit', at:0.64, b:3, t:0.82, off: 18 },
-    { id:'conc',    label:'Concurrency',     kind:'fruit',  at:0.68, b:6, t:0.44, off: 16 },
-    { id:'spm',     label:'SPM',             kind:'fruit',  at:0.70, b:6, t:0.66, off: 14 },
-    { id:'perf',    label:'Performance',     kind:'fruit',  at:0.72, b:2, t:0.74, off: 14 },
-    { id:'cicd',    label:'CI/CD',           kind:'fruit',  at:0.74, b:4, t:0.80, off:-20 },
-    { id:'fastlane',label:'Fastlane',        kind:'fruit',  at:0.76, b:4, t:0.90, off: 18 },
-    { id:'widgets', label:'Widgets',         kind:'fruit',  at:0.78, b:5, t:0.70, off: 14 },
-    { id:'vision',  label:'Vision Pro',      kind:'device', at:0.82, b:6, t:0.94, off:  0 },
+    { id:'swiftui', label:'SwiftUI',         kind:'fruit',  at:0.60, b:5, t:0.46, size:'lg', drop:32 },
+    { id:'clean',   label:'Clean Architecture', kind:'fruit', at:0.64, b:3, t:0.82, size:'sm', drop:34 },
+    { id:'conc',    label:'Concurrency',     kind:'fruit',  at:0.68, b:6, t:0.44, size:'sm', drop:32 },
+    { id:'spm',     label:'SPM',             kind:'fruit',  at:0.70, b:6, t:0.66, size:'sm', drop:30 },
+    { id:'perf',    label:'Performance',     kind:'fruit',  at:0.72, b:2, t:0.74, size:'sm', drop:30 },
+    { id:'cicd',    label:'CI/CD',           kind:'fruit',  at:0.74, b:4, t:0.80, size:'sm', drop:36 },
+    { id:'fastlane',label:'Fastlane',        kind:'fruit',  at:0.76, b:4, t:0.90, size:'sm', drop:34 },
+    { id:'widgets', label:'Widgets',         kind:'fruit',  at:0.78, b:5, t:0.70, size:'sm', drop:30 },
+    { id:'vision',  label:'Vision Pro',      kind:'device', at:0.82, b:6, t:0.94, size:'md', drop:16 },
 
     /* ---- shipped alone: the newest growth ---- */
-    { id:'storekit',label:'StoreKit',        kind:'fruit',  at:0.86, b:5, t:0.88, off:-16 },
-    { id:'ml',      label:'Core ML',         kind:'fruit',  at:0.90, b:6, t:0.86, off: 16 },
-    { id:'live',    label:'Live Activities', kind:'fruit',  at:0.94, b:5, t:0.28, off: 16 },
-    { id:'clips',   label:'App Clips',       kind:'fruit',  at:0.96, b:6, t:0.26, off:-14 }
+    { id:'storekit',label:'StoreKit',        kind:'fruit',  at:0.86, b:5, t:0.88, size:'md', drop:32 },
+    { id:'ml',      label:'Core ML',         kind:'fruit',  at:0.90, b:6, t:0.86, size:'md', drop:32 },
+    { id:'live',    label:'Live Activities', kind:'fruit',  at:0.94, b:5, t:0.28, size:'sm', drop:32 },
+    { id:'clips',   label:'App Clips',       kind:'fruit',  at:0.96, b:6, t:0.26, size:'sm', drop:30 }
   ];
 
   /* Undirected association. Hovering either end lights the line and the
@@ -124,16 +124,23 @@
   };
 })(typeof window !== 'undefined' ? window : globalThis);
 
+
 /* ============================================================
-   RENDERER
+   RENDERER — an industrial-design object, not a botanical one.
 
-   Builds the SVG from the data above, grows it against scroll progress
-   through The Path, and handles hover/focus reveals.
+   No bark, no leaves, no grass, no fruit. Aluminium-like strokes, smooth
+   continuous curves, and glass spheres suspended on invisible filaments.
 
-   Motion is a hand-integrated spring using Framer Motion's defaults
+   The one structurally interesting part: a connection does NOT draw a
+   straight line between two spheres. It is routed DOWN the branch its
+   sphere hangs from, through the trunk junction, and back UP the other
+   branch — so the light travels through the structure the way current
+   travels through a wire. Straight chords between nodes would have made
+   this a network graph, which is the thing the brief rules out.
+
+   Motion is a hand-integrated spring on Framer Motion's defaults
    (stiffness 170, damping 26). Everything animated is opacity, transform
-   or stroke-dashoffset — all compositor-friendly, no layout reads inside
-   the frame loop.
+   or stroke-dashoffset.
    ============================================================ */
 (function tree(){
   'use strict';
@@ -143,174 +150,158 @@
   var K = window.KNOWLEDGE, V = K.view;
   var NS = 'http://www.w3.org/2000/svg';
   var RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  /* Progress is measured against the STICKY CONTAINER, not the whole
-     section. #path is 1960px tall but the tree only sticks for the 1150px
-     of .path-grid — measuring the section meant the tree reached about 59%
-     growth and then scrolled away, so its mature state was never seen. */
   var section = document.querySelector('.path-grid') || document.getElementById('path');
+  var R = { lg: 13, md: 9.5, sm: 6.6 };
 
-  function el(name, attrs){
-    var n = document.createElementNS(NS, name);
-    for (var k in attrs) if (attrs[k] != null) n.setAttribute(k, attrs[k]);
-    return n;
-  }
+  function el(n, a){ var e = document.createElementNS(NS, n);
+    for (var k in a) if (a[k] != null) e.setAttribute(k, a[k]); return e; }
 
-  /* ---- geometry: sample the branch curves so nodes ride them ---- */
-  var svg = el('svg', {
-    viewBox: '0 0 ' + V.w + ' ' + V.h,
-    class: 'ktree',
-    role: 'img',
-    'aria-label': 'A tree whose branches carry the technologies learned across ten years, and whose roots carry the habits underneath them.'
-  });
+  var svg = el('svg', { viewBox:'0 0 '+V.w+' '+V.h, class:'ktree', role:'img',
+    'aria-label':'An abstract sculpture: glass spheres suspended from flowing metal branches, each sphere a technology learned across ten years.' });
 
-  var gRoots    = el('g', { class:'kt-roots' });
-  var gBranches = el('g', { class:'kt-branches' });
-  var gLeaves   = el('g', { class:'kt-leaves' });
-  var gLinks    = el('g', { class:'kt-links' });
-  var gNodes    = el('g', { class:'kt-nodes' });
-  svg.appendChild(gRoots); svg.appendChild(gBranches); svg.appendChild(gLeaves);
-  svg.appendChild(gLinks); svg.appendChild(gNodes);
+  /* glass + glow, defined once */
+  var defs = el('defs');
+  defs.innerHTML =
+    '<radialGradient id="ktGlass" cx="34%" cy="28%" r="78%">' +
+      '<stop offset="0%"  stop-color="#fff" stop-opacity=".55"/>' +
+      '<stop offset="42%" stop-color="#fff" stop-opacity=".14"/>' +
+      '<stop offset="100%" stop-color="#fff" stop-opacity=".05"/>' +
+    '</radialGradient>' +
+    '<radialGradient id="ktCore" cx="50%" cy="50%" r="50%">' +
+      '<stop offset="0%"  stop-color="var(--haldi)" stop-opacity=".55"/>' +
+      '<stop offset="100%" stop-color="var(--haldi)" stop-opacity="0"/>' +
+    '</radialGradient>' +
+    '<filter id="ktSoft" x="-60%" y="-60%" width="220%" height="220%">' +
+      '<feGaussianBlur stdDeviation="3.2"/></filter>';
+  svg.appendChild(defs);
+
+  var gBranch = el('g', { class:'kt-branches' });
+  var gLit    = el('g', { class:'kt-lit' });        /* illuminated branch */
+  var gFlow   = el('g', { class:'kt-flow' });       /* travelling energy */
+  var gFil    = el('g', { class:'kt-filaments' });
+  var gNodes  = el('g', { class:'kt-nodes' });
+  var gRoots  = el('g', { class:'kt-roots' });
+  [gRoots, gBranch, gLit, gFlow, gFil, gNodes].forEach(function(g){ svg.appendChild(g); });
   host.appendChild(svg);
 
-  /* Branch paths first — they are the coordinate system everything else
-     hangs off, so they must exist before any node can be placed. */
+  /* ---- structure ---- */
+  var trunk = el('path', { class:'kt-trunk', 'pathLength':1,
+    d:'M300,'+V.ground+' C 297,'+(V.ground-80)+' 303,'+(V.ground-140)+' 300,556' });
+  gBranch.appendChild(trunk);
+
   var branchEls = {};
   K.branches.forEach(function(b){
-    var p = el('path', { d: b.d, class:'kt-branch', 'pathLength':1 });
-    branchEls[b.id] = p;
-    gBranches.appendChild(p);
+    var p = el('path', { d:b.d, class:'kt-branch', 'pathLength':1 });
+    branchEls[b.id] = p; gBranch.appendChild(p);
   });
 
-  /* Trunk + ground */
-  var trunk = el('path', {
-    d: 'M300,' + V.ground + ' C 296,' + (V.ground-70) + ' 304,' + (V.ground-120) + ' 300,560',
-    class:'kt-trunk', 'pathLength':1
-  });
-  gBranches.insertBefore(trunk, gBranches.firstChild);
-
-  /* Roots: mirrored below ground, drawn from the same trunk foot */
-  var rootEls = [];
   var rootDefs = [
-    'M300,700 C 286,742 246,760 208,798', 'M300,700 C 314,742 354,760 392,798',
-    'M300,700 C 292,750 274,786 262,836', 'M300,700 C 308,750 326,786 338,836',
-    'M300,700 C 272,730 232,738 190,748', 'M300,700 C 328,730 368,738 410,748',
-    'M300,700 C 296,754 300,800 300,852', 'M300,700 C 282,738 258,770 236,812'
+    'M300,700 C 286,742 246,760 208,798','M300,700 C 314,742 354,760 392,798',
+    'M300,700 C 292,750 274,786 262,836','M300,700 C 308,750 326,786 338,836',
+    'M300,700 C 272,730 232,738 190,748','M300,700 C 328,730 368,738 410,748',
+    'M300,700 C 296,754 300,800 300,852','M300,700 C 282,738 258,770 236,812'
   ];
-  rootDefs.forEach(function(d, i){
+  var rootEls = rootDefs.map(function(d){
     var p = el('path', { d:d, class:'kt-root', 'pathLength':1 });
-    rootEls.push(p); gRoots.appendChild(p);
+    gRoots.appendChild(p); return p;
   });
-
-  /* Root labels, revealed only when the roots are hovered */
   var rootLabels = K.roots.map(function(name, i){
-    var pt = branchEls[0] ? null : null;
-    var t = el('text', { class:'kt-root-label', x:0, y:0, 'text-anchor':'middle' });
-    t.textContent = name;
-    gRoots.appendChild(t);
-    return t;
+    var t = el('text', { class:'kt-root-label', 'text-anchor':'middle' });
+    t.textContent = name; gRoots.appendChild(t); return t;
   });
 
-  /* ---- place nodes on their branch curves ---- */
-  function pointOn(pathEl, t){
+  function at(pathEl, t){
     var L = pathEl.getTotalLength();
-    var p = pathEl.getPointAtLength(L * t);
-    var q = pathEl.getPointAtLength(Math.min(L, L * t + 1));
-    var dx = q.x - p.x, dy = q.y - p.y;
-    var m = Math.hypot(dx, dy) || 1;
-    return { x:p.x, y:p.y, nx:-dy/m, ny:dx/m };   /* + perpendicular */
+    return pathEl.getPointAtLength(L * Math.max(0, Math.min(1, t)));
   }
 
+  /* ---- spheres, hanging from filaments ---- */
   var nodes = K.nodes.map(function(n){
-    var host = branchEls[n.b];
-    var pt = pointOn(host, n.t);
-    var x = pt.x + pt.nx * (n.off || 0);
-    var y = pt.y + pt.ny * (n.off || 0);
+    var anchor = at(branchEls[n.b], n.t);
+    var x = anchor.x, y = anchor.y + n.drop;
+    var r = R[n.size] || R.sm;
 
-    var g = el('g', {
-      class:'kt-node kt-' + n.kind,
-      tabindex: 0,
-      role: 'button',
-      'aria-label': n.label
-    });
-    g.setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ')');
+    var fil = el('line', { class:'kt-filament', x1:anchor.x.toFixed(1), y1:anchor.y.toFixed(1),
+                           x2:x.toFixed(1), y2:(y - r).toFixed(1) });
+    gFil.appendChild(fil);
 
-    if (n.kind === 'device'){
-      /* devices read as small hardware outlines, not fruit */
-      g.appendChild(el('rect', { class:'kt-glyph', x:-9, y:-12, width:18, height:24, rx:4 }));
-    } else {
-      g.appendChild(el('circle', { class:'kt-halo',  r:14 }));
-      g.appendChild(el('circle', { class:'kt-glyph', r:6 }));
-    }
-
-    var label = el('text', { class:'kt-label', x:0, y:-20, 'text-anchor':'middle' });
-    label.textContent = n.label;
-    g.appendChild(label);
-
+    var g = el('g', { class:'kt-node kt-'+n.size, tabindex:0, role:'button', 'aria-label':n.label });
+    g.appendChild(el('circle', { class:'kt-bloom', r:r*2.6, fill:'url(#ktCore)', filter:'url(#ktSoft)' }));
+    g.appendChild(el('circle', { class:'kt-glass', r:r, fill:'url(#ktGlass)' }));
+    g.appendChild(el('circle', { class:'kt-rim',   r:r }));
+    g.appendChild(el('circle', { class:'kt-spec',  r:r*0.34, cx:-r*0.3, cy:-r*0.34 }));
     g.__id = n.id;
     gNodes.appendChild(g);
-    return { data:n, g:g, x:x, y:y, on:0, v:0, target:0 };
+
+    return { data:n, g:g, fil:fil, x:x, y:y, r:r, anchor:anchor,
+             on:0, v:0, hov:0, hv:0, phase:Math.random()*Math.PI*2 };
   });
+  var byId = {}; nodes.forEach(function(n){ byId[n.data.id] = n; });
 
-  var byId = {};
-  nodes.forEach(function(n){ byId[n.data.id] = n; });
-
-  /* ---- connection lines, one per link, drawn once and revealed ---- */
-  var linkEls = K.links.map(function(pair){
-    var a = byId[pair[0]], b = byId[pair[1]];
-    if (!a || !b) return null;
-    var mx = (a.x + b.x)/2, my = (a.y + b.y)/2 - Math.hypot(b.x-a.x, b.y-a.y) * 0.16;
-    var p = el('path', {
-      class:'kt-link',
-      d:'M' + a.x.toFixed(1) + ',' + a.y.toFixed(1) +
-        ' Q' + mx.toFixed(1) + ',' + my.toFixed(1) +
-        ' ' + b.x.toFixed(1) + ',' + b.y.toFixed(1),
-      'pathLength':1
-    });
-    gLinks.appendChild(p);
-    return { el:p, a:pair[0], b:pair[1], on:0, v:0, target:0 };
-  }).filter(Boolean);
-
-  /* ---- leaves: small marks along each branch, appearing with growth ---- */
-  var leaves = [];
-  K.branches.forEach(function(b){
-    var pathEl = branchEls[b.id];
-    for (var i = 0; i < 7; i++){
-      var t = 0.3 + (i / 7) * 0.65;
-      var pt = pointOn(pathEl, t);
-      var side = i % 2 ? 1 : -1;
-      var lx = pt.x + pt.nx * 9 * side, ly = pt.y + pt.ny * 9 * side;
-      var e = el('ellipse', {
-        class:'kt-leaf', cx:lx.toFixed(1), cy:ly.toFixed(1), rx:5.2, ry:2.6,
-        transform:'rotate(' + (Math.atan2(pt.ny, pt.nx) * 180/Math.PI).toFixed(1) + ' ' + lx.toFixed(1) + ' ' + ly.toFixed(1) + ')'
-      });
-      gLeaves.appendChild(e);
-      leaves.push({ el:e, at: b.from + (t * 0.55) });
+  /* ---- connections routed THROUGH the branches ---- */
+  function routeThrough(a, b){
+    var pts = [], i, N = 16;
+    pts.push({ x:a.x, y:a.y - a.r });                 /* up the filament */
+    if (a.data.b === b.data.b){
+      var pa = branchEls[a.data.b];
+      var lo = Math.min(a.data.t, b.data.t), hi = Math.max(a.data.t, b.data.t);
+      for (i = 0; i <= N; i++) pts.push(at(pa, lo + (hi - lo) * (i / N)));
+    } else {
+      var p1 = branchEls[a.data.b], p2 = branchEls[b.data.b];
+      for (i = 0; i <= N; i++) pts.push(at(p1, a.data.t * (1 - i / N)));   /* down to the junction */
+      for (i = 0; i <= N; i++) pts.push(at(p2, b.data.t * (i / N)));       /* and up the other */
     }
-  });
-
-  /* ---- chain overlay: an ordered progression, where sequence is the point ---- */
-  var chainBox = document.createElement('div');
-  chainBox.className = 'kt-chain';
-  host.appendChild(chainBox);
-
-  /* ---- growth + spring state ---- */
-  var progress = 0, pShown = 0, pVel = 0;
-  var hovered = null, rootsOn = 0, rootsVel = 0, rootsTarget = 0;
-  var raf = 0, breathe = 0;
-
-  function springStep(cur, vel, target, dt){
-    var f = -170 * (cur - target);
-    var d = -26 * vel;
-    vel += (f + d) * dt;
-    cur += vel * dt;
-    return [cur, vel];
+    pts.push({ x:b.x, y:b.y - b.r });                 /* down the far filament */
+    return 'M' + pts.map(function(p){ return p.x.toFixed(1)+','+p.y.toFixed(1); }).join(' L');
   }
 
+  var links = K.links.map(function(pair){
+    var a = byId[pair[0]], b = byId[pair[1]];
+    if (!a || !b) return null;
+    var d = routeThrough(a, b);
+    var lit  = el('path', { class:'kt-lit-path',  d:d, 'pathLength':1 });
+    var flow = el('path', { class:'kt-flow-path', d:d, 'pathLength':1 });
+    gLit.appendChild(lit); gFlow.appendChild(flow);
+    return { a:pair[0], b:pair[1], lit:lit, flow:flow, on:0, v:0, target:0, t:0 };
+  }).filter(Boolean);
+
+  /* ---- the information card: glass, beside the sphere, never a tooltip ---- */
+  var card = document.createElement('div');
+  card.className = 'kt-card';
+  card.setAttribute('aria-live', 'polite');
+  host.appendChild(card);
+
+  function showCard(n){
+    if (!n){ card.classList.remove('is-on'); return; }
+    var related = K.links.reduce(function(acc, l){
+      if (l[0] === n.data.id && byId[l[1]]) acc.push(byId[l[1]].data.label);
+      if (l[1] === n.data.id && byId[l[0]]) acc.push(byId[l[0]].data.label);
+      return acc;
+    }, []);
+    var chain = K.chains[n.data.id];
+    card.innerHTML =
+      '<p class="kt-card-title">' + n.data.label + '</p>' +
+      (chain ? '<ol class="kt-card-chain">' + chain.map(function(c){ return '<li>'+c+'</li>'; }).join('') + '</ol>'
+             : '<p class="kt-card-list">' + related.slice(0,6).join(' · ') + '</p>');
+    /* clamp inside the stage: flip to the other side near an edge */
+    var lx = (n.x / V.w) * 100, ly = (n.y / V.h) * 100;
+    card.classList.toggle('flip', lx > 54);
+    card.style.left = lx.toFixed(2) + '%';
+    card.style.top  = ly.toFixed(2) + '%';
+    card.classList.add('is-on');
+  }
+
+  /* ---- state ---- */
+  var progress = 0, pShown = 0, pVel = 0, hovered = null;
+  var rootsOn = 0, rootsVel = 0, rootsTarget = 0, raf = 0, clock = 0;
+
+  function spring(cur, vel, target, dt){
+    vel += (-170 * (cur - target) - 26 * vel) * dt;
+    return [cur + vel * dt, vel];
+  }
   function scrollProgress(){
     if (!section) return 1;
     var r = section.getBoundingClientRect();
-    /* Travel available while the tree is pinned, ending a little early so
-       the finished tree holds on screen instead of completing as it leaves. */
     var span = (r.height - innerHeight) * 0.86;
     if (span <= 0) return r.top < innerHeight * 0.5 ? 1 : 0;
     return Math.max(0, Math.min(1, (innerHeight * 0.45 - r.top) / span));
@@ -320,85 +311,86 @@
     if (hovered === id) return;
     hovered = id;
     host.classList.toggle('is-focused', !!id);
-
     nodes.forEach(function(n){
       var rel = id && (n.data.id === id || K.links.some(function(l){
-        return (l[0] === id && l[1] === n.data.id) || (l[1] === id && l[0] === n.data.id);
-      }));
+        return (l[0] === id && l[1] === n.data.id) || (l[1] === id && l[0] === n.data.id); }));
       n.g.classList.toggle('is-lit', !!rel);
       n.g.classList.toggle('is-self', n.data.id === id);
+      n.fil.classList.toggle('is-lit', !!rel);
     });
-    linkEls.forEach(function(l){
-      l.target = (id && (l.a === id || l.b === id)) ? 1 : 0;
+    links.forEach(function(l){
+      var on = id && (l.a === id || l.b === id);
+      l.target = on ? 1 : 0;
+      if (on) l.t = 0;                     /* restart the travel */
     });
-
-    var chain = id && K.chains[id];
-    if (chain){
-      chainBox.innerHTML = chain.map(function(s, i){
-        return '<span style="transition-delay:' + (i * 55) + 'ms">' + s + '</span>';
-      }).join('');
-      chainBox.classList.add('is-on');
-    } else {
-      chainBox.classList.remove('is-on');
-    }
+    showCard(id ? byId[id] : null);
     kick();
   }
-
   function kick(){ if (!raf) raf = requestAnimationFrame(frame); }
 
-  function frame(now){
+  function frame(){
     raf = 0;
     var dt = 1/60, moving = false;
+    clock += dt;
 
-    var sp = springStep(pShown, pVel, progress, dt);
-    if (Math.abs(sp[0] - progress) > 0.0005 || Math.abs(sp[1]) > 0.0005){ moving = true; }
-    pShown = sp[0]; pVel = sp[1];
-    if (RM){ pShown = progress; pVel = 0; }
+    var sp = spring(pShown, pVel, progress, dt);
+    pShown = RM ? progress : sp[0]; pVel = RM ? 0 : sp[1];
+    if (Math.abs(pShown - progress) > 0.0004) moving = true;
 
-    /* trunk and branches draw on as growth advances */
-    trunk.style.strokeDashoffset = String(1 - Math.min(1, pShown * 1.6));
+    trunk.style.strokeDashoffset = String(1 - Math.min(1, pShown * 1.7));
     K.branches.forEach(function(b){
-      var g = Math.max(0, Math.min(1, (pShown - b.from) / (1 - b.from)));
-      branchEls[b.id].style.strokeDashoffset = String(1 - g);
+      branchEls[b.id].style.strokeDashoffset =
+        String(1 - Math.max(0, Math.min(1, (pShown - b.from) / (1 - b.from))));
     });
     rootEls.forEach(function(p, i){
-      var g = Math.max(0, Math.min(1, (pShown - 0.05 - i*0.03) / 0.5));
-      p.style.strokeDashoffset = String(1 - g);
+      p.style.strokeDashoffset =
+        String(1 - Math.max(0, Math.min(1, (pShown - 0.05 - i*0.03) / 0.5)));
     });
-    leaves.forEach(function(l){
-      l.el.style.opacity = String(Math.max(0, Math.min(1, (pShown - l.at) / 0.14)));
-    });
-
-    breathe += RM ? 0 : 0.006;
-    var bs = RM ? 1 : 1 + Math.sin(breathe) * 0.006;
-    gBranches.style.transform = 'scale(' + bs.toFixed(4) + ')';
-    gLeaves.style.transform   = 'scale(' + bs.toFixed(4) + ')';
 
     nodes.forEach(function(n){
-      var grown = Math.max(0, Math.min(1, (pShown - n.data.at) / 0.10));
-      var want = grown;
-      var s = springStep(n.on, n.v, want, dt);
-      n.on = s[0]; n.v = s[1];
+      var want = Math.max(0, Math.min(1, (pShown - n.data.at) / 0.10));
+      var s = spring(n.on, n.v, want, dt); n.on = s[0]; n.v = s[1];
       if (Math.abs(n.on - want) > 0.001) moving = true;
+
+      var hoverWant = n.g.classList.contains('is-self') ? 1 : 0;
+      var h = spring(n.hov, n.hv, hoverWant, dt); n.hov = h[0]; n.hv = h[1];
+      if (Math.abs(n.hov - hoverWant) > 0.001) moving = true;
+
+      /* barely-there float: a slow vertical drift, never a swing */
+      var fy = RM ? 0 : Math.sin(clock * 0.55 + n.phase) * 1.4;
+      var sc = (0.55 + 0.45 * Math.min(1, n.on)) * (1 + 0.06 * n.hov);
       n.g.style.opacity = String(Math.max(0, n.on));
-      var scale = 0.6 + 0.4 * Math.min(1, n.on);
-      n.g.style.setProperty('--s', scale.toFixed(3));
+      n.g.setAttribute('transform',
+        'translate(' + n.x.toFixed(1) + ',' + (n.y + fy).toFixed(2) + ') scale(' + sc.toFixed(3) + ')');
+      n.fil.setAttribute('y2', (n.y + fy - n.r * sc).toFixed(2));
+      n.fil.style.opacity = String(Math.max(0, n.on) * 0.5);
     });
 
-    linkEls.forEach(function(l){
-      var s = springStep(l.on, l.v, l.target, dt);
-      l.on = s[0]; l.v = s[1];
+    links.forEach(function(l){
+      var s = spring(l.on, l.v, l.target, dt); l.on = s[0]; l.v = s[1];
       if (Math.abs(l.on - l.target) > 0.002) moving = true;
-      l.el.style.opacity = String(Math.max(0, Math.min(1, l.on)));
-      l.el.style.strokeDashoffset = String(1 - Math.max(0, Math.min(1, l.on)));
+      var o = Math.max(0, Math.min(1, l.on));
+      l.lit.style.opacity = String(o * 0.5);
+      l.lit.style.strokeDashoffset = String(1 - o);
+
+      /* a short bright segment travelling the routed path */
+      if (o > 0.02){
+        if (!RM) l.t = (l.t + dt * 0.62) % 1.35;
+        l.flow.style.opacity = String(o);
+        l.flow.style.strokeDasharray = '0.12 0.88';
+        l.flow.style.strokeDashoffset = String(1 - l.t);
+        moving = true;
+      } else {
+        l.flow.style.opacity = '0';
+      }
     });
 
-    var rs = springStep(rootsOn, rootsVel, rootsTarget, dt);
+    var rs = spring(rootsOn, rootsVel, rootsTarget, dt);
     rootsOn = rs[0]; rootsVel = rs[1];
     if (Math.abs(rootsOn - rootsTarget) > 0.002) moving = true;
     gRoots.style.setProperty('--rootsOn', Math.max(0, Math.min(1, rootsOn)).toFixed(3));
 
-    if (moving || !RM) raf = requestAnimationFrame(frame);
+    if (moving || (!RM && pShown > 0.02)) raf = requestAnimationFrame(frame);
   }
 
   /* ---- input ---- */
@@ -406,52 +398,35 @@
     n.g.addEventListener('pointerenter', function(){ setHover(n.data.id); });
     n.g.addEventListener('pointerleave', function(){ setHover(null); });
   });
-
-  /* focus/blur do not fire reliably on an SVG <g> and do not bubble.
-     focusin/focusout do both, so keyboard users get the same reveal a
-     mouse gets — which the brief asks for and the site claims twice. */
   host.addEventListener('focusin', function(e){
     var g = e.target.closest && e.target.closest('.kt-node');
     if (g && g.__id) setHover(g.__id);
   });
-  host.addEventListener('focusout', function(e){
-    if (!host.contains(e.relatedTarget)) setHover(null);
-  });
-
-  /* Some engines set document.activeElement on a focused SVG <g> but never
-     dispatch focus/focusin for it — verified here: activeElement updated
-     while not a single focus event fired, at any level. So keyboard
-     movement is also read directly off activeElement, which is the only
-     thing that can be relied on. */
+  /* focus/focusin never fire for a focused SVG <g> in some engines —
+     activeElement updates but no event is dispatched — so keyboard
+     movement is read straight off activeElement. */
   addEventListener('keyup', function(e){
     if (e.key !== 'Tab' && e.key.indexOf('Arrow') !== 0) return;
     var a = document.activeElement;
     var g = a && a.closest ? a.closest('.kt-node') : null;
     setHover(g && g.__id ? g.__id : null);
   }, { passive:true });
+
   gRoots.addEventListener('pointerenter', function(){ rootsTarget = 1; kick(); });
   gRoots.addEventListener('pointerleave', function(){ rootsTarget = 0; kick(); });
 
   var ticking = false;
-  function onScroll(){
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function(){
-      ticking = false;
-      progress = scrollProgress();
-      kick();
-    });
-  }
-  addEventListener('scroll', onScroll, { passive:true });
-  addEventListener('resize', onScroll, { passive:true });
+  addEventListener('scroll', function(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){ ticking = false; progress = scrollProgress(); kick(); });
+  }, { passive:true });
+  addEventListener('resize', function(){ progress = scrollProgress(); kick(); }, { passive:true });
 
-  /* Position root labels once the paths exist and have real lengths. */
   rootEls.forEach(function(p, i){
     if (!rootLabels[i]) return;
-    var L = p.getTotalLength();
-    var pt = p.getPointAtLength(L * 0.92);
+    var pt = at(p, 0.94);
     rootLabels[i].setAttribute('x', pt.x.toFixed(1));
-    rootLabels[i].setAttribute('y', (pt.y + 12).toFixed(1));
+    rootLabels[i].setAttribute('y', (pt.y + 13).toFixed(1));
   });
 
   progress = scrollProgress();
