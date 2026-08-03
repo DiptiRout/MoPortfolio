@@ -410,7 +410,12 @@ window.CAREER_APPS = {
   },
   sourcesOn: function (os) {
     return this.breakdown.filter(x => x.on.includes(os)).map(x => x.source);
-  }
+  },
+
+  /* iPad work was iPad-only apps rather than universal builds, so it cannot
+     be summed out of the per-source counts above without inventing a number
+     Dipti has not given. Stated as where it happened instead. */
+  notes: { iPadOS: 'iPad-only work at Mobiona, Muvi and Fuse' }
 };
 
 window.HERO_STATS = [

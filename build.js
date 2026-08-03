@@ -55,7 +55,13 @@ const indent = (html, pad) =>
 function buildPlatformApps() {
   const OSES = ['iOS', 'iPadOS', 'tvOS', 'visionOS'];
   const map = {};
-  OSES.forEach(os => { const n = CAREER_APPS.countOn(os); if (n > 0) map[os] = n; });
+  OSES.forEach(os => {
+    const n = CAREER_APPS.countOn(os);
+    /* A number where one can be summed honestly, otherwise the note — never
+       a zero, which would read as "none shipped". */
+    if (n > 0) map[os] = n;
+    else if (CAREER_APPS.notes[os]) map[os] = CAREER_APPS.notes[os];
+  });
   return `<script>window.PLATFORM_APPS=${JSON.stringify(map)};</script>`;
 }
 

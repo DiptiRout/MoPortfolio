@@ -1098,6 +1098,33 @@ footer{ border-top:var(--rule); padding-block:26px; display:flex; flex-wrap:wrap
    The stack column is the quiet argument of this section — read the four
    of them top to bottom and you get Objective-C to visionOS without a
    single sentence claiming it. */
+/* THE PATH — the journey figure.
+   Sticky beside the timeline so one drawing narrates all four eras rather
+   than four drawings competing. Below 1000px it is hidden outright: a
+   sticky canvas on a phone would either cover the text it is describing or
+   shrink past legibility, and the eras read fine without it. */
+.path-grid{ display:block; }
+.path-fig{ display:none; }
+
+@media (min-width:1000px){
+  .path-grid{
+    display:grid; grid-template-columns:minmax(0,1fr) minmax(280px,.62fr);
+    column-gap:clamp(40px,5vw,90px); align-items:start;
+  }
+  .path-fig{
+    display:block; position:sticky; top:132px;
+  }
+  .path-fig canvas{
+    width:100%; aspect-ratio:1/1; display:block;
+  }
+  .path-cap{
+    margin:14px 0 0; text-align:center;
+    font-family:var(--f-mono); font-size:10px; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--ink-faint);
+    min-height:1.4em;
+  }
+}
+
 .era{ display:grid; grid-template-columns:1fr minmax(180px, .42fr); gap:clamp(20px,3vw,48px); align-items:start; }
 .era-stack{
   margin:0; padding-left:18px; border-left:2px solid color-mix(in srgb, var(--sindoor) 40%, transparent);
