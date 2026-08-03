@@ -459,7 +459,7 @@
 
 <!-- BUILD:platformApps:start -->
       <script>window.PLATFORM_APPS={"iOS":36,"iPadOS":"iPad-only work at Mobiona, Muvi and Fuse","tvOS":19,"visionOS":18};</script>
-      <script>window.JOURNEY_ART=[];</script>
+      <script>window.JOURNEY_ART=["2016","2018","2019","2021"];</script>
       <!-- BUILD:platformApps:end -->
 
 <script>
@@ -911,7 +911,11 @@ let repaintFigure = () => {};
       const img = new Image();
       img.className = 'stage-img';
       img.decoding = 'async';
-      img.loading = i === 0 ? 'eager' : 'lazy';
+      /* All lazy, none eager. The stage is display:none below 1000px, where
+         a lazy image is never fetched — but an eager one is, which meant
+         phones downloaded 142KB for a panel they never see. On desktop the
+         section is far down the page, so lazy loads in plenty of time. */
+      img.loading = 'lazy';
       img.alt = '';
       img.src = 'shots/journey-' + slug + '.jpg';
       el.appendChild(img);
