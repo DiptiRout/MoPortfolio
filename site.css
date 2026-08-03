@@ -1125,27 +1125,11 @@ footer{ border-top:var(--rule); padding-block:26px; display:flex; flex-wrap:wrap
   }
 }
 
-.era{ display:grid; grid-template-columns:1fr minmax(180px, .42fr); gap:clamp(20px,3vw,48px); align-items:start; }
-/* Was a single <p> of dot-joined text relying on natural wrapping. The
-   Path's own sticky figure narrows this column on wide screens, and
-   continuous text wrapping at arbitrary points produced a staircase of
-   half-phrases with stray leading/trailing dots — reads as broken, not
-   restrained. A wrapping chip list, the same pattern as the work cards'
-   .tags, wraps on its own boundaries at any column width. */
-.era-stack{
-  display:flex; flex-wrap:wrap; gap:7px 8px; margin:0; padding-left:18px;
-  border-left:2px solid color-mix(in srgb, var(--sindoor) 40%, transparent);
-  list-style:none;
-}
-.era-stack li{
-  font-family:var(--f-mono); font-size:10px; letter-spacing:.08em;
-  text-transform:uppercase; color:var(--ink-faint);
-  border:var(--rule); border-radius:999px; padding:4px 10px;
-  white-space:nowrap;
-}
+/* Single column now that the tag list is gone — it was the only reason
+   this row was ever a grid. */
+.era{ display:block; }
 @media (max-width:820px){
   .era{ grid-template-columns:1fr; gap:20px; }
-  .era-stack{ padding-left:14px; }
 }
 
 /* ---------- what hasn't changed ----------
