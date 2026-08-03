@@ -336,7 +336,7 @@
               <p>The question stopped being “does this work” and became “what does this cost whoever inherits it.”</p>
               <p>The codebase taught me more than any course could. Feature flags, design tokens, XcodeGen, interactors and templates, dependency injection, an AppObserver pattern that keeps AppDelegate almost empty — reading code that good is its own apprenticeship.</p>
             </div>
-            <p class="era-stack">Swift 6 · SwiftUI · tvOS · visionOS · XcodeGen · Sonar Cloud</p>
+            <ul class="era-stack"><li>Swift 6</li><li>SwiftUI</li><li>tvOS</li><li>visionOS</li><li>XcodeGen</li><li>Sonar Cloud</li></ul>
           </div>
         </li>
         <li data-rv data-plats="iOS,iPadOS,tvOS"><span class="lamp"></span>
@@ -348,7 +348,7 @@
               <p class="era-fig"><b>6</b> product lines in one app — loans, cards, insurance, investments, UPI, EMI</p>
               <p>Convenience stopped being a neutral word to me here — a shortcut through an auth boundary is a promise you are making on the user's behalf, whether or not you meant to.</p>
             </div>
-            <p class="era-stack">Deep Linking · CMS-driven layout · WebView auth · Jira</p>
+            <ul class="era-stack"><li>Deep Linking</li><li>CMS-driven layout</li><li>WebView auth</li><li>Jira</li></ul>
           </div>
         </li>
         <li data-rv data-plats="iOS,iPadOS"><span class="lamp"></span>
@@ -359,7 +359,7 @@
               <p class="take">Writing for other developers, where an awkward API costs someone their afternoon.</p>
               <p>Muvi's customers stood up their own streaming services on what we shipped.</p>
             </div>
-            <p class="era-stack">Swift · Alamofire · MVVM · Crashlytics · Unit Tests</p>
+            <ul class="era-stack"><li>Swift</li><li>Alamofire</li><li>MVVM</li><li>Crashlytics</li><li>Unit Tests</li></ul>
           </div>
         </li>
         <li data-rv data-plats="iOS,iPadOS"><span class="lamp"></span>
@@ -371,7 +371,7 @@
               <p>This is where I hit the things nobody teaches you: project-file conflicts, why code needs a repository at all, animation timing, and SOAP and XML that did not want to be parsed.</p>
               <p>I stayed because of what I could see underneath it. The tools for building here, and the standard the platform holds you to, were better than anything else I had touched — and every piece of knowledge made the next piece easier. It compounds. That is the whole reason I am still at it.</p>
             </div>
-            <p class="era-stack">Objective-C · UIKit · Core Data · Realm · Storyboards · SOAP / XML</p>
+            <ul class="era-stack"><li>Objective-C</li><li>UIKit</li><li>Core Data</li><li>Realm</li><li>Storyboards</li><li>SOAP / XML</li></ul>
           </div>
         </li>
       </ul>
@@ -898,7 +898,7 @@ let repaintFigure = () => {};
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let W = 0, H = 0, cx = 0, cy = 0, R = 0, dpr = 1;
   let INK, SIN, HAL;
-  let active = -1, shown = [], raf = 0;
+  let active = -1, shown = [], raf = 0, eraChangedAt = 0;
 
   const hex = h => {
     h = h.trim().replace('#','');
@@ -942,6 +942,7 @@ let repaintFigure = () => {};
   function setEra(i){
     if (i === active) return;
     active = i;
+    eraChangedAt = performance.now();
     const li = items[i];
     const want = (li.dataset.plats || '').split(',').filter(Boolean);
     const present = DEVICES.map((d, k) => ({ d, k })).filter(x => want.includes(x.d.os));
@@ -984,11 +985,16 @@ let repaintFigure = () => {};
 
   function draw(){
     if (!W && !measure()) return;
+    const t = performance.now();
     ctx.clearRect(0,0,W,H);
 
-    const ring = R * 0.66;
-    const gs   = Math.max(14, R * 0.155);
-    const core = R * 0.12;
+    /* Enlarged from the first pass — small glyphs with generous negative
+       space read as restrained on the hero, where five spokes fill the
+       frame, but on a 2-3 device era it left so much empty canvas the
+       change between eras was easy to miss on a normal scroll. */
+    const ring = R * 0.62;
+    const gs   = Math.max(18, R * 0.215);
+    const core = R * 0.145;
 
     /* spokes — only to platforms that exist in this era, and only once the
        shared core exists to send anything down them */
@@ -1010,9 +1016,12 @@ let repaintFigure = () => {};
       ctx.save();
       ctx.translate(gx, gy);
       ctx.beginPath();
-      d.glyph(ctx, sz * (0.86 + 0.14*st));
-      ctx.lineWidth = 1.25;
-      ctx.strokeStyle = rgba(INK, 0.62 * st);
+      /* overshoots past full size on arrival, then settles — a distinct
+         instant to catch rather than a fade nobody registers */
+      const pop = st < 1 ? (0.82 + 0.28*st) : (1 + 0.05*Math.max(0, 1 - (t - eraChangedAt)/260));
+      d.glyph(ctx, sz * pop);
+      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = rgba(INK, 0.78 * st);
       ctx.stroke();
       ctx.restore();
     });
