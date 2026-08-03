@@ -1098,31 +1098,65 @@ footer{ border-top:var(--rule); padding-block:26px; display:flex; flex-wrap:wrap
    The stack column is the quiet argument of this section — read the four
    of them top to bottom and you get Objective-C to visionOS without a
    single sentence claiming it. */
-/* THE PATH — the journey figure.
-   Sticky beside the timeline so one drawing narrates all four eras rather
-   than four drawings competing. Below 1000px it is hidden outright: a
-   sticky canvas on a phone would either cover the text it is describing or
-   shrink past legibility, and the eras read fine without it. */
+/* THE PATH — the journey stage.
+   Four layers stacked in one box, only one visible at a time. Cross-fading
+   opacity between stills, plus a small drift against scroll and pointer, is
+   what turns four pictures into a scene — no frame-by-frame art required.
+
+   3:4 portrait, because the subject is a person. The ratio is fixed here
+   rather than left to the image so a missing file reserves exactly the
+   space the real one will take. */
 .path-grid{ display:block; }
 .path-fig{ display:none; }
 
 @media (min-width:1000px){
   .path-grid{
-    display:grid; grid-template-columns:minmax(0,1fr) minmax(280px,.62fr);
+    display:grid; grid-template-columns:minmax(0,1fr) minmax(300px,.66fr);
     column-gap:clamp(40px,5vw,90px); align-items:start;
   }
-  .path-fig{
-    display:block; position:sticky; top:132px;
+  .path-fig{ display:block; position:sticky; top:118px; }
+
+  .path-stage{
+    position:relative; width:100%; aspect-ratio:3/4;
+    border-radius:10px; overflow:hidden;
+    border:1px solid var(--hair);
+    background:linear-gradient(165deg,
+      color-mix(in srgb, var(--paper-lit) 70%, transparent), transparent 78%);
+    --drift:0px; --mx:0px; --my:0px;
   }
-  .path-fig canvas{
-    width:100%; aspect-ratio:1/1; display:block;
+  .stage-layer{
+    position:absolute; inset:0;
+    display:grid; place-content:center; gap:10px; text-align:center;
+    opacity:0; transition:opacity .75s var(--ease);
+    transform:translate3d(var(--mx), calc(var(--my) + var(--drift)), 0) scale(1.06);
+    will-change:transform, opacity;
   }
+  .stage-layer.is-on{ opacity:1; }
+  .stage-img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* A layer whose file does not exist yet states so plainly, at the exact
+     size the artwork will occupy. */
+  .stage-layer.is-empty{
+    border:1px dashed color-mix(in srgb, var(--ink) 22%, transparent);
+    border-radius:10px;
+    background:repeating-linear-gradient(135deg,
+      color-mix(in srgb, var(--ink) 3%, transparent) 0 10px, transparent 10px 20px);
+  }
+  .stage-ph-mark{
+    font-family:var(--f-mono); font-size:10px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-faint);
+  }
+  .stage-ph-slot{ font-family:var(--f-mono); font-size:11px; color:var(--ink-soft); }
+
   .path-cap{
     margin:14px 0 0; text-align:center;
     font-family:var(--f-mono); font-size:10px; letter-spacing:.11em;
-    text-transform:uppercase; color:var(--ink-faint);
-    min-height:1.4em;
+    text-transform:uppercase; color:var(--ink-faint); min-height:1.4em;
   }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .stage-layer{ transition:none; transform:none; }
 }
 
 /* Single column now that the tag list is gone — it was the only reason

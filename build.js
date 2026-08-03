@@ -46,6 +46,23 @@ const gaps = s => esc(s).replace(/\[Placeholder:\s*([^\]]*)\]/g,
 const indent = (html, pad) =>
   html.split('\n').map(l => (l.trim() ? pad + l : l)).join('\n');
 
+/* ---------- journey artwork manifest ----------
+   Which era stills actually exist on disk. Relying on an <img> error
+   handler could not work: layers below the fold are lazy, never load, and
+   so never error — leaving a broken image where a placeholder belonged.
+   Deciding at build time is deterministic and cannot flash. */
+
+function buildJourneyArt() {
+  const dir = path.join(ROOT, 'shots');
+  let have = [];
+  try {
+    have = fs.readdirSync(dir)
+      .map(f => (f.match(/^journey-(.+)\.(?:jpg|jpeg|png|webp|avif)$/) || [])[1])
+      .filter(Boolean);
+  } catch (e) { /* no shots dir yet */ }
+  return `<script>window.JOURNEY_ART=${JSON.stringify([...new Set(have)])};</script>`;
+}
+
 /* ---------- hero figure data ----------
    index.html deliberately loads no JS data files any more, so the hero
    figure cannot read CAREER_APPS at runtime. Rather than re-adding 12KB of
@@ -289,7 +306,7 @@ let html = fs.readFileSync(file, 'utf8');
 html = inject(html, 'cards', buildWork());
 html = inject(html, 'ledger', buildShipped());
 html = inject(html, 'heroStats', buildHeroStats());
-html = inject(html, 'platformApps', buildPlatformApps());
+html = inject(html, 'platformApps', buildPlatformApps() + '\n' + buildJourneyArt());
 fs.writeFileSync(file, html);
 
 /* tools/make-og.py needs the same number the hero shows. Rather than a

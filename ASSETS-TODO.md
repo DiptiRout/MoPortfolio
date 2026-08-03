@@ -39,6 +39,48 @@ that is taste, not correctness.
 
 Everything else stays as it is; the slot is wired and holds its shape.
 
+## 1b. THE JOURNEY STILLS — four images, and the animation is done
+
+The machinery is built and live. Four layers cross-fade as you scroll The
+Path, with drift against scroll and pointer. Every layer currently shows a
+marked placeholder at the exact final size, so **dropping the files in and
+running `node build.js` is the entire remaining job** — no code change,
+nothing moves on the page.
+
+Filenames must be exactly these, in `shots/`:
+
+| File | Era | Who he is |
+|---|---|---|
+| `journey-2016.jpg` | 2016–2018 · Mobiona | Youngest. Just started. Objective-C, one desk, one device. |
+| `journey-2018.jpg` | 2018–2019 · Muvi | A little older. Swift arrives. Building for other developers. |
+| `journey-2019.jpg` | 2019–2020 · Bajaj | Mid-career. Money on the line. More screens around him. |
+| `journey-2021.jpg` | 2021–Present · Robosoft | Most senior. Surrounded by iPhone, iPad, Apple TV, Vision Pro. Commanding. |
+
+**Size: 900 × 1200 (3:4 portrait). JPEG.**
+
+### Generating them
+
+Same route as the portrait — ChatGPT image generation. The critical thing
+is that it must read as **one character ageing**, not four unrelated
+people, so generate the first, then ask for the others *as edits of it*.
+
+A starting prompt, to adapt:
+
+> A single illustrated character in a calm, muted anime style, warm
+> limestone and deep navy palette, soft lighting. A young Indian software
+> developer at a desk, early career, one computer, focused. Portrait
+> orientation 3:4, plenty of negative space around the figure, no text.
+
+Then for each later era: *"the same character, a few years older and more
+confident, now with more Apple devices around him — iPad, Apple TV, a
+Vision Pro headset — same style, same palette, same face."*
+
+**Keep the background simple and dark-friendly.** These sit on a limestone
+page in day mode and a near-black one at night; a busy background will
+fight both.
+
+---
+
 ## 2. NEED YOUR DECISION — client work
 
 You do not own First Bus, Fuse, or Bajaj Markets. Two paths per app:
