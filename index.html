@@ -102,7 +102,7 @@
         <ul class="stats" data-rv data-d="4">
           <!-- BUILD:heroStats:start -->
       <li><b data-count>10+</b><span>Years shipping</span></li>
-      <li><b data-count>36</b><span>Apps shipped across my career</span></li>
+      <li><b data-count>36</b><span>Apps worked across my career</span></li>
       <li><b data-count>90%+</b><span>Test coverage on Fuse</span></li>
       <!-- BUILD:heroStats:end -->
         </ul>
@@ -113,11 +113,11 @@
           <canvas id="platformFig" role="img" aria-label="A diagram: one shared core at the centre, joined by spokes to the five Apple platforms around it — iPhone, iPad, Apple Watch, Apple TV and Vision Pro. A pulse travels outward from the core along each spoke in turn, showing shared code reaching every device."></canvas>
         </div>
         <div class="fig-cap">
-          <span id="figCap">One core · every Apple platform</span>
+          <span id="figCap">One core · four Apple platforms</span>
         </div>
         <!-- The explanation belongs beside the thing it explains. Stranded in
              the hero footer it was 400px from the diagram and read as a motto. -->
-        <p class="fig-note" data-rv data-d="2">The pulse is shared code reaching each platform. Eighteen apps, one codebase.</p>
+        <p class="fig-note" data-rv data-d="2">The pulse is shared code reaching each platform. Hover one to see what shipped there.</p>
       </div>
 
     </div>
@@ -447,6 +447,10 @@
   </footer>
 </div>
 
+<!-- BUILD:platformApps:start -->
+      <script>window.PLATFORM_APPS={"iOS":36,"tvOS":19,"visionOS":18};</script>
+      <!-- BUILD:platformApps:end -->
+
 <script>
 /* ============================================================
    1. UTILITIES
@@ -580,7 +584,7 @@ let repaintFigure = () => {};
   const canvas = $('#platformFig'), wrap = $('#platformWrap');
   const ctx = canvas.getContext('2d');
   const capEl = $('#figCap');
-  const CAP_DEFAULT = 'One core · every Apple platform';
+  const CAP_DEFAULT = capEl.textContent.trim();
 
   const PULSE   = 3200;                          // ms for a pulse to reach the rim
   const STAGGER = 520;                           // ms between platforms
@@ -646,16 +650,6 @@ let repaintFigure = () => {};
       glyph:s => { rr(-s*0.47, -s*0.58, s*0.94, s*1.16, s*0.08);
                    ctx.moveTo(0, -s*0.46); ctx.lineTo(0, -s*0.46); } },
 
-    { name:'Apple Watch', os:'watchOS', hw:0.30, hh:0.60, k:1.02,
-      glyph:s => {
-        rr(-s*0.30, -s*0.38, s*0.60, s*0.76, s*0.23);
-        ctx.moveTo(-s*0.16, -s*0.38); ctx.lineTo(-s*0.16, -s*0.60);
-        ctx.lineTo( s*0.16, -s*0.60); ctx.lineTo( s*0.16, -s*0.38);
-        ctx.moveTo(-s*0.16,  s*0.38); ctx.lineTo(-s*0.16,  s*0.60);
-        ctx.lineTo( s*0.16,  s*0.60); ctx.lineTo( s*0.16,  s*0.38);
-        ctx.moveTo(s*0.30, -s*0.10); ctx.lineTo(s*0.36, -s*0.10);
-      } },
-
     { name:'Apple TV', os:'tvOS', hw:0.60, hh:0.46, k:0.76,
       glyph:s => {
         rr(-s*0.60, -s*0.40, s*1.20, s*0.72, s*0.06);
@@ -685,6 +679,10 @@ let repaintFigure = () => {};
   }
 
   wrap.addEventListener('pointermove', e => {
+    const r = canvas.getBoundingClientRect();
+    mx = e.clientX - r.left; my = e.clientY - r.top;
+  }, { passive:true });
+  wrap.addEventListener('pointerdown', e => {
     const r = canvas.getBoundingClientRect();
     mx = e.clientX - r.left; my = e.clientY - r.top;
   }, { passive:true });
@@ -823,9 +821,17 @@ let repaintFigure = () => {};
 
     if (near !== hoverPlat){
       hoverPlat = near;
-      capEl.textContent = near < 0
-        ? CAP_DEFAULT
-        : PLATFORMS[near].name + ' · ' + PLATFORMS[near].os;
+      if (near < 0){
+        capEl.textContent = CAP_DEFAULT;
+      } else {
+        const p = PLATFORMS[near];
+        const n = (window.PLATFORM_APPS || {})[p.os];
+        /* A platform with no confirmed count shows no number rather than a
+           zero — an unproven claim is worse than a missing one. */
+        capEl.textContent = n
+          ? p.name + ' · ' + n + (n === 1 ? ' app' : ' apps') + ' shipped'
+          : p.name + ' · ' + p.os;
+      }
     }
 
     if (!RM) requestAnimationFrame(draw);

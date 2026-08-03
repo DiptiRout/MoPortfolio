@@ -46,6 +46,19 @@ const gaps = s => esc(s).replace(/\[Placeholder:\s*([^\]]*)\]/g,
 const indent = (html, pad) =>
   html.split('\n').map(l => (l.trim() ? pad + l : l)).join('\n');
 
+/* ---------- hero figure data ----------
+   index.html deliberately loads no JS data files any more, so the hero
+   figure cannot read CAREER_APPS at runtime. Rather than re-adding 12KB of
+   projects.js for four numbers, the counts are baked in here — still
+   derived from the one breakdown, so they cannot drift from the hero stat. */
+
+function buildPlatformApps() {
+  const OSES = ['iOS', 'iPadOS', 'tvOS', 'visionOS'];
+  const map = {};
+  OSES.forEach(os => { const n = CAREER_APPS.countOn(os); if (n > 0) map[os] = n; });
+  return `<script>window.PLATFORM_APPS=${JSON.stringify(map)};</script>`;
+}
+
 /* ---------- hero stats ---------- */
 
 function buildHeroStats() {
@@ -270,6 +283,7 @@ let html = fs.readFileSync(file, 'utf8');
 html = inject(html, 'cards', buildWork());
 html = inject(html, 'ledger', buildShipped());
 html = inject(html, 'heroStats', buildHeroStats());
+html = inject(html, 'platformApps', buildPlatformApps());
 fs.writeFileSync(file, html);
 
 /* tools/make-og.py needs the same number the hero shows. Rather than a

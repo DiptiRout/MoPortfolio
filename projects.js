@@ -391,15 +391,26 @@ window.PROJECTS = [
    ============================================================ */
 window.CAREER_APPS = {
   breakdown: [
-    { source: 'Fuse (Robosoft · one codebase)', count: 18 },
-    { source: 'First Bus',                      count: 1 },
-    { source: 'Bajaj Markets',                  count: 1 },
-    { source: 'MoMudra',                        count: 1 },
-    { source: 'Muvi',                           count: 3 },
-    { source: 'Mobiona (services era)',         count: 11 },
-    { source: 'TikMe (freelance)',               count: 1 }
+    { source: 'Fuse (Robosoft · one codebase)', count: 18, on: ['iOS', 'tvOS', 'visionOS'] },
+    { source: 'First Bus',                      count: 1,  on: ['iOS'] },
+    { source: 'Bajaj Markets',                  count: 1,  on: ['iOS', 'tvOS'] },
+    { source: 'MoMudra',                        count: 1,  on: ['iOS'] },
+    { source: 'Muvi',                           count: 3,  on: ['iOS'] },
+    { source: 'Mobiona (services era)',         count: 11, on: ['iOS'] },
+    { source: 'TikMe (freelance)',               count: 1,  on: ['iOS'] }
   ],
-  get total() { return this.breakdown.reduce((n, x) => n + x.count, 0); }
+  get total() { return this.breakdown.reduce((n, x) => n + x.count, 0); },
+
+  /* Apps shipped per Apple platform, summed from the same breakdown rather
+     than typed a second time into the hero figure. A platform with no
+     entries returns 0, and the figure shows no number rather than a zero —
+     iPadOS is in that state until Dipti confirms which apps were universal. */
+  countOn: function (os) {
+    return this.breakdown.reduce((n, x) => n + (x.on.includes(os) ? x.count : 0), 0);
+  },
+  sourcesOn: function (os) {
+    return this.breakdown.filter(x => x.on.includes(os)).map(x => x.source);
+  }
 };
 
 window.HERO_STATS = [
@@ -407,7 +418,7 @@ window.HERO_STATS = [
   /* Not "from one codebase" any more — that described only the Fuse
      figure. This is the sum across every stop, so the label has to say
      career rather than architecture. */
-  { value: String(window.CAREER_APPS.total), label: 'Apps shipped across my career' },
+  { value: String(window.CAREER_APPS.total), label: 'Apps worked across my career' },
   { value: '90%+', label: 'Test coverage on Fuse' }
 ];
 
