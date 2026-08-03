@@ -56,7 +56,7 @@ Filenames must be exactly these, in `shots/`:
 | `journey-2019.jpg` | 2019–2020 · Bajaj | Mid-career. Money on the line. More screens around him. |
 | `journey-2021.jpg` | 2021–Present · Robosoft | Most senior. Surrounded by iPhone, iPad, Apple TV, Vision Pro. Commanding. |
 
-**Size: 900 × 1200 (3:4 portrait). JPEG.**
+**Size: 1024 × 1536 (2:3 portrait) — ChatGPT's native portrait size, so nothing gets cropped. JPEG.**
 
 ### Generating them
 
