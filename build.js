@@ -189,17 +189,22 @@ function studyHTML(p) {
     : '';
 
   out.push('<div class="case-body">');
+  /* Cut to Problem -> Decisions -> Result on request: the constraint,
+     approach prose, lessons and regrets sections are no longer rendered.
+     Nothing is deleted from projects.js — this is a display change, so the
+     content is still there if a later pass wants it back.
+
+     The 'approach' diagram (fuse-brands, stack) used to illustrate the
+     approach prose that no longer renders. Rather than lose the drawing,
+     it now illustrates the decisions grid instead — which is where a
+     reader actually wants a picture of the mechanism. */
   out.push(sec('The problem', paras(s.problem) + figHTML(f.problem)));
 
-  /* Pulled from the project object, not the study — the card and the study
-     must state the same constraint or neither can be trusted. */
-  if (p.constraint) out.push(sec('The constraint', `<p>${gaps(p.constraint)}</p>`));
-
-  out.push(sec('The approach', paras(s.approach) + figHTML(f.approach)));
-
   if (s.decisions && s.decisions.length) {
-    out.push(sec('The decisions', `<ol class="dec">${s.decisions.map(d =>
-      `<li><h3>${esc(d.title)}</h3><p>${gaps(d.body)}</p></li>`).join('')}</ol>`));
+    out.push(sec('The decisions',
+      `<ol class="dec">${s.decisions.map(d =>
+        `<li><h3>${esc(d.title)}</h3><p>${gaps(d.body)}</p></li>`).join('')}</ol>` +
+      figHTML(f.approach)));
   }
 
   const real = (p.metrics || []).filter(m => m.value !== null && m.value !== undefined);
@@ -207,15 +212,6 @@ function studyHTML(p) {
     (real.length ? `<ul class="figs case-figs">${real.map(m =>
       `<li><b>${esc(m.value)}</b><span>${esc(m.label)}</span></li>`).join('')}</ul>` : '') +
     paras(s.outcome)));
-
-  if (s.lessons && s.lessons.length) {
-    out.push(sec('What it taught me',
-      `<ul class="takeaways">${s.lessons.map(l => `<li>${gaps(l)}</li>`).join('')}</ul>`));
-  }
-  if (s.differently && s.differently.length) {
-    out.push(sec("What I'd do differently",
-      `<ul class="takeaways">${s.differently.map(l => `<li>${gaps(l)}</li>`).join('')}</ul>`));
-  }
 
   const store = p.links && p.links.appStore;
   out.push(`<div class="case-out">
