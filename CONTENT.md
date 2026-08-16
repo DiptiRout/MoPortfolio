@@ -18,7 +18,7 @@ index.html                the page
 case.html                 case-study template — reads ?p=<slug>
 projects.js               ← PROJECTS (cards + studies) and SHIPPED (the ledger)
 site.css                  shared styles for both pages
-Diptiranjan-Rout-iOS.pdf  the public résumé (= your 2026 CV)
+Diptiranjan-Rout-Senior-iOS-Engineer.pdf  the public résumé (= your 2026 CV)
 ```
 
 ## ⚠️ Two things to fix in your CV source
@@ -149,7 +149,7 @@ EMAIL         diptiranjan.rout.ios@gmail.com
 LOCATION      Odisha, India
 GITHUB        https://github.com/DiptiRout
 LINKEDIN      https://www.linkedin.com/in/diptiranjan-rout-ios-dev
-RESUME_PDF    Diptiranjan-Rout-iOS.pdf   ← live, opens in a new tab
+RESUME_PDF    Diptiranjan-Rout-Senior-iOS-Engineer.pdf   ← live, opens in a new tab
 ```
 
 No dead links remain. Verified: the résumé serves 200 as `application/pdf`.
